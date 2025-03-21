@@ -25,6 +25,7 @@ public class MeltdownDiadema extends Diadema {
     @Override public @NotNull DiademaRange getRange() {
         return range;
     }
+
     @Override protected void perTick() {
         DamageSource src = MekanismDamageTypes.LASER.source(getLevel());
         for (Entity entity : affectingEntities) {

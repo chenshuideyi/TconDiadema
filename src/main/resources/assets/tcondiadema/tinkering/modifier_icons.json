@@ -5,7 +5,9 @@
   "tcondiadema:fake_kill_aura":  "tcondiadema:gui/modifiers/diadema/unlocked",
   "tcondiadema:fake_projecte":  "tcondiadema:gui/modifiers/diadema/unlocked",
   "tcondiadema:fake_meltdown":  "tcondiadema:gui/modifiers/diadema/unlocked",
+  "tcondiadema:fake_shinratensei":  "tcondiadema:gui/modifiers/diadema/unlocked",
 
+  "tcondiadema:shinratensei": "tcondiadema:gui/modifiers/diadema/shinratensei",
   "tcondiadema:kill_aura":  "tcondiadema:gui/modifiers/diadema/kill_aura",
   "tcondiadema:superbia":  "tcondiadema:gui/modifiers/diadema/superbia",
   "tcondiadema:wind":  "tcondiadema:gui/modifiers/diadema/wind",
@@ -16,5 +18,6 @@
   "tcondiadema:meltdown":  "tcondiadema:gui/modifiers/diadema/meltdown",
   "tcondiadema:avarita":  "tcondiadema:gui/modifiers/diadema/avarita",
   "tcondiadema:gula":  "tcondiadema:gui/modifiers/diadema/gula",
-  "tcondiadema:abyss":  "tcondiadema:gui/modifiers/diadema/abyss"
+  "tcondiadema:abyss":  "tcondiadema:gui/modifiers/diadema/abyss",
+  "tcondiadema:time_rain": "tcondiadema:gui/modifiers/diadema/time_rain"
 }

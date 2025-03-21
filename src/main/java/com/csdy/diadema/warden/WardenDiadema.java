@@ -45,7 +45,7 @@ public class WardenDiadema extends Diadema {
     @Override protected void perTick() {
         for (Entity entity : affectingEntities) {
             if (!(entity instanceof LivingEntity target)) continue;
-            if (target != getPlayer()) {
+            if (!(WhiteList.contains(target))) {
                 target.addEffect(new MobEffectInstance(EffectRegister.SCARED.get(), 100, 0));
             }
         }

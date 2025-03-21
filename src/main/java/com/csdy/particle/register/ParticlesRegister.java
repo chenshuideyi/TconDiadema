@@ -31,8 +31,8 @@ public class ParticlesRegister {
     public static final RegistryObject<SimpleParticleType> LUXURIA_PARTICLE = PARTICLE_TYPES.register("luxuria_particle", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> AVARITA_PARTICLE = PARTICLE_TYPES.register("avarita_particle", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> SUPERNIAPARTICLE_PARTICLE = PARTICLE_TYPES.register("superbia_particle", () -> new SimpleParticleType(false));
-
-
+    public static final RegistryObject<SimpleParticleType> SHINRATENSEI_PARTICLE = PARTICLE_TYPES.register("shinratensei_particle", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> TIME_RAIN_PARTICLE = PARTICLE_TYPES.register("time_rain_particle", () -> new SimpleParticleType(false));
 
 
 
@@ -55,5 +55,11 @@ public class ParticlesRegister {
         Minecraft.getInstance().particleEngine.register(ParticlesRegister.LUXURIA_PARTICLE.get(), LuxuriaParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ParticlesRegister.AVARITA_PARTICLE.get(), AvaritaParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ParticlesRegister.SUPERNIAPARTICLE_PARTICLE.get(), SuperbiaParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticlesRegister.SHINRATENSEI_PARTICLE.get(), ShinratenseiParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticlesRegister.TIME_RAIN_PARTICLE.get(), TimeRainParticle.Provider::new);
+
+
+
+
     }
 }

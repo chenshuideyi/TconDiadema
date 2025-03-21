@@ -5,6 +5,7 @@ import com.csdy.diadema.DiademaRegister;
 import com.csdy.diadema.warden.WardenDiadema;
 import com.csdy.frames.diadema.Diadema;
 import com.csdy.item.register.ItemRegister;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
@@ -37,7 +38,7 @@ public class Event {
             if (!tag.getBoolean(firstdeath)) {
                 player.setHealth(player.getMaxHealth());
                 ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(ItemRegister.BROKEN_SACRED_RELIC.get()));
-                player.displayClientMessage(Component.literal("§n§4一把来自古代的遗物突然过来保护了你!"), false);
+                player.displayClientMessage(Component.translatable("item.tcondiadema.sacred_relic.get").withStyle(ChatFormatting.RED), false);
                 player.getPersistentData().getBoolean("first_death");
                 tag.putBoolean(firstdeath, true);
                 e.getEntity().getPersistentData().put(Player.PERSISTED_NBT_TAG, tag);
