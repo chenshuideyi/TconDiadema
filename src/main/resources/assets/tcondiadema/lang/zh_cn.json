@@ -31,7 +31,7 @@
 
   "modifier.tcondiadema.fake_kill_aura": "No.九百九十九-杀戮光环青春版",
   "modifier.tcondiadema.fake_kill_aura.flavor": "这挂不对",
-  "modifier.tcondiadema.fake_kill_aura.description": "只有在进来的时候能自动攻击一次...\n你可能是盗版杀戮光环受害者,请下载莱特兰恶意获取完整服务",
+  "modifier.tcondiadema.fake_kill_aura.description": "只有在进来的时候能自动攻击一次……\n你可能是盗版杀戮光环受害者，请下载莱特兰恶意获取完整服务",
 
   "modifier.tcondiadema.kill_aura": "No.六百六十六-杀戮光环",
   "modifier.tcondiadema.kill_aura.flavor": "盐都不盐了",
@@ -39,23 +39,23 @@
 
   "modifier.tcondiadema.avarita": "No.$$$-贪婪",
   "modifier.tcondiadema.avarita.flavor": "玛门",
-  "modifier.tcondiadema.avarita.description": "领域内的所有方块都会变成金块,捡起金块时会获得永久存在的黄心",
+  "modifier.tcondiadema.avarita.description": "领域内的所有方块都会变成金块，捡起金块时会获得永久存在的黄心",
 
   "modifier.tcondiadema.superbia": "No.L-傲慢",
   "modifier.tcondiadema.superbia.flavor": "路西法",
-  "modifier.tcondiadema.superbia.description": "范围内所有最大生命值小于你的生物都会被直接斩杀,每次斩杀都会提升最大生命值\n如果你的傲慢近乎狂妄......",
+  "modifier.tcondiadema.superbia.description": "范围内所有最大生命值小于你的生物都会被直接斩杀，每次斩杀都会提升最大生命值\n如果你的傲慢近乎狂妄……",
 
   "modifier.tcondiadema.fake_projecte": "No.1024-炼金幻想",
   "modifier.tcondiadema.fake_projecte.flavor": "招笑之作",
-  "modifier.tcondiadema.fake_projecte.description": "每tick会给予领域内的其他生物1点伤害,并不会获取EMC\n也许你的世界化学战胜了练金术,下载等价交换重制版来将大局逆转吧",
+  "modifier.tcondiadema.fake_projecte.description": "每tick会给予领域内的其他生物1点伤害，并不会获取EMC\n也许你的世界化学战胜了练金术，下载等价交换重制版来将大局逆转吧",
 
   "modifier.tcondiadema.projecte": "No.9984-炼金狂想",
   "modifier.tcondiadema.projecte.flavor": "伟大之作",
-  "modifier.tcondiadema.projecte.description": "每tick会给予领域内的其他生物1000点伤害,并获取等额的EMC",
+  "modifier.tcondiadema.projecte.description": "每tick会给予领域内的其他生物1000点伤害，并获取等额的EMC",
 
   "modifier.tcondiadema.wind": "No.?-乘风行走之物",
-  "modifier.tcondiadema.wind.flavor": "头顶的星空被乌云遮盖......这朵巨云有着人形的轮廓......尽管乌云密布，在它的顶层，那人形的头部，闪耀着两颗明光烁亮的星，如同两支巨眼。",
-  "modifier.tcondiadema.wind.description": "提升80%的闪避率,获得创造飞行和四倍的移动/飞行速度,进入领域的其他生物护甲值归0",
+  "modifier.tcondiadema.wind.flavor": "头顶的星空被乌云遮盖……这朵巨云有着人形的轮廓……尽管乌云密布，在它的顶层，那人形的头部，闪耀着两颗明光烁亮的星，如同两支巨眼。",
+  "modifier.tcondiadema.wind.description": "提升80%的闪避率。获得创造飞行和四倍的移动/飞行速度。进入领域的其他生物护甲值归0",
 
   "modifier.tcondiadema.abyss": "No.0-无限垂直落下",
   "modifier.tcondiadema.abyss.flavor": "我把他扔进了一个没有顶和底的地方",
@@ -66,8 +66,8 @@
   "modifier.tcondiadema.meridia_verse.description": "领域内的其他生物会绕中心以一种奇异搞笑的方式旋转",
 
   "modifier.tcondiadema.fake_meltdown": "No.yousa-炉心与融解相比",
-  "modifier.tcondiadema.fake_meltdown.flavor": "这是到哪来了?",
-  "modifier.tcondiadema.fake_meltdown.description": "令领域内的所有生物燃烧(真的是所有)\n您可能处于原子能技术未被发明的中世纪,下载通用机械以推动世界前进",
+  "modifier.tcondiadema.fake_meltdown.flavor": "这是到哪来了？",
+  "modifier.tcondiadema.fake_meltdown.description": "令领域内的所有生物燃烧(真的是所有)\n您可能处于原子能技术未被发明的中世纪，下载通用机械以推动世界前进",
 
   "modifier.tcondiadema.meltdown": "No.鏡音リン-炉心融解",
   "modifier.tcondiadema.meltdown.flavor": "做了个紧勒住你脖子的梦",
@@ -75,7 +75,7 @@
 
   "modifier.tcondiadema.warden": "No.500-古城之灾",
   "modifier.tcondiadema.warden.flavor": "把脚步放低......",
-  "modifier.tcondiadema.warden.description": "领域内的其他玩家陷入完全的黑暗中并使生物获得惊恐状态,尝试逃离的生物会受到30点伤害的音爆攻击",
+  "modifier.tcondiadema.warden.description": "领域内的其他玩家陷入完全的黑暗中并使生物获得惊恐状态，尝试逃离的生物会受到30点伤害的音爆攻击",
 
   "modifier.tcondiadema.ira": "No.!-愤怒",
   "modifier.tcondiadema.ira.flavor": "等待输入",
@@ -83,23 +83,23 @@
 
   "modifier.tcondiadema.gula": "No.6-暴食",
   "modifier.tcondiadema.gula.flavor": "贝露赛布",
-  "modifier.tcondiadema.gula.description": "领域内其他生物的死亡会为你增长该生物0.8倍的最大生命值与攻击力(死亡会失去这些属性!)\n如果你的食欲无法克制……",
+  "modifier.tcondiadema.gula.description": "领域内其他生物的死亡会为你增长该生物0.8倍的最大生命值与攻击力（死亡会失去这些属性！）\n如果你的食欲无法克制……",
 
   "modifier.tcondiadema.luxuria": "No.16-色欲",
   "modifier.tcondiadema.luxuria.flavor": "阿斯蒙蒂斯",
-  "modifier.tcondiadema.luxuria.description": "领域内所有的非玩家生物手持物品都会变为末地烛,所有生物的生命愈发虚弱并转换为牛奶桶和经验球\n相比其他原罪而言纵也无妨",
+  "modifier.tcondiadema.luxuria.description": "领域内所有的非玩家生物手持物品都会变为末地烛，所有生物的生命愈发虚弱并转换为牛奶桶和经验球\n相比其他原罪而言纵也无妨",
 
   "modifier.tcondiadema.fake_shinratensei": "No.Patient-神罗天还在蒸",
   "modifier.tcondiadema.fake_shinratensei.flavor": "成为病人吧",
-  "modifier.tcondiadema.fake_shinratensei.description": "使领域内所有生物缓慢\n您可能没有觉醒轮回眼,下载循环来取得六道仙人之力",
+  "modifier.tcondiadema.fake_shinratensei.description": "使领域内所有生物缓慢\n您可能没有觉醒轮回眼，下载循环来取得六道仙人之力",
 
   "modifier.tcondiadema.shinratensei": "No.Pain-神罗天征",
   "modifier.tcondiadema.shinratensei.flavor": "感受痛苦吧",
   "modifier.tcondiadema.shinratensei.description": "排斥所有领域内的实体",
 
   "modifier.tcondiadema.time_rain": "No.冥滩-时间雨 by薄荷糖",
-  "modifier.tcondiadema.time_rain.flavor": "永别了,山姆",
-  "modifier.tcondiadema.time_rain.description": "时间雨侵蚀领域内生物的生命与衣装,当完全暴露在雨下时就是死期",
+  "modifier.tcondiadema.time_rain.flavor": "永别了，山姆",
+  "modifier.tcondiadema.time_rain.description": "时间雨侵蚀领域内生物的生命与衣装，当完全暴露在雨下时就是死期",
 
   "effect.tcondiadema.scared": "惊恐",
   "effect.tcondiadema.physical_injury": "开放性物理创口",
