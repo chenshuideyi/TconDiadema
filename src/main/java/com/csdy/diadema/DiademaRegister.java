@@ -11,8 +11,12 @@ import com.csdy.diadema.fakemeltdown.FakeMeltdownClientDiadema;
 import com.csdy.diadema.fakemeltdown.FakeMeltdownDiadema;
 import com.csdy.diadema.fakeprojecte.FakeProjectEClientDiadema;
 import com.csdy.diadema.fakeprojecte.FakeProjectEDiadema;
+import com.csdy.diadema.fakeshinratensei.FakeShinratenseiClientDiadema;
+import com.csdy.diadema.fakeshinratensei.FakeShinratenseiDiadema;
 import com.csdy.diadema.gula.GulaClientDiadema;
 import com.csdy.diadema.gula.GulaDiadema;
+import com.csdy.diadema.ira.IraClientDiadema;
+import com.csdy.diadema.ira.IraDiadema;
 import com.csdy.diadema.killaura.KillAuraClientDiadema;
 import com.csdy.diadema.killaura.KillAuraDiadema;
 import com.csdy.diadema.luxuria.LuxuriaClinetDiadema;
@@ -23,6 +27,12 @@ import com.csdy.diadema.meridiaVerse.MeridiaVerseClientDiadema;
 import com.csdy.diadema.meridiaVerse.MeridiaVerseDiadema;
 import com.csdy.diadema.projecte.ProjectEClientDiadema;
 import com.csdy.diadema.projecte.ProjectEDiadema;
+import com.csdy.diadema.shinratensei.ShinratenseiClientDiadema;
+import com.csdy.diadema.shinratensei.ShinratenseiDiadema;
+import com.csdy.diadema.superbia.SuperbiaClinetDiadema;
+import com.csdy.diadema.superbia.SuperbiaDiadema;
+import com.csdy.diadema.timerain.TimeRainClinetDiadema;
+import com.csdy.diadema.timerain.TimeRainDiadema;
 import com.csdy.diadema.warden.WardenClientDiadema;
 import com.csdy.diadema.warden.WardenDiadema;
 import com.csdy.diadema.wind.WindClientDiadema;
@@ -63,5 +73,30 @@ public class DiademaRegister {
             DIADEMA_TYPES.register("fake_meltdown", () -> DiademaType.Create(FakeMeltdownDiadema::new, FakeMeltdownClientDiadema::new));
     public static final RegistryObject<DiademaType> AVARITA =
             DIADEMA_TYPES.register("avarita", () -> DiademaType.Create(AvaritaDiadema::new, AvaritaClientDiadema::new));
+    public static final RegistryObject<DiademaType> SUPERBIA =
+            DIADEMA_TYPES.register("superbia", () -> DiademaType.Create(SuperbiaDiadema::new, SuperbiaClinetDiadema::new));
+    public static final RegistryObject<DiademaType> SHINRATENSEI =
+            DIADEMA_TYPES.register("shinratensei", () -> DiademaType.Create(ShinratenseiDiadema::new, ShinratenseiClientDiadema::new));
+    public static final RegistryObject<DiademaType> FAKE_SHINRATENSEI =
+            DIADEMA_TYPES.register("fake_shinratensei", () -> DiademaType.Create(FakeShinratenseiDiadema::new, FakeShinratenseiClientDiadema::new));
+    public static final RegistryObject<DiademaType> IRA =
+            DIADEMA_TYPES.register("ira", () -> DiademaType.Create(IraDiadema::new, IraClientDiadema::new));
+    public static final RegistryObject<DiademaType> TIME_RAIN =
+            DIADEMA_TYPES.register("time_rain", () -> DiademaType.Create(TimeRainDiadema::new, TimeRainClinetDiadema::new));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

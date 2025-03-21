@@ -1,3 +1,111 @@
 {
-  "item.tcondiadema.web_13234": "Web_13234"
+  "item.tcondiadema.broken_sacred_relic": "Broken Sacred_Relic",
+  "item.tcondiadema.sacred_relic": "§eSacred Relic",
+  "item.tcondiadema.sacred_relic.line1": "An ancient weapon that often turns the tides of war.",
+  "item.tcondiadema.sacred_relic.get": "§4An ancient relic suddenly appeared to protect you.",
+
+
+  "item.csdy.web_13234.name": "just for test",
+
+  "item.tcondiadema.warden_heart": "§1Warden Heart",
+  "item.tcondiadema.enderdragon_heart": "§5Ender Dragon Heart",
+  "item.tcondiadema.forma": "Forma",
+  "item.tcondiadema.neuron": "Neuron",
+  "item.tcondiadema.morphics": "Morphics",
+  "item.tcondiadema.orokin_cell": "Orokin Cell",
+  "item.tcondiadema.neural_sensors": "Neuron Sensors",
+  "item.tcondiadema.neuron_sensors.line1": "It may need to be obtained from golems body",
+  "item.tcondiadema.aura_forma": "Aura Forma",
+
+  "tcondiadema_tab": "TconDiadema",
+  "stat.tconstruct.slot.display.diadema": "Diadema",
+  "stat.tconstruct.slot.prefix.diadema": "Diadema Slot：",
+
+  "modifier.tcondiadema.forma": "Polarization",
+  "modifier.tcondiadema.forma.flavor": "add the Polarity of a slot",
+  "modifier.tcondiadema.forma.description": "Each level offers different slots",
+
+
+  "modifier.tcondiadema.aura_forma": "Aura Polarization",
+  "modifier.tcondiadema.aura_forma.flavor": "add the Aura Polarity of a slot",
+  "modifier.tcondiadema.aura_forma.description": "offers Diadema slots",
+
+  "modifier.tcondiadema.fake_kill_aura": "No.九百九十九-Fake Kill Aura",
+  "modifier.tcondiadema.fake_kill_aura.flavor": "Loser Cheaters",
+  "modifier.tcondiadema.fake_kill_aura.description": "Can only auto-attack once when entity come in...\nYou may be a victim of pirated killing aura, please download \"L2hostility\" get the full service",
+
+  "modifier.tcondiadema.kill_aura": "No.六百六十六-Kill Aura",
+  "modifier.tcondiadema.kill_aura.flavor": "YOU'RE A DIRTY HACKER",
+  "modifier.tcondiadema.kill_aura.description": "just like vape",
+
+  "modifier.tcondiadema.avarita": "No.$$$-Avarita",
+  "modifier.tcondiadema.avarita.flavor": "Mammon",
+  "modifier.tcondiadema.avarita.description": "All the blocks in your Diadema will change to Gold ,Pick up them to get AbsorptionAmount",
+
+  "modifier.tcondiadema.superbia": "No.L-Superbia",
+  "modifier.tcondiadema.superbia.flavor": "Lucifer",
+  "modifier.tcondiadema.superbia.description": "Kill all entities in Diadema with a lower max-health than you, and increase your max-health each time.",
+
+  "modifier.tcondiadema.fake_projecte": "No.1024-Alchemical Daydream",
+  "modifier.tcondiadema.fake_projecte.flavor": "The Joke",
+  "modifier.tcondiadema.fake_projecte.description": "Hurt all entities in Diadema 1 damage every tick, EMC will not be added\nMaybe in your world chemistry has triumphed over alchemy, download the \"ProjectE\" to turn things around",
+
+  "modifier.tcondiadema.projecte": "No.9984-Alchemical Fantasy",
+  "modifier.tcondiadema.projecte.flavor": "The Work",
+  "modifier.tcondiadema.projecte.description": "Hurt all entities in Diadema 1000 damage every tick. And add 1000 EMC",
+
+  "modifier.tcondiadema.wind": "No.?-The Thing That Walked on the Wind",
+  "modifier.tcondiadema.wind.flavor": "Deathwalker ...... Wind God, you walk in the wind...... adoramus te...... adoramus te...... adoramus te......",
+  "modifier.tcondiadema.wind.description": "Increases evasion chance by 80%, gains gamemode crative flight and quadruple movement/flight speed, and other entities in Diadema Armor return to 0",
+
+  "modifier.tcondiadema.abyss": "No.0-Infinite vertical falls",
+  "modifier.tcondiadema.abyss.flavor": "I threw him into a place where there was no top and bottom",
+  "modifier.tcondiadema.abyss.description": "all entities in Diadema Y pos always lower than -500",
+
+  "modifier.tcondiadema.meridia_verse": "No.360-Meridia Verse",
+  "modifier.tcondiadema.meridia_verse.flavor": "Harry Road Whirlwind",
+  "modifier.tcondiadema.meridia_verse.description": "All entities in Diadema will round and round and round",
+
+  "modifier.tcondiadema.fake_meltdown": "No.yousa-downMelt",
+  "modifier.tcondiadema.fake_meltdown.flavor": "What is this?",
+  "modifier.tcondiadema.fake_meltdown.description": "ignite all entities in Diadema(Real All)\nYou may be in the Middle Ages when atomic technology was not invented, download \"Mekanism\" to move the world forward",
+
+  "modifier.tcondiadema.meltdown": "No.鏡音リン-Meltdown",
+  "modifier.tcondiadema.meltdown.flavor": "I have a dream where I take you by your hammering neck",
+  "modifier.tcondiadema.meltdown.description": "Hurt all entities in Diadema 2500 LASER damage every tick and radiate them.",
+
+  "modifier.tcondiadema.warden": "No.500-The disaster of the ancient city",
+  "modifier.tcondiadema.warden.flavor": "softly and quietly......",
+  "modifier.tcondiadema.warden.description": "Other players in the Diadema are plunged into complete darkness and give the mob a Scared effect, and the mob that tries to escape will be attacked with a sonic boom of 30 damage",
+
+  "modifier.tcondiadema.ira": "No.!-Ira",
+  "modifier.tcondiadema.ira.flavor": "等待输入",
+  "modifier.tcondiadema.ira.description": "等待输入",
+
+  "modifier.tcondiadema.gula": "No.6-Gula",
+  "modifier.tcondiadema.gula.flavor": "Beelzebub",
+  "modifier.tcondiadema.gula.description": "The death of other creatures within the Diadema will increase your max health and attack damage by 0.8 times that of the deceased creature.",
+
+  "modifier.tcondiadema.luxuria": "No.16-Luxuria",
+  "modifier.tcondiadema.luxuria.flavor": "Asmodeus",
+  "modifier.tcondiadema.luxuria.description": "All non-player creatures within the Diadema will have their held items replaced with End Rods. The health of all creatures will gradually weaken and be converted into Milk Buckets and Experience Orbs.",
+
+  "modifier.tcondiadema.fake_shinratensei": "No.Patient-Shinraten still charging",
+  "modifier.tcondiadema.fake_shinratensei.flavor": "Be the patient.",
+  "modifier.tcondiadema.fake_shinratensei.description": "All creatures within the domain will be slowed.  \nYou may not have awakened the Rinnegan yet. Download \"Cycle\" to obtain the power of the Six Paths Sage.",
+
+  "modifier.tcondiadema.shinratensei": "No.Pain-Shinratensei",
+  "modifier.tcondiadema.shinratensei.flavor": "idami o kanji ro",
+  "modifier.tcondiadema.shinratensei.description": "Repel all entities within the diadema.",
+
+  "modifier.tcondiadema.time_rain": "No.Beach-Time Rain by薄荷糖",
+  "modifier.tcondiadema.time_rain.flavor": "Farewell, Sam",
+  "modifier.tcondiadema.time_rain.description": "Time Rain erodes the lives and clothing of creatures in the Diadema.When fully exposed to the rain, it is the death period",
+
+  "effect.tcondiadema.scared": "Scared",
+  "effect.tcondiadema.physical_injury": "Physical Injury",
+  "effect.tcondiadema.fracture": "Fracture",
+  "effect.tcondiadema.comminuted_fracture": "Comminuted Fracture",
+  "effect.tcondiadema.wind": "The Thing That Walked on the Wind"
+
 }

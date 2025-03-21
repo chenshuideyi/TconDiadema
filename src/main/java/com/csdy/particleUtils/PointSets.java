@@ -3,6 +3,7 @@ package com.csdy.particleUtils;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -67,4 +68,19 @@ public class PointSets {
 
         return points.get(0);
     }
+
+
+    public static Stream<Vec3> Sphere(double r, int segX, int segY){
+        var circle = Circle(r, segX).toList();
+        return Stream.iterate(0, i -> i <= segY,i->i+1).flatMap(i -> {
+            double rate = ((double)i * 2 - segY) / segY;
+            double y = rate * r;
+            return circle.stream().map(v -> v.scale(Math.cos(rate*Math.PI/2)).add(0,y,0));
+        });
+    }
+
+
+
+
+
 }
