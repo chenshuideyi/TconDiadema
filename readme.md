@@ -7,8 +7,8 @@
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/chenshuideyi/TconDiadema)
 
 
-![Static Badge](https://img.shields.io/badge/CurseForge(not_uploaded_yet)-AA3300?logo=curseforge&link=https%3A%2F%2Fwww.curseforge.com%2Fminecraft)
-![Static Badge](https://img.shields.io/badge/MCMod-00AA00?link=https%3A%2F%2Fwww.mcmod.cn%2Fclass%2F18741.html)
+[![Static Badge](https://img.shields.io/badge/CurseForge-AA3300?logo=curseforge&link=https%3A%2F%2Fwww.curseforge.com%2Fminecraft%2Fmc-mods%2Ftcondiadema)](https://www.curseforge.com/minecraft/mc-mods/tcondiadema)
+[![Static Badge](https://img.shields.io/badge/MCMod-00AA00?link=https%3A%2F%2Fwww.mcmod.cn%2Fclass%2F18741.html)](https://www.mcmod.cn/class/18741.html)
 
 ---
 
@@ -23,3 +23,7 @@ To be edited...
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
+
+---
+
+*For our Minecraft.*
