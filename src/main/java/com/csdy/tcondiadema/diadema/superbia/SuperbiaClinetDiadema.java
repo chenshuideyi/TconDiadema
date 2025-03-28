@@ -7,10 +7,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static java.lang.Math.sqrt;
 import static net.minecraft.util.Mth.square;
-
+@OnlyIn(Dist.CLIENT)
 public class SuperbiaClinetDiadema extends ClientDiadema {
     private static final SimpleParticleType type = ParticlesRegister.SUPERNIAPARTICLE_PARTICLE.get();
     @Override protected void perTick() {

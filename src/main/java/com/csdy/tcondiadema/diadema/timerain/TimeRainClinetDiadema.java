@@ -6,11 +6,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
 import static net.minecraft.util.Mth.square;
-
+@OnlyIn(Dist.CLIENT)
 public class TimeRainClinetDiadema extends ClientDiadema {
     Random random = new Random();
     static final double RADIUS = TimeRainDiadema.RADIUS;

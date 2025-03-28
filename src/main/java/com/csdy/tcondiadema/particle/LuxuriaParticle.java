@@ -6,6 +6,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class LuxuriaParticle extends TextureSheetParticle {
 
     protected LuxuriaParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {

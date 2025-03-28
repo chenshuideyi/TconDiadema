@@ -6,7 +6,10 @@ import com.csdy.tcondiadema.particleUtils.PointSets;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class ShinratenseiClientDiadema extends ClientDiadema {
     private static final SimpleParticleType type = ParticlesRegister.SHINRATENSEI_PARTICLE.get();
     private static final double RADIUS = 8;

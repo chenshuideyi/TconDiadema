@@ -10,7 +10,10 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class LuxuriaClinetDiadema extends ClientDiadema {
     private static final SimpleParticleType type = ParticlesRegister.LUXURIA_PARTICLE.get();
     private static final SimpleParticleType type1 = ParticleTypes.HEART.getType();

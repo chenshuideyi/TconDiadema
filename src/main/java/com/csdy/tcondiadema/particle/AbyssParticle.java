@@ -6,6 +6,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class AbyssParticle extends TextureSheetParticle {
 
     protected AbyssParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {

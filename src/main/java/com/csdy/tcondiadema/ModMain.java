@@ -12,6 +12,8 @@ import com.csdy.tcondiadema.sounds.SoundsRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -49,7 +51,6 @@ public class ModMain {
         EffectRegister.EFFECTS.register(bus);
         SoundsRegister.SOUND_EVENTS.register(bus);
 
-        DiademaSlots.init();
         DiademaRegister.DIADEMA_TYPES.register(bus);
 
 //        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.EXMODE,"tcondiadema-Exmode.toml");
@@ -62,6 +63,7 @@ public class ModMain {
         //网络包
         DiademaSyncing.Init();
         ParticleSyncing.Init();
+        DiademaSlots.init();
     }
 
 //    @SubscribeEvent

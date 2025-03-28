@@ -7,7 +7,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class KillAuraClientDiadema extends ClientDiadema {
     private static final SimpleParticleType type = ParticlesRegister.KILL_AURA_PARTICLE.get();
 

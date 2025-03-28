@@ -9,9 +9,11 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.stream.Stream;
-
+@OnlyIn(Dist.CLIENT)
 public class MeridiaVerseClientDiadema extends ClientDiadema {
     private static final double RADIUS = MeridiaVerseDiadema.RADIUS;
 
