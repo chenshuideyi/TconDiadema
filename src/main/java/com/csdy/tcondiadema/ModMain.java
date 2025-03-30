@@ -1,5 +1,6 @@
 package com.csdy.tcondiadema;
 
+import com.csdy.tcondiadema.diadema.ClientDiademaRegister;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.effect.register.EffectRegister;
 import com.csdy.tcondiadema.frames.diadema.DiademaSyncing;
@@ -17,6 +18,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -53,9 +55,13 @@ public class ModMain {
 
         DiademaRegister.DIADEMA_TYPES.register(bus);
 
-//        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.EXMODE,"tcondiadema-Exmode.toml");
-//        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
+        //        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.EXMODE,"tcondiadema-Exmode.toml");
+        //        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
 
+        // 以下代码仅在客户端运行
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            ClientDiademaRegister.CLIENT_DIADEMA_TYPES.register(bus);
+        });
     }
 
     @SubscribeEvent
@@ -63,7 +69,11 @@ public class ModMain {
         //网络包
         DiademaSyncing.Init();
         ParticleSyncing.Init();
-        DiademaSlots.init();
+
+        // 以下代码仅在客户端运行
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            DiademaSlots.init();
+        });
     }
 
 //    @SubscribeEvent

@@ -2,6 +2,7 @@ package com.csdy.tcondiadema.frames.diadema;
 
 
 import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.frames.CsdyRegistries;
 import com.csdy.tcondiadema.frames.diadema.packets.DiademaCreatedPacket;
 import com.csdy.tcondiadema.frames.diadema.packets.DiademaRemovedPacket;
 import com.csdy.tcondiadema.frames.diadema.packets.DiademaUpdatePacket;
@@ -10,6 +11,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
@@ -18,6 +20,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -34,31 +37,61 @@ public class DiademaSyncing {
 
 
     public static void Init() {
-        int packetId = 0;
-        CHANNEL.registerMessage(
-                packetId++,
-                DiademaCreatedPacket.class,
-                DiademaCreatedPacket::encode,
-                DiademaCreatedPacket::decode,
-                DiademaSyncing::handleCreation,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
-        );
-        CHANNEL.registerMessage(
-                packetId++,
-                DiademaRemovedPacket.class,
-                DiademaRemovedPacket::encode,
-                DiademaRemovedPacket::decode,
-                DiademaSyncing::handleRemoval,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
-        );
-        CHANNEL.registerMessage(
-                packetId++,
-                DiademaUpdatePacket.class,
-                DiademaUpdatePacket::encode,
-                DiademaUpdatePacket::decode,
-                DiademaSyncing::handleUpdate,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
-        );
+        DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> {
+            int packetId = 0;
+            CHANNEL.registerMessage(
+                    packetId++,
+                    DiademaCreatedPacket.class,
+                    DiademaCreatedPacket::encode,
+                    DiademaCreatedPacket::decode,
+                    (o1, o2) -> {},
+                    Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+            );
+            CHANNEL.registerMessage(
+                    packetId++,
+                    DiademaRemovedPacket.class,
+                    DiademaRemovedPacket::encode,
+                    DiademaRemovedPacket::decode,
+                    (o1, o2) -> {},
+                    Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+            );
+            CHANNEL.registerMessage(
+                    packetId++,
+                    DiademaUpdatePacket.class,
+                    DiademaUpdatePacket::encode,
+                    DiademaUpdatePacket::decode,
+                    (o1, o2) -> {},
+                    Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+            );
+        });
+
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            int packetId = 0;
+            CHANNEL.registerMessage(
+                    packetId++,
+                    DiademaCreatedPacket.class,
+                    DiademaCreatedPacket::encode,
+                    DiademaCreatedPacket::decode,
+                    DiademaSyncing::handleCreation,
+                    Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+            );
+            CHANNEL.registerMessage(
+                    packetId++,
+                    DiademaRemovedPacket.class,
+                    DiademaRemovedPacket::encode,
+                    DiademaRemovedPacket::decode,
+                    DiademaSyncing::handleRemoval,
+                    Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+            );
+            CHANNEL.registerMessage(
+                    packetId++,
+                    DiademaUpdatePacket.class,
+                    DiademaUpdatePacket::encode,
+                    DiademaUpdatePacket::decode,
+                    DiademaSyncing::handleUpdate,
+                    Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+            );
+        });
     }
 
 
@@ -68,7 +101,9 @@ public class DiademaSyncing {
     @OnlyIn(Dist.CLIENT)
     public static void handleCreation(DiademaCreatedPacket packet, Supplier<NetworkEvent.Context> network) {
         network.get().enqueueWork(() -> {
-            instances.put(packet.instanceId(), packet.type().CreateClientInstance());
+            var type = CsdyRegistries.CLIENT_DIADEMA_TYPES_REG.get().getValue(packet.diadema());
+            if (type == null) return;
+            instances.put(packet.instanceId(), type.CreateClientInstance());
         });
         network.get().setPacketHandled(true);
     }

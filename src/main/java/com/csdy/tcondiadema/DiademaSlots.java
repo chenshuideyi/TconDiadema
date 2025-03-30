@@ -16,5 +16,4 @@ public class DiademaSlots {
         NBTKeyModel.registerExtraTexture(new ResourceLocation("tconstruct:creative_slot")
                 ,DIADEMA.getName(),new ResourceLocation("tcondiadema:item/slot/diadema"));
     }
-
 }
