@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "com.csdy.tcondiadema.mixins",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "csdy.tcondiadema.refmap.json",
+  "refmap": "csdy.refmap.json",
   "mixins": [
     "LivingEntityMixin"
   ],
