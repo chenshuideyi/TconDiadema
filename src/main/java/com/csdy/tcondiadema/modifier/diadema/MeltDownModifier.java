@@ -1,6 +1,6 @@
 package com.csdy.tcondiadema.modifier.diadema;
 
-import com.csdy.tcondiadema.DiademaModifier;
+import com.csdy.tcondiadema.modifier.DiademaModifier;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.sounds.SoundsRegister;
@@ -12,7 +12,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.tools.context.EquipmentChangeContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
-public class MeltDown extends DiademaModifier{
+public class MeltDownModifier extends DiademaModifier{
     @Override
     public void onEquip(@NotNull IToolStackView tool, @NotNull ModifierEntry entry, EquipmentChangeContext context) {
         LivingEntity entity = context.getEntity();

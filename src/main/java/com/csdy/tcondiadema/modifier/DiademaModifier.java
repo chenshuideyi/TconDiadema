@@ -1,4 +1,4 @@
-package com.csdy.tcondiadema;
+package com.csdy.tcondiadema.modifier;
 
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
@@ -35,7 +35,8 @@ import java.util.stream.Stream;
 import static com.csdy.tcondiadema.ModMain.MODID;
 
 
-/// 这里不用看,领域强化继承这个类
+/// 领域强化继承这个类<br/>
+/// 但比起继承这个类来，简单强化建议创建一个{@link CommonDiademaModifier}用于注册。仅当有需要的时候再继承这个类创建一个新类。
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public abstract class DiademaModifier extends Modifier implements EquipmentChangeModifierHook, ConditionalStatModifierHook {
     private static final ResourceLocation DIADEMA_UUID = new ResourceLocation(MODID, "diadema_uuid");

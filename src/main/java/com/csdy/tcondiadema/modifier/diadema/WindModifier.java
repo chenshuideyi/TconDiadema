@@ -1,6 +1,6 @@
 package com.csdy.tcondiadema.modifier.diadema;
 
-import com.csdy.tcondiadema.DiademaModifier;
+import com.csdy.tcondiadema.modifier.DiademaModifier;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.effect.register.EffectRegister;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
@@ -17,7 +17,7 @@ import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.EquipmentChangeContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
-public class Wind extends DiademaModifier implements InventoryTickModifierHook {
+public class WindModifier extends DiademaModifier implements InventoryTickModifierHook {
     @Override
     protected DiademaType getDiademaType() {
         return DiademaRegister.WIND.get();
