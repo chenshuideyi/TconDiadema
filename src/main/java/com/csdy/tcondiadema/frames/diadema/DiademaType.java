@@ -10,7 +10,7 @@ import java.util.function.BiFunction;
 
 
 /// 领域类型的抽象基类，实现后把获取实例的方法注册在注册表上<br/>
-/// 不过一般情况下建议使用{@link #Create(BiFunction) DiademaType.Create}来创建<br/>
+/// 不过一般情况下建议使用{@link #create(BiFunction) DiademaType.Create}来创建<br/>
 /// 还要用相同的ID注册一个对应的{@link ClientDiademaType}实例，这个很重要<br/>
 /// 值得一提的事，因为注册的是单个实例所以一个class也能用作多个实际的type<br/>
 /// 也就是说要用时候就像Block或者MobType一样得从注册表上获取而不是new 一个
@@ -26,7 +26,7 @@ public abstract class DiademaType {
     /// 用于创建简单的{@link DiademaType}实例
     ///
     /// @param diademaGetter 用于创建领域实例的方法
-    public static DiademaType Create(BiFunction<DiademaType, DiademaMovement, Diadema> diademaGetter) {
+    public static DiademaType create(BiFunction<DiademaType, DiademaMovement, Diadema> diademaGetter) {
         return new CommonDiademaType(diademaGetter);
     }
 

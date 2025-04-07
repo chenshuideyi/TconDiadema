@@ -46,39 +46,39 @@ public class DiademaRegister {
 
 
     public static final RegistryObject<DiademaType> WARDEN =
-            DIADEMA_TYPES.register("warden", () -> DiademaType.Create(WardenDiadema::new));
+            DIADEMA_TYPES.register("warden", () -> DiademaType.create(WardenDiadema::new));
     public static final RegistryObject<DiademaType> MERIDIA_VERSE =
-            DIADEMA_TYPES.register("meridia_verse", () -> DiademaType.Create(MeridiaVerseDiadema::new));
+            DIADEMA_TYPES.register("meridia_verse", () -> DiademaType.create(MeridiaVerseDiadema::new));
     public static final RegistryObject<DiademaType> ABYSS =
-            DIADEMA_TYPES.register("abyss", () -> DiademaType.Create(AbyssDiadema::new));
+            DIADEMA_TYPES.register("abyss", () -> DiademaType.create(AbyssDiadema::new));
     public static final RegistryObject<DiademaType> WIND =
-            DIADEMA_TYPES.register("wind", () -> DiademaType.Create(WindDiadema::new));
+            DIADEMA_TYPES.register("wind", () -> DiademaType.create(WindDiadema::new));
     public static final RegistryObject<DiademaType> GULA =
-            DIADEMA_TYPES.register("gula", () -> DiademaType.Create(GulaDiadema::new));
+            DIADEMA_TYPES.register("gula", () -> DiademaType.create(GulaDiadema::new));
     public static final RegistryObject<DiademaType> LUXURIA =
-            DIADEMA_TYPES.register("luxuria", () -> DiademaType.Create(LuxuriaDiadema::new));
+            DIADEMA_TYPES.register("luxuria", () -> DiademaType.create(LuxuriaDiadema::new));
     public static final RegistryObject<DiademaType> KILL_AURA =
-            DIADEMA_TYPES.register("kill_aura", () -> DiademaType.Create(KillAuraDiadema::new));
+            DIADEMA_TYPES.register("kill_aura", () -> DiademaType.create(KillAuraDiadema::new));
     public static final RegistryObject<DiademaType> FAKE_KILL_AURA =
-            DIADEMA_TYPES.register("fake_kill_aura", () -> DiademaType.Create(FakeKillAuraDiadema::new));
+            DIADEMA_TYPES.register("fake_kill_aura", () -> DiademaType.create(FakeKillAuraDiadema::new));
     public static final RegistryObject<DiademaType> PROJECTE =
-            DIADEMA_TYPES.register("projecte", () -> DiademaType.Create(ProjectEDiadema::new));
+            DIADEMA_TYPES.register("projecte", () -> DiademaType.create(ProjectEDiadema::new));
     public static final RegistryObject<DiademaType> FAKE_PROJECTE =
-            DIADEMA_TYPES.register("fake_projecte", () -> DiademaType.Create(FakeProjectEDiadema::new));
+            DIADEMA_TYPES.register("fake_projecte", () -> DiademaType.create(FakeProjectEDiadema::new));
     public static final RegistryObject<DiademaType> MELT_DOWN =
-            DIADEMA_TYPES.register("meltdown", () -> DiademaType.Create(MeltdownDiadema::new));
+            DIADEMA_TYPES.register("meltdown", () -> DiademaType.create(MeltdownDiadema::new));
     public static final RegistryObject<DiademaType> FAKE_MELT_DOWN =
-            DIADEMA_TYPES.register("fake_meltdown", () -> DiademaType.Create(FakeMeltdownDiadema::new));
+            DIADEMA_TYPES.register("fake_meltdown", () -> DiademaType.create(FakeMeltdownDiadema::new));
     public static final RegistryObject<DiademaType> AVARITA =
-            DIADEMA_TYPES.register("avarita", () -> DiademaType.Create(AvaritaDiadema::new));
+            DIADEMA_TYPES.register("avarita", () -> DiademaType.create(AvaritaDiadema::new));
     public static final RegistryObject<DiademaType> SUPERBIA =
-            DIADEMA_TYPES.register("superbia", () -> DiademaType.Create(SuperbiaDiadema::new));
+            DIADEMA_TYPES.register("superbia", () -> DiademaType.create(SuperbiaDiadema::new));
     public static final RegistryObject<DiademaType> SHINRATENSEI =
-            DIADEMA_TYPES.register("shinratensei", () -> DiademaType.Create(ShinratenseiDiadema::new));
+            DIADEMA_TYPES.register("shinratensei", () -> DiademaType.create(ShinratenseiDiadema::new));
     public static final RegistryObject<DiademaType> FAKE_SHINRATENSEI =
-            DIADEMA_TYPES.register("fake_shinratensei", () -> DiademaType.Create(FakeShinratenseiDiadema::new));
+            DIADEMA_TYPES.register("fake_shinratensei", () -> DiademaType.create(FakeShinratenseiDiadema::new));
     public static final RegistryObject<DiademaType> IRA =
-            DIADEMA_TYPES.register("ira", () -> DiademaType.Create(IraDiadema::new));
+            DIADEMA_TYPES.register("ira", () -> DiademaType.create(IraDiadema::new));
     public static final RegistryObject<DiademaType> TIME_RAIN =
-            DIADEMA_TYPES.register("time_rain", () -> DiademaType.Create(TimeRainDiadema::new));
+            DIADEMA_TYPES.register("time_rain", () -> DiademaType.create(TimeRainDiadema::new));
 }
