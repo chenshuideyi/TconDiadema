@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class MeltdownDiadema extends Diadema {
     final static double RADIUS = 12;
-    private final Player player = getPlayer();
+    private final Entity entity = getEntity();
     public MeltdownDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
     }
@@ -30,7 +30,7 @@ public class MeltdownDiadema extends Diadema {
     @Override protected void perTick() {
         DamageSource src = MekanismDamageTypes.LASER.source(getLevel());
         for (Entity entity : affectingEntities) {
-            if (!entity.equals(player)) {
+            if (!entity.equals(this.entity)) {
                 if (!(entity instanceof LivingEntity living)) continue;
                 living.invulnerableTime = 0;
                 living.hurt(src, 2500);

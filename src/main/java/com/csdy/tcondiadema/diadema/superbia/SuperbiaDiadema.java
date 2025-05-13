@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class SuperbiaDiadema extends Diadema {
-    private final Player player = getPlayer();
+    private final Entity entity = getEntity();
     public SuperbiaDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
     }
@@ -29,6 +29,7 @@ public class SuperbiaDiadema extends Diadema {
 
     @Override
     protected void perTick() {
+        if (!(entity instanceof Player player)) return;
         for (Entity entity : affectingEntities) {
             if (!(entity instanceof LivingEntity living)) continue;
             if (!entity.equals(player) && living.getHealth()<player.getMaxHealth()) {

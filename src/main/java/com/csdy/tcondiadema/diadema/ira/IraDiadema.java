@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Player;
 
 public class IraDiadema extends Diadema {
     static final double RADIUS = 8;
-    private Player player = getPlayer();
+    private Entity entity = getEntity();
 
     public IraDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
@@ -28,7 +28,7 @@ public class IraDiadema extends Diadema {
 
     @Override protected void perTick() {
         for (Entity entity : affectingEntities) {
-            if (!entity.equals(player)) {
+            if (!entity.equals(this.entity)) {
                 if (!(entity instanceof Mob mob)) continue;
                 mob.setTarget(mob);
             }

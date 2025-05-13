@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class FakeKillAuraDiadema extends Diadema {
     static final double RADIUS = 6;
-    private final Player player = getPlayer();
+    private final Entity entity = getEntity();
 
     public FakeKillAuraDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
@@ -28,7 +28,9 @@ public class FakeKillAuraDiadema extends Diadema {
 
     @Override
     protected void onEntityEnter(Entity entity) {
+        if (!this.isPlayer()) return;
         if (!(entity instanceof LivingEntity)) return;
+        Player player = (Player) this.entity;
         if (!entity.equals(player)) {
             entity.invulnerableTime = 0;
             player.attack(entity);

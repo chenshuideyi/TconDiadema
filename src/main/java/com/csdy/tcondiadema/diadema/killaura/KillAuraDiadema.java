@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class KillAuraDiadema extends Diadema {
     static final double DEFAULT_RADIUS = 6;
-    private final Player player = getPlayer();
+    private final Entity entity = getEntity();
     private double currentRadius = DEFAULT_RADIUS;
 
     private final SphereDiademaRange range;
@@ -42,6 +42,8 @@ public class KillAuraDiadema extends Diadema {
 
     @Override
     protected void perTick() {
+        if (!this.isPlayer()) return;
+        Player player = (Player) entity;
         double reach = player.getBlockReach();
         setRange(reach);
         for (Entity entity : affectingEntities) {

@@ -24,12 +24,11 @@ public class WindDiadema extends Diadema {
     }
 
     protected void onEntityEnter(Entity entity) {
-        var player = getPlayer();
-        if (player == null || entity.equals(player)) return;
+        var core = getEntity();
+        if (core == null || entity.equals(core)) return;
         if (entity instanceof LivingEntity living){
             if (living.getAttribute(Attributes.ARMOR)!= null){
             living.getAttribute(Attributes.ARMOR).setBaseValue(0);
-            System.out.println("设置护甲为0");
             }
         }
     }

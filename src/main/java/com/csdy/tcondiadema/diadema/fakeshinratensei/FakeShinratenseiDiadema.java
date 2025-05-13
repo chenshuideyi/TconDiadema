@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class FakeShinratenseiDiadema extends Diadema {
     static final double RADIUS = 8;
-    private final Player player = getPlayer();
+    private final Entity entity = getEntity();
     public FakeShinratenseiDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
     }
@@ -31,7 +31,7 @@ public class FakeShinratenseiDiadema extends Diadema {
     protected void perTick() {
         for (Entity entity : affectingEntities) {
             if (!(entity instanceof LivingEntity living)) continue;
-            if (!entity.equals(player)) {
+            if (!entity.equals(this.entity)) {
                 living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,30,1));
             }
         }

@@ -26,7 +26,7 @@ public class AbyssDiadema extends Diadema {
     @Override protected void perTick() {
         for (Entity entity : affectingEntities) {
             if (!(entity instanceof LivingEntity)) continue;
-            if (!entity.equals(getPlayer()))
+            if (!entity.equals(getEntity()))
                 entity.setPos(entity.getX(), -500, entity.getZ());
         }
     }

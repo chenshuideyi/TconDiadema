@@ -49,7 +49,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class ClientDiademaRegister {
     public static final DeferredRegister<ClientDiademaType> CLIENT_DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.CLIENT_DIADEMA_TYPE, ModMain.MODID);
 
-
     public static final RegistryObject<ClientDiademaType> WARDEN =
             CLIENT_DIADEMA_TYPES.register("warden", () -> ClientDiademaType.Create(WardenClientDiadema::new));
     public static final RegistryObject<ClientDiademaType> MERIDIA_VERSE =

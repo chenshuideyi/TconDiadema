@@ -9,6 +9,9 @@ import com.csdy.tcondiadema.frames.diadema.movement.DiademaMovement;
 import com.csdy.tcondiadema.frames.diadema.range.DiademaRange;
 import com.csdy.tcondiadema.network.ParticleSyncing;
 import com.csdy.tcondiadema.network.packets.AvaritaPacket;
+import com.csdy.tcondiadema.sounds.SoundsRegister;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -22,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
 @Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class AvaritaDiadema extends Diadema {
     static final double RADIUS = 6;
-    private  Player player = getPlayer();
 
     public AvaritaDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
@@ -46,8 +48,11 @@ public class AvaritaDiadema extends Diadema {
 
     @SubscribeEvent
     public void onItemPickup(EntityItemPickupEvent event) {
+        if (!isAlive() || !isPlayer() || event.getEntity() != getEntity()) {
+            return;
+        }
         // 获取玩家和捡起的物品
-        this.player = event.getEntity();
+        Player player = (Player) event.getEntity();
         ItemStack itemStack = event.getItem().getItem();
 
         // 检查捡起的物品是否为金块
@@ -59,9 +64,7 @@ public class AvaritaDiadema extends Diadema {
             float newAbsorption = currentAbsorption + 8.0F; // 每次增加 4 颗黄心（8点吸收生命值）
             player.setAbsorptionAmount(newAbsorption);
             //发包
-            ParticleSyncing.CHANNEL.send(PacketDistributor.NEAR.with(()->new PacketDistributor.TargetPoint(player.getX(), player.getY(), player.getZ(),
-                            16, player.level.dimension()))
-                    ,new AvaritaPacket(player.position));
+            player.level.playSound(null, player.blockPosition, SoundsRegister.LOLI_SUCCRSS.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
         }
     }
 }

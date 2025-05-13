@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class FakeProjectEDiadema extends Diadema {
     static final double RADIUS = 6;
-    private final Player player = getPlayer();
+    private final Entity entity = getEntity();
 
     public FakeProjectEDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
@@ -32,9 +32,9 @@ public class FakeProjectEDiadema extends Diadema {
     @Override protected void perTick() {
         for (Entity entity : affectingEntities) {
             if (!(entity instanceof LivingEntity)) continue;
-            if (!entity.equals(player)){
+            if (!entity.equals(this.entity)){
                 entity.invulnerableTime = 0;
-                entity.hurt(new DamageSource(entity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.PLAYER_ATTACK), player), 1);
+                entity.hurt(new DamageSource(entity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FIREBALL), entity), 1);
             }
         }
     }

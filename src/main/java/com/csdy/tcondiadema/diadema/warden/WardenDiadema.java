@@ -23,16 +23,16 @@ import java.util.Set;
 public class WardenDiadema extends Diadema {
     static final double RADIUS = 6;
 
-    public static final Set<Player> WhiteList = new HashSet<>();
+    public static final Set<Entity> WhiteList = new HashSet<>();
 
     public WardenDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
 
-        if (getPlayer() != null) WhiteList.add(getPlayer()); //加白名单
+        if (getEntity() != null) WhiteList.add(getEntity()); //加白名单
     }
 
     @Override protected void removed() {
-        if (getPlayer() != null) WhiteList.remove(getPlayer()); //去白名单
+        if (getEntity() != null) WhiteList.remove(getEntity()); //去白名单
     }
 
     private final HalfSphereDiademaRange range = new HalfSphereDiademaRange(this, RADIUS);
@@ -53,9 +53,11 @@ public class WardenDiadema extends Diadema {
     }
 
     protected void onEntityExit(Entity entity) {
-        var player = getPlayer();
-        if (player == null || entity.equals(player)) return;
-        if (entity instanceof LivingEntity living)
-            SonicBoomUtil.performSonicBoom(entity.level, living, player);
+        var core = getEntity();
+        if (core == null || entity.equals(core)) return;
+        if (entity instanceof LivingEntity living){
+            SonicBoomUtil.performSonicBoom(entity.level, living, core);
+            living.removeEffect(EffectRegister.SCARED.get());
+        }
     }
 }

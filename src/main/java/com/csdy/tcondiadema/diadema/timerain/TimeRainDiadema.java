@@ -26,19 +26,19 @@ import java.util.Set;
 
 public class TimeRainDiadema extends Diadema {
     static final double RADIUS = 8,HUP = 8, HDOWN = -8;
-    private Player player = getPlayer();
+    private Entity entity = getEntity();
 
-    private static final Set<Player> WhiteList = new HashSet<>();
+    private static final Set<Entity> WhiteList = new HashSet<>();
 
     private final ColumnDiademaRange range = new ColumnDiademaRange(this, RADIUS, HDOWN, HUP);
 
     public TimeRainDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
-        if (player != null) WhiteList.add(player); //加白名单
+        if (entity != null) WhiteList.add(entity); //加白名单
     }
 
     @Override protected void removed() {
-        if (getPlayer() != null) WhiteList.remove(getPlayer()); //去白名单
+        if (getEntity() != null) WhiteList.remove(getEntity()); //去白名单
     }
 
     @Override
@@ -80,12 +80,10 @@ private void reduceArmorDurability(LivingEntity living) {
     //俩即死
     if (!hasAnyArmor) {
         living.setHealth(0);
-        living.die(new DamageSource(living.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.PLAYER_ATTACK), player));
         return;
     }
     if (allTinkersArmorBroken) {
         living.setHealth(0);
-        living.die(new DamageSource(living.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.PLAYER_ATTACK), player));
     }
 }
 

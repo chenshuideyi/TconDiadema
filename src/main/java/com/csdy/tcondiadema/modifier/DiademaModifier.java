@@ -131,7 +131,7 @@ public abstract class DiademaModifier extends Modifier implements EquipmentChang
     public void onEquip(@NotNull IToolStackView tool, @NotNull ModifierEntry entry, EquipmentChangeContext context) {
         if (!(context.getLevel() instanceof ServerLevel)) return;
         LivingEntity entity = context.getEntity();
-        if (!(entity instanceof Player)) return;
+//        if (!(entity instanceof Player)) return;
         if (!(entry.getModifier() instanceof DiademaModifier diademaModifier)) return;
 
         if (context.getChangedSlot().isArmor()) {

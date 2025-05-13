@@ -20,7 +20,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class LuxuriaDiadema extends Diadema {
-    private final Player player = getPlayer();
+    private final Entity entity = getEntity();
     private int timer = 0; // 计时器变量
 
     public LuxuriaDiadema(DiademaType type, DiademaMovement movement) {
@@ -36,7 +36,7 @@ public class LuxuriaDiadema extends Diadema {
     protected void perTick() {
         for (Entity entity : affectingEntities) {
             if (!(entity instanceof LivingEntity living)) continue;
-            if (!entity.equals(player)) {
+            if (!entity.equals(this.entity)) {
                 if (!(entity instanceof Player)) living.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.END_ROD));
                 living.setHealth(living.getHealth()-living.getMaxHealth()*0.001f);
                 if (timer >= 180){
@@ -45,6 +45,8 @@ public class LuxuriaDiadema extends Diadema {
                     timer = 0;
                 }
                 else if (timer % 40 == 0){
+                    if (!isPlayer()) return;
+                    Player player = (Player) entity;
                     spawnExperienceOrb(living);
                     living.setHealth(living.getHealth()-10);
                     AttributeInstance maxHealthAttr = player.getAttribute(Attributes.MAX_HEALTH);

@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ShinratenseiDiadema extends Diadema {
     static final double RADIUS = 8;
-    private final Player player = getPlayer();
+    private final Entity entity = getEntity();
     public ShinratenseiDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
     }
@@ -29,11 +29,11 @@ public class ShinratenseiDiadema extends Diadema {
     @Override
     protected void perTick() {
         for (Entity entity : affectingEntities) {
-            if (!entity.equals(player) && (!(entity instanceof Arrow))){
+            if (!entity.equals(this.entity) && (!(entity instanceof Arrow))){
                 repelEntity(entity);
             }
             else if (entity instanceof Arrow) {
-                if (player.position.subtract(entity.position).dot(entity.getDeltaMovement()) < 0)return;
+                if (this.entity.position.subtract(entity.position).dot(entity.getDeltaMovement()) < 0)return;
                 repelArrow((Arrow) entity);
             }
         }
@@ -41,7 +41,7 @@ public class ShinratenseiDiadema extends Diadema {
 
     private void repelEntity(Entity entity) {
         // 获取玩家和实体的位置
-        Vec3 playerPos = player.position();
+        Vec3 playerPos = entity.position();
         Vec3 entityPos = entity.position();
 
         // 计算距离

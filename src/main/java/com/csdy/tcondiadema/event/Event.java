@@ -4,12 +4,14 @@ package com.csdy.tcondiadema.event;
 import com.csdy.tcondiadema.ModMain;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.diadema.warden.WardenDiadema;
+import com.csdy.tcondiadema.effect.register.EffectRegister;
 import com.csdy.tcondiadema.item.register.ItemRegister;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -22,11 +24,9 @@ import net.minecraftforge.items.ItemHandlerHelper;
 @Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class Event {
 
-    private static boolean isWarden(Object o) {
-        return o instanceof Player player
-                && DiademaRegister.WARDEN.get().isAffected(player)
-                && !(WardenDiadema.WhiteList.contains(player));
-    }
+
+
+
 
     @SubscribeEvent
     public static void death(LivingDeathEvent e) {
@@ -44,6 +44,14 @@ public class Event {
                 e.setCanceled(true);
             }
         }
+    }
+
+    ///这一块出问题了，为啥？
+    private static boolean isWarden(Object o) {
+        return o instanceof Player player
+                && player.hasEffect(EffectRegister.SCARED.get());
+//                && DiademaRegister.WARDEN.get().isAffected(player);
+//                && !(WardenDiadema.WhiteList.contains(player));
     }
 
     @SubscribeEvent

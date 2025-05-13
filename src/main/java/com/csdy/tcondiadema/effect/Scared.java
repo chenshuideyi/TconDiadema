@@ -19,21 +19,5 @@ public class Scared extends MobEffect {
         this.addAttributeModifier(Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_MODIFIER_UUID, ATTACK_DAMAGE_REDUCTION, AttributeModifier.Operation.MULTIPLY_TOTAL);
     }
 
-/*    @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (entity instanceof ServerPlayer player) {
-            player.setShiftKeyDown(true); // 强制设置为潜行状态
-        }
-    }
-
-    @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
-        return true; // 每 tick 都执行 applyEffectTick
-    }
-
-    @SubscribeEvent
-    public static void Scared(TickEvent.PlayerTickEvent event) {
-        if (event.player.hasEffect(EffectRegister.SCARED.get())) event.player.setShiftKeyDown(true);
-    }*/
 }
 

@@ -7,6 +7,7 @@ import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.frames.diadema.movement.DiademaMovement;
 import com.csdy.tcondiadema.frames.diadema.range.DiademaRange;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -20,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 @Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GulaDiadema extends Diadema {
     static final double RADIUS = 8;
-    private final Player player = getPlayer();
+    private final Entity entity = getEntity();
 
     public GulaDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
@@ -41,7 +42,10 @@ public class GulaDiadema extends Diadema {
     @SubscribeEvent
     public void gula(LivingDeathEvent e) {
         LivingEntity living = e.getEntity();
+        if (!this.isPlayer()) return;
+        Player player = (Player) living;
         if (this.affectingEntities.contains(living)) {
+
             AttributeInstance maxHealthAttr = player.getAttribute(Attributes.MAX_HEALTH);
             double originalMaxHealth = maxHealthAttr.getBaseValue();
             double reducedMaxHealth = originalMaxHealth + living.getMaxHealth()*0.8;

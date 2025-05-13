@@ -114,14 +114,25 @@ public abstract class Diadema {
     @Setter
     private DiademaMovement movement;
 
-    public Entity getCore() {
+    /**
+     * 获取此领域的核心实体（例如，领域跟随的实体）。
+     * <p>
+     * &#064;return核心实体，如果领域不是跟随实体类型，则为null。 
+     */
+
+    public Entity getEntity() {
         if (!(movement instanceof EntityDiademaMovement follow)) return null;
         return follow.getEntity();
     }
 
-    public Player getPlayer() {
-        if (!(getCore() instanceof Player player)) return null;
-        return player;
+    /**
+     * 检查此领域的核心实体是否为玩家。
+     *
+     * @return 如果核心实体是玩家则为true，否则为false。
+     */
+    public boolean isPlayer() {
+        Entity coreEntity = getEntity();
+        return coreEntity instanceof Player;
     }
 
     private final Set<Entity> entities = new HashSet<>();
@@ -188,7 +199,7 @@ public abstract class Diadema {
     }
 
 
-    private void sendSyncPack(){
+    private void sendSyncPack() {
         // 获取自定义数据
         var buffer = PooledByteBufAllocator.DEFAULT.buffer();
         writeCustomSyncData(new FriendlyByteBuf(buffer));
@@ -228,13 +239,13 @@ public abstract class Diadema {
 
     @SubscribeEvent
     public final void onEntityLeaveLevel(EntityLeaveLevelEvent e) {
-        if (getCore() == null) return;
-        if (e.getEntity() == getCore()) remove();
+        if (getEntity() == null) return;
+        if (e.getEntity() == getEntity()) remove();
     }
 
     @SubscribeEvent
-    public final void onLivingDeathEvent(LivingDeathEvent e){
-        if (getCore() == null) return;
-        if (e.getEntity() == getCore()) remove();
+    public final void onLivingDeathEvent(LivingDeathEvent e) {
+        if (getEntity() == null) return;
+        if (e.getEntity() == getEntity()) remove();
     }
 }
