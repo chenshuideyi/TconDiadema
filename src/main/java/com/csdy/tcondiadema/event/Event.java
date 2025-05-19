@@ -25,9 +25,6 @@ import net.minecraftforge.items.ItemHandlerHelper;
 public class Event {
 
 
-
-
-
     @SubscribeEvent
     public static void death(LivingDeathEvent e) {
         LivingEntity living = e.getEntity();
@@ -46,12 +43,12 @@ public class Event {
         }
     }
 
-    ///这一块出问题了，为啥？
+    /// 这一块出问题了，为啥？
     private static boolean isWarden(Object o) {
         return o instanceof Player player
-                && player.hasEffect(EffectRegister.SCARED.get());
-//                && DiademaRegister.WARDEN.get().isAffected(player);
-//                && !(WardenDiadema.WhiteList.contains(player));
+//                && player.hasEffect(EffectRegister.SCARED.get());
+                && DiademaRegister.WARDEN.get().isAffected(player)
+                && !(WardenDiadema.WhiteList.contains(player));
     }
 
     @SubscribeEvent

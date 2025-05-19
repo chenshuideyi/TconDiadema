@@ -36,7 +36,8 @@ public abstract class DiademaType {
     private final Map<Entity, Integer> entities = new HashMap<>();
 
     final void addAffected(Entity entity) {
-        entities.replace(entity, entities.getOrDefault(entity, 0) + 1);
+        entities.putIfAbsent(entity, 0);
+        entities.replace(entity, entities.get(entity) + 1);
     }
 
     final void removeAffected(Entity entity) {
