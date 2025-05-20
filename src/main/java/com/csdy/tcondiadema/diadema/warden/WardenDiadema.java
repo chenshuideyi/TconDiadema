@@ -2,6 +2,7 @@ package com.csdy.tcondiadema.diadema.warden;
 
 
 import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.diadema.api.ranges.HalfSphereDiademaRange;
 import com.csdy.tcondiadema.effect.register.EffectRegister;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
@@ -21,7 +22,7 @@ import java.util.Set;
 // 如你所见，这个是领域的服务端类型，带个Client的是客户端类型，一般而言两个都要重写一份。然后拿去注册
 @Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class WardenDiadema extends Diadema {
-    static final double RADIUS = 6;
+    static final double RADIUS = 4;
 
     public static final Set<Entity> WhiteList = new HashSet<>();
 

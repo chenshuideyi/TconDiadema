@@ -19,6 +19,7 @@ import com.csdy.tcondiadema.diadema.superbia.SuperbiaDiadema;
 import com.csdy.tcondiadema.diadema.timerain.TimeRainDiadema;
 import com.csdy.tcondiadema.diadema.warden.WardenDiadema;
 import com.csdy.tcondiadema.diadema.wind.WindDiadema;
+import com.csdy.tcondiadema.diadema.wither.WitherDiadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.frames.CsdyRegistries;
 import net.minecraftforge.registries.DeferredRegister;
@@ -64,4 +65,6 @@ public class DiademaRegister {
             DIADEMA_TYPES.register("ira", () -> DiademaType.create(IraDiadema::new));
     public static final RegistryObject<DiademaType> TIME_RAIN =
             DIADEMA_TYPES.register("time_rain", () -> DiademaType.create(TimeRainDiadema::new));
+    public static final RegistryObject<DiademaType> WITHER =
+            DIADEMA_TYPES.register("wither", () -> DiademaType.create(WitherDiadema::new));
 }

@@ -41,7 +41,7 @@ public class ShinratenseiDiadema extends Diadema {
 
     private void repelEntity(Entity entity) {
         // 获取玩家和实体的位置
-        Vec3 playerPos = entity.position();
+        Vec3 playerPos = this.entity.position();
         Vec3 entityPos = entity.position();
 
         // 计算距离
