@@ -3,6 +3,7 @@ package com.csdy.tcondiadema.diadema.wither;
 import com.csdy.tcondiadema.ModMain;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.diadema.api.ranges.SphereDiademaRange;
+import com.csdy.tcondiadema.diadema.api.ranges.SquareDiademaRange;
 import com.csdy.tcondiadema.effect.register.EffectRegister;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
@@ -45,7 +46,7 @@ public class WitherDiadema extends Diadema {
         super(type, movement);
     }
 
-    private final SphereDiademaRange range = new SphereDiademaRange(this,RADIUS);
+    private final SquareDiademaRange range = new SquareDiademaRange(this,RADIUS);
 
     @Override
     public @NotNull DiademaRange getRange() {
@@ -93,40 +94,32 @@ public class WitherDiadema extends Diadema {
     }
 
     public static void addWitherSkeleton(Level level, Vec3 witherCenterPos, int count) {
-        if (!(level instanceof ServerLevel)) { // 确保在服务器端执行
-            return;
-        }
+        if (!(level instanceof ServerLevel)) return;
+
 
         for (int i = 0; i < count; i++) {
-            // 在凋零周围随机位置生成
             double offsetX = (level.random.nextDouble() - 0.5) * RADIUS;
             double offsetZ = (level.random.nextDouble() - 0.5) * RADIUS;
 
             double spawnX = witherCenterPos.x() + offsetX;
             double spawnZ = witherCenterPos.z() + offsetZ;
 
-            // 获取地表高度作为生成Y轴 (修正点1)
-            // Mth.floor() 用于将 double 坐标转为整数 BlockPos 坐标
             int groundY = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     Mth.floor(spawnX),
                     Mth.floor(spawnZ));
-            // 如果希望它们生成在凋零同一高度（即使在空中），则使用：
-            // double spawnY = witherCenterPos.y();
-            // 但根据问题描述“在天上”，我们更倾向于让它们生成在地面
 
             WitherSkeleton witherSkeleton = EntityType.WITHER_SKELETON.create(level);
             if (witherSkeleton == null) continue;
 
             witherSkeleton.moveTo(
                     spawnX,
-                    groundY, // 使用计算出的地面Y坐标
+                    groundY,
                     spawnZ,
                     level.random.nextFloat() * 360.0f, // 随机朝向
                     0.0f
             );
 
-            // 初始化位置后，再进行装备设置等
-            witherSkeleton.setPos(spawnX, groundY, spawnZ); // 确保最终位置
+            witherSkeleton.setPos(spawnX, groundY, spawnZ);
 
             // 装备全套下界合金装备
             ItemStack netheriteSword = new ItemStack(Items.NETHERITE_SWORD);
@@ -154,12 +147,12 @@ public class WitherDiadema extends Diadema {
             witherSkeleton.setItemSlot(EquipmentSlot.LEGS, netheriteLeggings);
             witherSkeleton.setItemSlot(EquipmentSlot.FEET, netheriteBoots);
 
-            witherSkeleton.setDropChance(EquipmentSlot.MAINHAND, 0.0f);
-            witherSkeleton.setDropChance(EquipmentSlot.OFFHAND, 0.0f);
-            witherSkeleton.setDropChance(EquipmentSlot.HEAD, 0.0f);
-            witherSkeleton.setDropChance(EquipmentSlot.CHEST, 0.0f);
-            witherSkeleton.setDropChance(EquipmentSlot.LEGS, 0.0f);
-            witherSkeleton.setDropChance(EquipmentSlot.FEET, 0.0f);
+            witherSkeleton.setDropChance(EquipmentSlot.MAINHAND, 1);
+            witherSkeleton.setDropChance(EquipmentSlot.OFFHAND, 1);
+            witherSkeleton.setDropChance(EquipmentSlot.HEAD, 1);
+            witherSkeleton.setDropChance(EquipmentSlot.CHEST, 1);
+            witherSkeleton.setDropChance(EquipmentSlot.LEGS, 1);
+            witherSkeleton.setDropChance(EquipmentSlot.FEET, 1);
 
             // 2. 创建骷髅马
             SkeletonHorse skeletonHorse = EntityType.SKELETON_HORSE.create(level);
@@ -168,18 +161,13 @@ public class WitherDiadema extends Diadema {
                 continue;
             }
 
-            // 3. 设置骷髅马位置和状态
             skeletonHorse.moveTo(spawnX, groundY, spawnZ, witherSkeleton.getYRot(), 0.0f); // Y朝向与凋零骷髅一致
-            skeletonHorse.setAge(0); // 确保是成年马
+            skeletonHorse.setAge(0);
             skeletonHorse.setTamed(true); // 必须设置为驯服状态，非玩家实体才能骑乘
 
-            // 4. 将实体添加到世界
-            // 先添加载具，再添加乘客是一种较好的做法
             level.addFreshEntity(skeletonHorse);
-            level.addFreshEntity(witherSkeleton); // 确保凋零骷髅也在世界中
+            level.addFreshEntity(witherSkeleton);
 
-            // 5. 让凋零骷髅骑乘骷髅马
-            // 这个方法必须在两个实体都存在于世界中（至少载具存在）之后调用
             boolean didRide = witherSkeleton.startRiding(skeletonHorse, true); // true 表示强制骑乘
 
             if (!didRide) {
@@ -206,12 +194,13 @@ public class WitherDiadema extends Diadema {
         if (DiademaRegister.WITHER.get().isAffected(living)) {
             Level level = living.level();
             AreaEffectCloud cloud = new AreaEffectCloud(level, living.getX(), living.getY(), living.getZ());
-            // 设置云的属性
             cloud.setOwner(null);
-            cloud.setRadius(2.5F);
+            cloud.setFixedColor(0x000000);
+            cloud.setParticle(ParticleTypes.SQUID_INK);
+            cloud.setRadius(4.5F);
             cloud.setRadiusOnUse(-0.5F);
             cloud.setRadiusPerTick(-0.005F);
-            cloud.setDuration(60);
+            cloud.setDuration(90);
             cloud.setWaitTime(20);
             cloud.setPotion(Potions.STRONG_HARMING);
             level.addFreshEntity(cloud);
