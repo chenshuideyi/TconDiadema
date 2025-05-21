@@ -1,21 +1,26 @@
 package com.csdy.tcondiadema.diadema.warden;
 
 import com.csdy.tcondiadema.ModMain;
-import com.csdy.tcondiadema.diadema.DiademaRegister;
+import com.csdy.tcondiadema.network.VisualChannel;
 import com.mojang.blaze3d.systems.RenderSystem;
 import lombok.SneakyThrows;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.client.renderer.PostChain;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderArmEvent;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.PacketDistributor;
 import org.joml.Matrix4f;
+
+import java.util.function.Supplier;
 
 import static com.csdy.tcondiadema.ModMain.MODID;
 
@@ -26,6 +31,8 @@ public class WardenBlindnessEffect {
     private static final ResourceLocation POST_CHAIN_LOCATION = new ResourceLocation(ModMain.MODID, "shaders/post/warden_blind.json");
 
     private static final int LOOP_TIME_MS = 10000;
+
+    private static boolean isWarden = false;
 
     @OnlyIn(Dist.CLIENT) @SneakyThrows
     public static void init() {
@@ -41,34 +48,15 @@ public class WardenBlindnessEffect {
         );
     }
 
-    private static boolean isWarden(Object o) {
-        return o instanceof Player player
-//                && player.hasEffect(EffectRegister.SCARED.get());
-                && DiademaRegister.WARDEN.get().isAffected(player)
-                && !(WardenDiadema.WhiteList.contains(player));
-    }
-
-//    @SubscribeEvent
-//    public static void onRenderOverlay(RenderGuiOverlayEvent event) {
-//        Minecraft mc = Minecraft.getInstance();
-//        if (isWarden(mc.player)) {
-//            int width = event.getWindow().getGuiScaledWidth();
-//            int height = event.getWindow().getGuiScaledHeight();
-//            GuiGraphics guiGraphics = event.getGuiGraphics();
-//            // 绘制全屏黑色矩形
-//            guiGraphics.fill(0, 0, width, height, 0xFF000000); // ARGB格式：0x80表示50%透明度，000000表示黑色
-//        }
-//    }
-
     @SubscribeEvent @OnlyIn(Dist.CLIENT)
     public static void onRenderArm(RenderArmEvent event) {
-        if (isWarden(Minecraft.getInstance().player)) event.setCanceled(true);
+        if (isWarden) event.setCanceled(true);
     }
 
     @SubscribeEvent @OnlyIn(Dist.CLIENT)
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
         if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_LEVEL) return;
-        if (!isWarden(Minecraft.getInstance().player)) return; // 我感觉这样检测纯客户端可能有问题，但Csdy说没问题，那就这样
+        if (!isWarden) return; // 我感觉这样检测纯客户端可能有问题，但Csdy说没问题，那就这样
 
         float time = (System.currentTimeMillis() % LOOP_TIME_MS) / (float) LOOP_TIME_MS;
 
@@ -95,5 +83,37 @@ public class WardenBlindnessEffect {
         effectInstance.safeGetUniform("InvProjMat").set(invProjMat);
         effectInstance.safeGetUniform("InvViewMat").set(invViewMat);
         postChain.process(event.getPartialTick());
+    }
+
+    public static void SetEnableTo(ServerPlayer player, boolean enable) {
+        VisualChannel.CHANNEL.send(
+                PacketDistributor.PLAYER.with(() -> player),
+                enable ? WardenBlindnessEffect.Packet.enable : WardenBlindnessEffect.Packet.disable
+        );
+    }
+
+    public static class Packet {
+        private Packet(boolean enable) {
+            this.isEnable = enable;
+        }
+
+        boolean isEnable;
+        public static final Packet enable = new Packet(true);
+        public static final Packet disable = new Packet(false);
+
+        public static void encode(Packet packet, FriendlyByteBuf buf) {
+            buf.writeBoolean(packet.isEnable);
+        }
+
+        public static Packet decode(FriendlyByteBuf buf) {
+            return buf.readBoolean() ? enable : disable;
+        }
+
+        public static void handle(Packet packet, Supplier<NetworkEvent.Context> network) {
+            network.get().enqueueWork(() -> {
+                isWarden = packet.isEnable;
+            });
+            network.get().setPacketHandled(true);
+        }
     }
 }

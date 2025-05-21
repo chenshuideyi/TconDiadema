@@ -2,6 +2,7 @@ package com.csdy.tcondiadema.network;
 
 
 import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.diadema.warden.WardenBlindnessEffect;
 import com.csdy.tcondiadema.network.packets.AvaritaPacket;
 import com.csdy.tcondiadema.network.packets.SonicBoomPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -24,33 +25,38 @@ public class VisualChannel {
             PROTOCOL_VERSION::equals
     );
 
+    private static int packetId = 0;
 
-    @SuppressWarnings("UnusedAssignment")
+    private static int nextId() {
+        return packetId++;
+    }
+
     public static void Init() {
+        // 分端注册避免炸服务端
         DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> {
-            int packetId = 0;
             CHANNEL.registerMessage(
-                    packetId++,
+                    nextId(),
                     SonicBoomPacket.class,
                     SonicBoomPacket::encode,
                     SonicBoomPacket::decode,
-                    (o1, o2) -> {},
+                    (o1, o2) -> {
+                    },
                     Optional.of(NetworkDirection.PLAY_TO_CLIENT)
             );
             CHANNEL.registerMessage(
-                    packetId++,
+                    nextId(),
                     AvaritaPacket.class,
                     AvaritaPacket::encode,
                     AvaritaPacket::decode,
-                    (o1, o2) -> {},
+                    (o1, o2) -> {
+                    },
                     Optional.of(NetworkDirection.PLAY_TO_CLIENT)
             );
         });
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            int packetId = 0;
             CHANNEL.registerMessage(
-                    packetId++,
+                    nextId(),
                     SonicBoomPacket.class,
                     SonicBoomPacket::encode,
                     SonicBoomPacket::decode,
@@ -58,7 +64,7 @@ public class VisualChannel {
                     Optional.of(NetworkDirection.PLAY_TO_CLIENT)
             );
             CHANNEL.registerMessage(
-                    packetId++,
+                    nextId(),
                     AvaritaPacket.class,
                     AvaritaPacket::encode,
                     AvaritaPacket::decode,
@@ -66,5 +72,15 @@ public class VisualChannel {
                     Optional.of(NetworkDirection.PLAY_TO_CLIENT)
             );
         });
+
+        // 以下是无需分端注册的
+        CHANNEL.registerMessage(
+                nextId(),
+                WardenBlindnessEffect.Packet.class,
+                WardenBlindnessEffect.Packet::encode,
+                WardenBlindnessEffect.Packet::decode,
+                WardenBlindnessEffect.Packet::handle,
+                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+        );
     }
 }

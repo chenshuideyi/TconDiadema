@@ -9,11 +9,15 @@ import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.frames.diadema.movement.DiademaMovement;
 import com.csdy.tcondiadema.frames.diadema.range.DiademaRange;
+import com.csdy.tcondiadema.network.VisualChannel;
+import net.minecraft.data.PackOutput;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -53,10 +57,22 @@ public class WardenDiadema extends Diadema {
         }
     }
 
+
+    @Override protected void onEntityEnter(Entity entity) {
+        if (entity instanceof ServerPlayer player) {
+            WardenBlindnessEffect.SetEnableTo(player, true);
+        }
+    }
+
+    @Override
     protected void onEntityExit(Entity entity) {
+        if (entity instanceof ServerPlayer player && !WhiteList.contains(player)) {
+            WardenBlindnessEffect.SetEnableTo(player, false);
+        }
+
         var core = getEntity();
         if (core == null || entity.equals(core)) return;
-        if (entity instanceof LivingEntity living){
+        if (entity instanceof LivingEntity living) {
             SonicBoomUtil.performSonicBoom(entity.level, living, core);
             living.removeEffect(EffectRegister.SCARED.get());
         }
