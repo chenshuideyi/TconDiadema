@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.horse.SkeletonHorse;
 import net.minecraft.world.entity.monster.WitherSkeleton;
@@ -50,21 +51,25 @@ public class WitherDiadema extends Diadema {
     @Override
     protected void perTick() {
         var entity = getCoreEntity();
-        if (!(entity.tickCount % (30 * 20) == 0)) return;
+        if (!(entity.tickCount % (6.6 * 20) == 0)) return;
 
         Vec3 pos = getPosition();
         ServerLevel level = getLevel();
+        level.getDifficulty();
 
         // 只在服务端执行
         if (level.isClientSide()) return;
-
+        if (!(entity instanceof LivingEntity living)) return;
         // 检查范围内的凋零骷髅数量
         int nearbySkeletons = countNearbyWitherSkeletons(level, pos);
         if (nearbySkeletons >= MAX_WITHER_SKELETONS) return;
 
         // 计算需要生成的数量
         int toSpawn = Math.min(WITHER_SKELETONS_TO_SPAWN, MAX_WITHER_SKELETONS - nearbySkeletons);
-        addWitherSkeleton(level, pos,toSpawn);
+        if (living.getHealth() < living.getMaxHealth() * 0.5f){
+            addWitherSkeletonKnight(level, pos,toSpawn);
+        }
+        else addWitherSkeletonArcher(level, pos, toSpawn);
 
     }
 
@@ -82,7 +87,63 @@ public class WitherDiadema extends Diadema {
         ).size();
     }
 
-    public static void addWitherSkeleton(Level level, Vec3 witherCenterPos, int count) {
+    //召唤骑士
+    private static void addWitherSkeletonArcher(Level level, Vec3 witherCenterPos, int count) {
+        if (!(level instanceof ServerLevel)) return;
+
+        for (int i = 0; i < count; i++) {
+            double offsetX = (level.random.nextDouble() - 0.5) * RADIUS;
+            double offsetZ = (level.random.nextDouble() - 0.5) * RADIUS;
+
+            double spawnX = witherCenterPos.x() + offsetX;
+            double spawnZ = witherCenterPos.z() + offsetZ;
+
+            int groundY = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                    Mth.floor(spawnX),
+                    Mth.floor(spawnZ));
+
+            WitherSkeleton witherSkeleton = EntityType.WITHER_SKELETON.create(level);
+            if (witherSkeleton == null)  continue;
+
+
+            level.addFreshEntity(witherSkeleton);
+
+            witherSkeleton.moveTo(
+                    spawnX,
+                    groundY,
+                    spawnZ,
+                    level.random.nextFloat() * 360.0f, // 随机朝向
+                    0.0f
+            );
+
+            witherSkeleton.setPos(spawnX, groundY, spawnZ);
+
+            // 装备弓
+            ItemStack bow = new ItemStack(Items.BOW);
+            bow.enchant(Enchantments.FIRE_ASPECT, 1); // 火矢
+            bow.enchant(Enchantments.POWER_ARROWS, 5); // 力量V
+
+            witherSkeleton.setItemSlot(EquipmentSlot.MAINHAND, bow);
+
+            witherSkeleton.setDropChance(EquipmentSlot.MAINHAND, 0);
+
+
+        }
+
+        if (count > 0) {
+            level.playSound(
+                    null, // 在所有客户端播放
+                    witherCenterPos.x(), witherCenterPos.y(), witherCenterPos.z(), // 声音从凋零位置发出
+                    SoundEvents.WITHER_SPAWN,
+                    SoundSource.HOSTILE,
+                    1.0f,
+                    0.8f // 降低音调，听起来更像召唤小怪
+            );
+        }
+    }
+
+    //召唤骑士
+    private static void addWitherSkeletonKnight(Level level, Vec3 witherCenterPos, int count) {
         if (!(level instanceof ServerLevel)) return;
 
 
@@ -181,19 +242,43 @@ public class WitherDiadema extends Diadema {
     public void witherSkeletonsDeath(LivingDeathEvent e) {
         LivingEntity living = e.getEntity();
         if (DiademaRegister.WITHER.get().isAffected(living)) {
-            Level level = living.level();
-            AreaEffectCloud cloud = new AreaEffectCloud(level, living.getX(), living.getY(), living.getZ());
-            cloud.setOwner(null);
-            cloud.setFixedColor(0x000000);
-            cloud.setParticle(ParticleTypes.SQUID_INK);
-            cloud.setRadius(4.5F);
-            cloud.setRadiusOnUse(-0.5F);
-            cloud.setRadiusPerTick(-0.005F);
-            cloud.setDuration(90);
-            cloud.setWaitTime(20);
-            cloud.setPotion(Potions.STRONG_HARMING);
+            var level = living.level;
+            Difficulty difficulty = level.getDifficulty();
+            AreaEffectCloud cloud;
+            if (difficulty == Difficulty.HARD) {
+                cloud = getHardAreaEffectCloud(level, living);
+            }else {
+                cloud = getNormalAreaEffectCloud(level, living);
+            }
             level.addFreshEntity(cloud);
         }
 
+    }
+
+    private static @NotNull AreaEffectCloud getNormalAreaEffectCloud(Level level, LivingEntity living) {
+        AreaEffectCloud cloud = new AreaEffectCloud(level, living.getX(), living.getY(), living.getZ());
+        cloud.setOwner(null);
+        cloud.setFixedColor(0xFF0000);
+        cloud.setRadius(4.5F);
+        cloud.setRadiusOnUse(-0.5F);
+        cloud.setRadiusPerTick(-0.005F);
+        cloud.setDuration(90);
+        cloud.setWaitTime(10);
+        cloud.setPotion(Potions.STRONG_HEALING);
+        return cloud;
+    }
+
+    private static @NotNull AreaEffectCloud getHardAreaEffectCloud(Level level, LivingEntity living) {
+        AreaEffectCloud cloud = new AreaEffectCloud(level, living.getX(), living.getY(), living.getZ());
+        cloud.setOwner(null);
+        cloud.setFixedColor(0x000000);
+        cloud.setParticle(ParticleTypes.SQUID_INK);
+        cloud.setRadius(4.5F);
+        cloud.setRadiusOnUse(-0.5F);
+        cloud.setRadiusPerTick(-0.005F);
+        cloud.setDuration(90);
+        cloud.setWaitTime(20);
+        cloud.setPotion(Potions.STRONG_HARMING);
+        return cloud;
     }
 }

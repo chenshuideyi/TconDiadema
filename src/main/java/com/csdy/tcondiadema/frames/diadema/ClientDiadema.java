@@ -2,6 +2,7 @@ package com.csdy.tcondiadema.frames.diadema;
 
 import com.csdy.tcondiadema.frames.diadema.packets.DiademaUpdatePacket;
 import lombok.Getter;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
@@ -62,6 +63,8 @@ public abstract class ClientDiadema {
     // event handlers
     @SubscribeEvent
     public final void onClientTick(TickEvent.ClientTickEvent e) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.isPaused()) return;
         perTick();
     }
 }
