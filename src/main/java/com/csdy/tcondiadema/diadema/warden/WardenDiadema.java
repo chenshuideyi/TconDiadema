@@ -54,14 +54,14 @@ public class WardenDiadema extends Diadema {
 
 
     @Override protected void onEntityEnter(Entity entity) {
-        if (entity instanceof ServerPlayer player) {
+        if (entity instanceof ServerPlayer player && !WhiteList.contains(player)) {
             WardenBlindnessEffect.SetEnableTo(player, true);
         }
     }
 
     @Override
     protected void onEntityExit(Entity entity) {
-        if (entity instanceof ServerPlayer player && !WhiteList.contains(player)) {
+        if (entity instanceof ServerPlayer player) {
             WardenBlindnessEffect.SetEnableTo(player, false);
         }
 
