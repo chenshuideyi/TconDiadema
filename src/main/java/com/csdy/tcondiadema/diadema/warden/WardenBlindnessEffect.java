@@ -3,7 +3,6 @@ package com.csdy.tcondiadema.diadema.warden;
 import com.csdy.tcondiadema.ModMain;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import lombok.SneakyThrows;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EffectInstance;
@@ -17,9 +16,6 @@ import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
-
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import static com.csdy.tcondiadema.ModMain.MODID;
 

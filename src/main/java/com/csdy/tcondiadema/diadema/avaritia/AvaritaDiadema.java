@@ -25,7 +25,8 @@ public class AvaritaDiadema extends Diadema {
     public AvaritaDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
     }
-    private final SphereDiademaRange range = new SphereDiademaRange(this,RADIUS);
+
+    private final SphereDiademaRange range = new SphereDiademaRange(this, RADIUS);
 
     @Override
     public @NotNull DiademaRange getRange() {
@@ -37,7 +38,8 @@ public class AvaritaDiadema extends Diadema {
         var blocks = range.getAffectingBlocks();
         //java比较弱智，Stream不能用来for,只能foreach
         blocks.forEach(blockPos -> {
-            if (getLevel().getBlockState(blockPos).getBlock() == Blocks.AIR || getLevel().getBlockState(blockPos).getBlock() == Blocks.GOLD_BLOCK) return;
+            if (getLevel().getBlockState(blockPos).getBlock() == Blocks.AIR || getLevel().getBlockState(blockPos).getBlock() == Blocks.GOLD_BLOCK)
+                return;
             getLevel().setBlockAndUpdate(blockPos, Blocks.GOLD_BLOCK.defaultBlockState());
         });
     }
@@ -48,7 +50,7 @@ public class AvaritaDiadema extends Diadema {
             return;
         }
         // 获取玩家和捡起的物品
-        Player player = (Player) event.getEntity();
+        Player player = event.getEntity();
         ItemStack itemStack = event.getItem().getItem();
 
         // 检查捡起的物品是否为金块

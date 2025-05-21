@@ -25,6 +25,7 @@ public class VisualChannel {
     );
 
 
+    @SuppressWarnings("UnusedAssignment")
     public static void Init() {
         DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> {
             int packetId = 0;
