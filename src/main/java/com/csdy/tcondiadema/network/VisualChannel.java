@@ -15,10 +15,10 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class ParticleSyncing {
+public class VisualChannel {
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(ModMain.MODID, "particle"),
+            new ResourceLocation(ModMain.MODID, "visual"),
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
             PROTOCOL_VERSION::equals

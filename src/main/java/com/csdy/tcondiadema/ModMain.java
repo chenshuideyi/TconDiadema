@@ -2,19 +2,19 @@ package com.csdy.tcondiadema;
 
 import com.csdy.tcondiadema.diadema.ClientDiademaRegister;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
+import com.csdy.tcondiadema.diadema.warden.WardenBlindnessEffect;
 import com.csdy.tcondiadema.effect.register.EffectRegister;
 import com.csdy.tcondiadema.frames.diadema.DiademaSyncing;
 import com.csdy.tcondiadema.item.register.HideRegister;
 import com.csdy.tcondiadema.item.register.ItemRegister;
 import com.csdy.tcondiadema.modifier.register.ModifierRegister;
-import com.csdy.tcondiadema.network.ParticleSyncing;
+import com.csdy.tcondiadema.network.VisualChannel;
 import com.csdy.tcondiadema.particle.register.ParticlesRegister;
 import com.csdy.tcondiadema.sounds.SoundsRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -68,11 +68,12 @@ public class ModMain {
     public static void onFMLCommonSetup(FMLCommonSetupEvent event) {
         //网络包
         DiademaSyncing.Init();
-        ParticleSyncing.Init();
+        VisualChannel.Init();
 
         // 以下代码仅在客户端运行
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             DiademaSlots.init();
+            event.enqueueWork(WardenBlindnessEffect::init);
         });
     }
 

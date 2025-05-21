@@ -1,13 +1,12 @@
 package com.csdy.tcondiadema.diadema.warden;
 
-import com.csdy.tcondiadema.network.ParticleSyncing;
+import com.csdy.tcondiadema.network.VisualChannel;
 import com.csdy.tcondiadema.network.packets.SonicBoomPacket;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -28,7 +27,7 @@ public class SonicBoomUtil {
         level.playSound(null, target.getX(), target.getY(), target.getZ(),
                 SoundEvents.WARDEN_SONIC_BOOM, SoundSource.HOSTILE, 1.0F, 1.0F);
 
-        ParticleSyncing.CHANNEL.send(PacketDistributor.NEAR.with(()->new PacketDistributor.TargetPoint(holder.getX(), holder.getY(), holder.getZ(), 128,
+        VisualChannel.CHANNEL.send(PacketDistributor.NEAR.with(()->new PacketDistributor.TargetPoint(holder.getX(), holder.getY(), holder.getZ(), 128,
                         holder.level.dimension()))
                 ,new SonicBoomPacket(holder.position,target.position));
 
