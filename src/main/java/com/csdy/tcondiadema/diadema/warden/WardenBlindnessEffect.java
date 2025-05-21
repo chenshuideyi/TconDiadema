@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.RenderArmEvent;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -83,6 +84,11 @@ public class WardenBlindnessEffect {
         effectInstance.safeGetUniform("InvProjMat").set(invProjMat);
         effectInstance.safeGetUniform("InvViewMat").set(invViewMat);
         postChain.process(event.getPartialTick());
+    }
+
+    @SubscribeEvent
+    public static void onJoin(ClientPlayerNetworkEvent.LoggingIn event) {
+        isWarden = false;
     }
 
     public static void SetEnableTo(ServerPlayer player, boolean enable) {
