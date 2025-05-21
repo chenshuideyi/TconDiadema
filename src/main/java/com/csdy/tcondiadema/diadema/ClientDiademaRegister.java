@@ -37,6 +37,7 @@ import com.csdy.tcondiadema.diadema.warden.WardenClientDiadema;
 import com.csdy.tcondiadema.diadema.warden.WardenDiadema;
 import com.csdy.tcondiadema.diadema.wind.WindClientDiadema;
 import com.csdy.tcondiadema.diadema.wind.WindDiadema;
+import com.csdy.tcondiadema.diadema.wither.WitherClientDiadema;
 import com.csdy.tcondiadema.frames.CsdyRegistries;
 import com.csdy.tcondiadema.frames.diadema.ClientDiademaType;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
@@ -85,4 +86,6 @@ public class ClientDiademaRegister {
             CLIENT_DIADEMA_TYPES.register("ira", () -> ClientDiademaType.Create(IraClientDiadema::new));
     public static final RegistryObject<ClientDiademaType> TIME_RAIN =
             CLIENT_DIADEMA_TYPES.register("time_rain", () -> ClientDiademaType.Create(TimeRainClinetDiadema::new));
+    public static final RegistryObject<ClientDiademaType> WITHER =
+            CLIENT_DIADEMA_TYPES.register("wither", () -> ClientDiademaType.Create(WitherClientDiadema::new));
 }

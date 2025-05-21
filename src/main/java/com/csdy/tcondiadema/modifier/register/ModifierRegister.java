@@ -32,4 +32,5 @@ public class ModifierRegister {
     public static final StaticModifier<DiademaModifier> FAKE_SHINRATENSEI_STATIC_MODIFIER = MODIFIERS.register("fake_shinratensei", CommonDiademaModifier.Create(DiademaRegister.FAKE_SHINRATENSEI));
     public static final StaticModifier<DiademaModifier> SHINRATENSEI_STATIC_MODIFIER = MODIFIERS.register("shinratensei", CommonDiademaModifier.Create(DiademaRegister.SHINRATENSEI));
     public static final StaticModifier<DiademaModifier> TIME_RAIN_STATIC_MODIFIER = MODIFIERS.register("time_rain", CommonDiademaModifier.Create(DiademaRegister.TIME_RAIN));
+    public static final StaticModifier<DiademaModifier> WITHER_STATIC_MODIFIER = MODIFIERS.register("wither", CommonDiademaModifier.Create(DiademaRegister.WITHER));
 }

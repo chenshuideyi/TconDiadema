@@ -18,4 +18,6 @@ public final class FollowDiademaMovement extends EntityDiademaMovement {
     @Override public ServerLevel getLevel() {
         return (ServerLevel) entity.level;
     }
+
+
 }
