@@ -1,6 +1,6 @@
 package com.csdy.tcondiadema.diadema;
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.diadema.abyss.*;
 import com.csdy.tcondiadema.diadema.avaritia.*;
 import com.csdy.tcondiadema.diadema.fakekillaura.*;
@@ -27,7 +27,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 // 把你的领域注册上来就算是完成了！
 public class DiademaRegister {
-    public static final DeferredRegister<DiademaType> DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.DIADEMA_TYPE, ModMain.MODID);
+    public static final DeferredRegister<DiademaType> DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.DIADEMA_TYPE, TconDiadema.MODID);
 
     public static final RegistryObject<DiademaType> WARDEN =
             DIADEMA_TYPES.register("warden", () -> DiademaType.create(WardenDiadema::new));

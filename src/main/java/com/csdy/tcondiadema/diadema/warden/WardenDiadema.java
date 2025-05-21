@@ -1,30 +1,25 @@
 package com.csdy.tcondiadema.diadema.warden;
 
 
-import com.csdy.tcondiadema.ModMain;
-import com.csdy.tcondiadema.diadema.DiademaRegister;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.diadema.api.ranges.HalfSphereDiademaRange;
 import com.csdy.tcondiadema.effect.register.EffectRegister;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.frames.diadema.movement.DiademaMovement;
 import com.csdy.tcondiadema.frames.diadema.range.DiademaRange;
-import com.csdy.tcondiadema.network.VisualChannel;
-import net.minecraft.data.PackOutput;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
 
 // 如你所见，这个是领域的服务端类型，带个Client的是客户端类型，一般而言两个都要重写一份。然后拿去注册
-@Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class WardenDiadema extends Diadema {
     static final double RADIUS = 4;
 
@@ -33,11 +28,11 @@ public class WardenDiadema extends Diadema {
     public WardenDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
 
-        if (getEntity() != null) WhiteList.add(getEntity()); //加白名单
+        if (getCoreEntity() != null) WhiteList.add(getCoreEntity()); //加白名单
     }
 
     @Override protected void removed() {
-        if (getEntity() != null) WhiteList.remove(getEntity()); //去白名单
+        if (getCoreEntity() != null) WhiteList.remove(getCoreEntity()); //去白名单
     }
 
     private final HalfSphereDiademaRange range = new HalfSphereDiademaRange(this, RADIUS);
@@ -70,7 +65,7 @@ public class WardenDiadema extends Diadema {
             WardenBlindnessEffect.SetEnableTo(player, false);
         }
 
-        var core = getEntity();
+        var core = getCoreEntity();
         if (core == null || entity.equals(core)) return;
         if (entity instanceof LivingEntity living) {
             SonicBoomUtil.performSonicBoom(entity.level, living, core);

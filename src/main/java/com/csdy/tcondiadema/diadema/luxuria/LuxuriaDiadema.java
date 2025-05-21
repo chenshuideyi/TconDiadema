@@ -20,7 +20,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class LuxuriaDiadema extends Diadema {
-    private final Entity entity = getEntity();
+    private final Entity entity = getCoreEntity();
     private int timer = 0; // 计时器变量
 
     public LuxuriaDiadema(DiademaType type, DiademaMovement movement) {

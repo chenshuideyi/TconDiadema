@@ -10,13 +10,12 @@ import mekanism.common.registries.MekanismDamageTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import mekanism.common.lib.radiation.RadiationManager;
 import org.jetbrains.annotations.NotNull;
 
 public class MeltdownDiadema extends Diadema {
     final static double RADIUS = 12;
-    private final Entity entity = getEntity();
+    private final Entity entity = getCoreEntity();
     public MeltdownDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
     }

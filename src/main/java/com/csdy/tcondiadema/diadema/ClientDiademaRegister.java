@@ -1,46 +1,27 @@
 package com.csdy.tcondiadema.diadema;
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.diadema.abyss.AbyssClientDiadema;
-import com.csdy.tcondiadema.diadema.abyss.AbyssDiadema;
 import com.csdy.tcondiadema.diadema.avaritia.AvaritaClientDiadema;
-import com.csdy.tcondiadema.diadema.avaritia.AvaritaDiadema;
 import com.csdy.tcondiadema.diadema.fakekillaura.FakeKillAuraClientDiadema;
-import com.csdy.tcondiadema.diadema.fakekillaura.FakeKillAuraDiadema;
 import com.csdy.tcondiadema.diadema.fakemeltdown.FakeMeltdownClientDiadema;
-import com.csdy.tcondiadema.diadema.fakemeltdown.FakeMeltdownDiadema;
 import com.csdy.tcondiadema.diadema.fakeprojecte.FakeProjectEClientDiadema;
-import com.csdy.tcondiadema.diadema.fakeprojecte.FakeProjectEDiadema;
 import com.csdy.tcondiadema.diadema.fakeshinratensei.FakeShinratenseiClientDiadema;
-import com.csdy.tcondiadema.diadema.fakeshinratensei.FakeShinratenseiDiadema;
 import com.csdy.tcondiadema.diadema.gula.GulaClientDiadema;
-import com.csdy.tcondiadema.diadema.gula.GulaDiadema;
 import com.csdy.tcondiadema.diadema.ira.IraClientDiadema;
-import com.csdy.tcondiadema.diadema.ira.IraDiadema;
 import com.csdy.tcondiadema.diadema.killaura.KillAuraClientDiadema;
-import com.csdy.tcondiadema.diadema.killaura.KillAuraDiadema;
 import com.csdy.tcondiadema.diadema.luxuria.LuxuriaClinetDiadema;
-import com.csdy.tcondiadema.diadema.luxuria.LuxuriaDiadema;
 import com.csdy.tcondiadema.diadema.meltdown.MeltdownClientDiadema;
-import com.csdy.tcondiadema.diadema.meltdown.MeltdownDiadema;
 import com.csdy.tcondiadema.diadema.meridiaVerse.MeridiaVerseClientDiadema;
-import com.csdy.tcondiadema.diadema.meridiaVerse.MeridiaVerseDiadema;
 import com.csdy.tcondiadema.diadema.projecte.ProjectEClientDiadema;
-import com.csdy.tcondiadema.diadema.projecte.ProjectEDiadema;
 import com.csdy.tcondiadema.diadema.shinratensei.ShinratenseiClientDiadema;
-import com.csdy.tcondiadema.diadema.shinratensei.ShinratenseiDiadema;
 import com.csdy.tcondiadema.diadema.superbia.SuperbiaClinetDiadema;
-import com.csdy.tcondiadema.diadema.superbia.SuperbiaDiadema;
 import com.csdy.tcondiadema.diadema.timerain.TimeRainClinetDiadema;
-import com.csdy.tcondiadema.diadema.timerain.TimeRainDiadema;
 import com.csdy.tcondiadema.diadema.warden.WardenClientDiadema;
-import com.csdy.tcondiadema.diadema.warden.WardenDiadema;
 import com.csdy.tcondiadema.diadema.wind.WindClientDiadema;
-import com.csdy.tcondiadema.diadema.wind.WindDiadema;
 import com.csdy.tcondiadema.diadema.wither.WitherClientDiadema;
 import com.csdy.tcondiadema.frames.CsdyRegistries;
 import com.csdy.tcondiadema.frames.diadema.ClientDiademaType;
-import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.DeferredRegister;
@@ -48,7 +29,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientDiademaRegister {
-    public static final DeferredRegister<ClientDiademaType> CLIENT_DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.CLIENT_DIADEMA_TYPE, ModMain.MODID);
+    public static final DeferredRegister<ClientDiademaType> CLIENT_DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.CLIENT_DIADEMA_TYPE, TconDiadema.MODID);
 
     public static final RegistryObject<ClientDiademaType> WARDEN =
             CLIENT_DIADEMA_TYPES.register("warden", () -> ClientDiademaType.Create(WardenClientDiadema::new));

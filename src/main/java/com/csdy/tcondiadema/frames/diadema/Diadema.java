@@ -1,7 +1,7 @@
 package com.csdy.tcondiadema.frames.diadema;
 
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.frames.diadema.events.EntityEnteredDiademaEvent;
 import com.csdy.tcondiadema.frames.diadema.events.EntityExitedDiademaEvent;
 import com.csdy.tcondiadema.frames.diadema.movement.DiademaMovement;
@@ -34,7 +34,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /// 领域实例的抽象基类，实现这个和一旁的DiademaType还有DiademaClient即可实现自定义领域
-@Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public abstract class Diadema {
     // init&final
     private static long nextId = 0;
@@ -120,7 +120,7 @@ public abstract class Diadema {
      * &#064;return核心实体，如果领域不是跟随实体类型，则为null。 
      */
 
-    public Entity getEntity() {
+    public Entity getCoreEntity() {
         if (!(movement instanceof EntityDiademaMovement follow)) return null;
         return follow.getEntity();
     }
@@ -131,7 +131,7 @@ public abstract class Diadema {
      * @return 如果核心实体是玩家则为true，否则为false。
      */
     public boolean isPlayer() {
-        Entity coreEntity = getEntity();
+        Entity coreEntity = getCoreEntity();
         return coreEntity instanceof Player;
     }
 
@@ -239,13 +239,13 @@ public abstract class Diadema {
 
     @SubscribeEvent
     public final void onEntityLeaveLevel(EntityLeaveLevelEvent e) {
-        if (getEntity() == null) return;
-        if (e.getEntity() == getEntity()) remove();
+        if (getCoreEntity() == null) return;
+        if (e.getEntity() == getCoreEntity()) remove();
     }
 
     @SubscribeEvent
     public final void onLivingDeathEvent(LivingDeathEvent e) {
-        if (getEntity() == null) return;
-        if (e.getEntity() == getEntity()) remove();
+        if (getCoreEntity() == null) return;
+        if (e.getEntity() == getCoreEntity()) remove();
     }
 }

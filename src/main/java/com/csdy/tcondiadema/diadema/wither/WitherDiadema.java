@@ -1,29 +1,20 @@
 package com.csdy.tcondiadema.diadema.wither;
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
-import com.csdy.tcondiadema.diadema.api.ranges.SphereDiademaRange;
 import com.csdy.tcondiadema.diadema.api.ranges.SquareDiademaRange;
-import com.csdy.tcondiadema.effect.register.EffectRegister;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.frames.diadema.movement.DiademaMovement;
 import com.csdy.tcondiadema.frames.diadema.range.DiademaRange;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.horse.SkeletonHorse;
-import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.WitherSkeleton;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
@@ -37,9 +28,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
-
-@Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class WitherDiadema extends Diadema {
     static final double RADIUS = 12;
     public WitherDiadema(DiademaType type, DiademaMovement movement) {
@@ -60,7 +49,7 @@ public class WitherDiadema extends Diadema {
 
     @Override
     protected void perTick() {
-        var entity = getEntity();
+        var entity = getCoreEntity();
         if (!(entity.tickCount % (30 * 20) == 0)) return;
 
         Vec3 pos = getPosition();

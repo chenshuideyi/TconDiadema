@@ -1,7 +1,7 @@
 package com.csdy.tcondiadema.frames;
 
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.frames.diadema.ClientDiademaType;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import net.minecraft.core.Registry;
@@ -18,7 +18,7 @@ import net.minecraftforge.registries.RegistryBuilder;
 
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CsdyRegistries {
     public static final ResourceKey<Registry<DiademaType>> DIADEMA_TYPE = createRegistryKey("diadema_type");
     public static Supplier<IForgeRegistry<DiademaType>> DIADEMA_TYPES_REG;
@@ -32,7 +32,7 @@ public class CsdyRegistries {
     public static void onNewRegistry(NewRegistryEvent e) {
         RegistryBuilder<DiademaType> diademaTypeRegistryBuilder = new RegistryBuilder<>();
         diademaTypeRegistryBuilder.setName(DIADEMA_TYPE.location())
-                .setDefaultKey(new ResourceLocation(ModMain.MODID, "default"));
+                .setDefaultKey(new ResourceLocation(TconDiadema.MODID, "default"));
 
         DIADEMA_TYPES_REG = e.create(diademaTypeRegistryBuilder);
 
@@ -40,13 +40,13 @@ public class CsdyRegistries {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             RegistryBuilder<ClientDiademaType> clientDiademaTypeRegistryBuilder = new RegistryBuilder<>();
             clientDiademaTypeRegistryBuilder.setName(CLIENT_DIADEMA_TYPE.location())
-                    .setDefaultKey(new ResourceLocation(ModMain.MODID, "default"));
+                    .setDefaultKey(new ResourceLocation(TconDiadema.MODID, "default"));
 
             CLIENT_DIADEMA_TYPES_REG = e.create(clientDiademaTypeRegistryBuilder);
         });
     }
 
     private static <T> ResourceKey<Registry<T>> createRegistryKey(String name) {
-        return ResourceKey.createRegistryKey(new ResourceLocation(ModMain.MODID, name));
+        return ResourceKey.createRegistryKey(new ResourceLocation(TconDiadema.MODID, name));
     }
 }

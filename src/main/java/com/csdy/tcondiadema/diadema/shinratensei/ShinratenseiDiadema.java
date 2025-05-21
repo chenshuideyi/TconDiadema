@@ -7,14 +7,13 @@ import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.frames.diadema.movement.DiademaMovement;
 import com.csdy.tcondiadema.frames.diadema.range.DiademaRange;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public class ShinratenseiDiadema extends Diadema {
     static final double RADIUS = 8;
-    private final Entity entity = getEntity();
+    private final Entity entity = getCoreEntity();
     public ShinratenseiDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
     }

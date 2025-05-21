@@ -32,7 +32,7 @@ import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static com.csdy.tcondiadema.ModMain.MODID;
+import static com.csdy.tcondiadema.TconDiadema.MODID;
 
 
 /// 领域强化继承这个类<br/>

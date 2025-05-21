@@ -9,11 +9,10 @@ import com.csdy.tcondiadema.frames.diadema.range.DiademaRange;
 import lombok.NonNull;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.player.Player;
 
 public class IraDiadema extends Diadema {
     static final double RADIUS = 8;
-    private Entity entity = getEntity();
+    private Entity entity = getCoreEntity();
 
     public IraDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);

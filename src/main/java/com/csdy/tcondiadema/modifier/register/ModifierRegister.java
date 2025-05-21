@@ -9,7 +9,7 @@ import com.csdy.tcondiadema.modifier.diadema.*;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
-import static com.csdy.tcondiadema.ModMain.MODID;
+import static com.csdy.tcondiadema.TconDiadema.MODID;
 
 public class ModifierRegister {
     public static ModifierDeferredRegister MODIFIERS = ModifierDeferredRegister.create(MODID);

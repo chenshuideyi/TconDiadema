@@ -1,7 +1,7 @@
 package com.csdy.tcondiadema.diadema.gula;
 
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.diadema.api.ranges.SphereDiademaRange;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
@@ -18,10 +18,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
-@Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GulaDiadema extends Diadema {
     static final double RADIUS = 8;
-    private final Entity entity = getEntity();
+    private final Entity entity = getCoreEntity();
 
     public GulaDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);

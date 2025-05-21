@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class FakeKillAuraDiadema extends Diadema {
     static final double RADIUS = 6;
-    private final Entity entity = getEntity();
+    private final Entity entity = getCoreEntity();
 
     public FakeKillAuraDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);

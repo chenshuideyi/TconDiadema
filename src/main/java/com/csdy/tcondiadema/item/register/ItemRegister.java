@@ -1,7 +1,7 @@
 package com.csdy.tcondiadema.item.register;
 
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.item.food.EnderDragonHeart;
 import com.csdy.tcondiadema.item.food.WardenHeart;
 import com.csdy.tcondiadema.item.sword.*;
@@ -13,7 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ItemRegister {
-    public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModMain.MODID);
+    public static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TconDiadema.MODID);
 //    public static final RegistryObject<Item> WEB_13234 = ITEMS.register("web_13234", () -> new Web_13234(Tiers.DIAMOND, -2, -8F, new Item.Properties()));
 //    public static final RegistryObject<Item> REBELLION_DEBRIS = ITEMS.register("rebellion_debris", RebellionDebris::new);
     public static final RegistryObject<Item> BROKEN_SACRED_RELIC = ITEMS.register("broken_sacred_relic", BrokenSacredRelic::new);

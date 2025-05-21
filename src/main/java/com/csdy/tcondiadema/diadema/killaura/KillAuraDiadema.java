@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class KillAuraDiadema extends Diadema {
     static final double DEFAULT_RADIUS = 6;
-    private final Entity entity = getEntity();
+    private final Entity entity = getCoreEntity();
     private double currentRadius = DEFAULT_RADIUS;
 
     private final SphereDiademaRange range;

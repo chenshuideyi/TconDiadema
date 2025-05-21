@@ -1,7 +1,7 @@
 package com.csdy.tcondiadema.particle.register;
 
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.particle.*;
-import com.csdy.tcondiadema.ModMain;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -14,9 +14,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ParticlesRegister {
-    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, ModMain.MODID);
+    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, TconDiadema.MODID);
 
     public static final RegistryObject<SimpleParticleType> CUSTOM_PARTICLE = PARTICLE_TYPES.register("custom_particle", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> SHADOW_PARTICLE = PARTICLE_TYPES.register("shadow_particle", () -> new SimpleParticleType(false));

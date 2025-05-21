@@ -24,7 +24,7 @@ public class WindDiadema extends Diadema {
     }
 
     protected void onEntityEnter(Entity entity) {
-        var core = getEntity();
+        var core = getCoreEntity();
         if (core == null || entity.equals(core)) return;
         if (entity instanceof LivingEntity living){
             if (living.getAttribute(Attributes.ARMOR)!= null){

@@ -12,7 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 
-import static com.csdy.tcondiadema.ModMain.MODID;
+import static com.csdy.tcondiadema.TconDiadema.MODID;
 import static com.csdy.tcondiadema.item.register.ItemRegister.SACRED_RELIC;
 
 public class CsdyTab {

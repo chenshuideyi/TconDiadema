@@ -9,12 +9,8 @@ import com.csdy.tcondiadema.frames.diadema.movement.DiademaMovement;
 import com.csdy.tcondiadema.frames.diadema.range.DiademaRange;
 import lombok.NonNull;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import slimeknights.tconstruct.library.tools.item.armor.ModifiableArmorItem;
@@ -26,7 +22,7 @@ import java.util.Set;
 
 public class TimeRainDiadema extends Diadema {
     static final double RADIUS = 8,HUP = 8, HDOWN = -8;
-    private Entity entity = getEntity();
+    private Entity entity = getCoreEntity();
 
     private static final Set<Entity> WhiteList = new HashSet<>();
 
@@ -38,7 +34,7 @@ public class TimeRainDiadema extends Diadema {
     }
 
     @Override protected void removed() {
-        if (getEntity() != null) WhiteList.remove(getEntity()); //去白名单
+        if (getCoreEntity() != null) WhiteList.remove(getCoreEntity()); //去白名单
     }
 
     @Override

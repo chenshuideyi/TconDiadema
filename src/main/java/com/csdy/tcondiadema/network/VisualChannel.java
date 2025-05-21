@@ -1,7 +1,7 @@
 package com.csdy.tcondiadema.network;
 
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.diadema.warden.WardenBlindnessEffect;
 import com.csdy.tcondiadema.network.packets.AvaritaPacket;
 import com.csdy.tcondiadema.network.packets.SonicBoomPacket;
@@ -15,11 +15,11 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 import java.util.Optional;
 
-@Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class VisualChannel {
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(ModMain.MODID, "visual"),
+            new ResourceLocation(TconDiadema.MODID, "visual"),
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
             PROTOCOL_VERSION::equals

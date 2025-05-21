@@ -1,7 +1,7 @@
 package com.csdy.tcondiadema.diadema.avaritia;
 
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.diadema.api.ranges.SphereDiademaRange;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
@@ -18,7 +18,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
-@Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class AvaritaDiadema extends Diadema {
     static final double RADIUS = 6;
 
@@ -46,7 +46,7 @@ public class AvaritaDiadema extends Diadema {
 
     @SubscribeEvent
     public void onItemPickup(EntityItemPickupEvent event) {
-        if (!isAlive() || !isPlayer() || event.getEntity() != getEntity()) {
+        if (!isAlive() || !isPlayer() || event.getEntity() != getCoreEntity()) {
             return;
         }
         // 获取玩家和捡起的物品

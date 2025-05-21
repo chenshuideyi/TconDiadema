@@ -29,15 +29,15 @@ import java.util.List;
 import java.util.function.Supplier;
 
 
-@Mod(ModMain.MODID)
-@Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModMain {
+@Mod(TconDiadema.MODID)
+@Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class TconDiadema {
 
     public static final String MODID = "tcondiadema";
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
     public static final List<Supplier<? extends Item>> TAB_ITEMS_LIST = new ArrayList<>();
 
-    public ModMain() {
+    public TconDiadema() {
 
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

@@ -1,6 +1,6 @@
 package com.csdy.tcondiadema.diadema.warden;
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.network.VisualChannel;
 import com.mojang.blaze3d.systems.RenderSystem;
 import lombok.SneakyThrows;
@@ -22,13 +22,13 @@ import org.joml.Matrix4f;
 
 import java.util.function.Supplier;
 
-import static com.csdy.tcondiadema.ModMain.MODID;
+import static com.csdy.tcondiadema.TconDiadema.MODID;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class WardenBlindnessEffect {
     private static PostChain postChain;
     private static EffectInstance effectInstance;
-    private static final ResourceLocation POST_CHAIN_LOCATION = new ResourceLocation(ModMain.MODID, "shaders/post/warden_blind.json");
+    private static final ResourceLocation POST_CHAIN_LOCATION = new ResourceLocation(TconDiadema.MODID, "shaders/post/warden_blind.json");
 
     private static final int LOOP_TIME_MS = 10000;
 

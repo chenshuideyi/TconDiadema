@@ -19,7 +19,7 @@ import java.math.BigInteger;
 
 public class ProjectEDiadema extends Diadema {
     static final double RADIUS = 8;
-    private final Entity entity = getEntity();
+    private final Entity entity = getCoreEntity();
 
     public ProjectEDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);

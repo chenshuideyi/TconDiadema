@@ -1,7 +1,7 @@
 package com.csdy.tcondiadema.frames.diadema;
 
 
-import com.csdy.tcondiadema.ModMain;
+import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.frames.CsdyRegistries;
 import com.csdy.tcondiadema.frames.diadema.packets.DiademaCreatedPacket;
 import com.csdy.tcondiadema.frames.diadema.packets.DiademaRemovedPacket;
@@ -20,16 +20,15 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
 /// 用于处理双端同步的工具类，一般情况下除了初始化以外应该完全不需要和这里交互。
-@Mod.EventBusSubscriber(modid = ModMain.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DiademaSyncing {
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(ModMain.MODID, "diadema"),
+            new ResourceLocation(TconDiadema.MODID, "diadema"),
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
             PROTOCOL_VERSION::equals

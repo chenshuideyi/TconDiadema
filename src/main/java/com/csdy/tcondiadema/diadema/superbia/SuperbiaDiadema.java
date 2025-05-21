@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class SuperbiaDiadema extends Diadema {
-    private final Entity entity = getEntity();
+    private final Entity entity = getCoreEntity();
     public SuperbiaDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
     }

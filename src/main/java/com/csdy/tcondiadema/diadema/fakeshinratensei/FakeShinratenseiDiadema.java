@@ -10,12 +10,11 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class FakeShinratenseiDiadema extends Diadema {
     static final double RADIUS = 8;
-    private final Entity entity = getEntity();
+    private final Entity entity = getCoreEntity();
     public FakeShinratenseiDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
     }
