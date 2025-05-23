@@ -10,9 +10,11 @@ import com.csdy.tcondiadema.diadema.fakeshinratensei.FakeShinratenseiDiadema;
 import com.csdy.tcondiadema.diadema.gula.GulaDiadema;
 import com.csdy.tcondiadema.diadema.ira.IraDiadema;
 import com.csdy.tcondiadema.diadema.killaura.KillAuraDiadema;
+import com.csdy.tcondiadema.diadema.lovetrain.LoveTrainDiadema;
 import com.csdy.tcondiadema.diadema.luxuria.LuxuriaDiadema;
 import com.csdy.tcondiadema.diadema.meltdown.MeltdownDiadema;
 import com.csdy.tcondiadema.diadema.meridiaVerse.MeridiaVerseDiadema;
+import com.csdy.tcondiadema.diadema.pheromonemist.PheromoneMistDiadema;
 import com.csdy.tcondiadema.diadema.projecte.ProjectEDiadema;
 import com.csdy.tcondiadema.diadema.shinratensei.ShinratenseiDiadema;
 import com.csdy.tcondiadema.diadema.superbia.SuperbiaDiadema;
@@ -67,4 +69,9 @@ public class DiademaRegister {
             DIADEMA_TYPES.register("time_rain", () -> DiademaType.create(TimeRainDiadema::new));
     public static final RegistryObject<DiademaType> WITHER =
             DIADEMA_TYPES.register("wither", () -> DiademaType.create(WitherDiadema::new));
+    public static final RegistryObject<DiademaType> PHEROMONE_MIST =
+            DIADEMA_TYPES.register("pheromone_mist", () -> DiademaType.create(PheromoneMistDiadema::new));
+    public static final RegistryObject<DiademaType> LOVE_TRAIN =
+            DIADEMA_TYPES.register("love_train", () -> DiademaType.create(LoveTrainDiadema::new));
+
 }

@@ -101,9 +101,26 @@
   "modifier.tcondiadema.time_rain.flavor": "永别了，山姆",
   "modifier.tcondiadema.time_rain.description": "时间雨侵蚀领域内生物的生命与衣装，当完全暴露在雨下时就是死期",
 
+  "modifier.tcondiadema.pheromone_mist": "No.91 费洛蒙雾",
+  "modifier.tcondiadema.pheromone_mist.flavor": "爱，生命，与皮套人",
+  "modifier.tcondiadema.pheromone_mist.description": "让领域内的动物一直繁殖",
+
+  "modifier.tcondiadema.love_train": "No.D4C 爱之列车",
+  "modifier.tcondiadema.love_train.flavor": "我已经拿起最初的餐巾了",
+  "modifier.tcondiadema.love_train.description": "领域内的生物受到伤害时会转移给领域外世界上任意一个生物上",
+
+  "love_train_text1": "你受到的不幸转移给了",
+
   "effect.tcondiadema.scared": "惊恐",
   "effect.tcondiadema.physical_injury": "开放性物理创口",
   "effect.tcondiadema.fracture": "骨折",
   "effect.tcondiadema.comminuted_fracture": "粉碎性骨折",
-  "effect.tcondiadema.wind": "乘风行走之物"
+  "effect.tcondiadema.wind": "乘风行走之物",
+
+
+  "boss.easy_wither": "天真无邪的少女 · 凋灵",
+  "boss.normal_wither": "天真无邪的战士 · 凋灵",
+  "boss.hard_wither": "冷酷无情的战士 · 凋灵",
+
+  "diadema_message": "在jei中搜索No.以查看领域内容"
 }

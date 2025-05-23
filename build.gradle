@@ -25,7 +25,7 @@ buildscript {
     group = mod_group_id
     version = mod_version
     base {
-        archivesName = mod_id
+        archivesName = mod_name
     }
     java {
         toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -106,6 +106,8 @@ buildscript {
 
         implementation fg.deobf("curse.maven:mantle-74924:6258424")
         implementation fg.deobf("curse.maven:tinkers-construct-74072:6266282")
+
+        implementation fg.deobf("curse.maven:jade-324717:6271651")
     }
     tasks.named('processResources', ProcessResources).configure {
         var replaceProperties = [minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,

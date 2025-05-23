@@ -12,9 +12,9 @@ import lombok.Setter;
 @Setter
 @Getter
 public class SquareDiademaRange extends CommonDiademaRange {
-    public SquareDiademaRange(Diadema diadema, double radius) {
+    public SquareDiademaRange(Diadema diadema, double length) {
         super(diadema);
-        this.radius = radius;
+        this.radius = length/2;
     }
 
     private double radius;
@@ -36,7 +36,6 @@ public class SquareDiademaRange extends CommonDiademaRange {
 
     @Override
     public boolean ifInclude(Vec3 position) {
-        AABB boundingBox = getAABB();
-        return boundingBox.contains(position);
+        return true;
     }
 }

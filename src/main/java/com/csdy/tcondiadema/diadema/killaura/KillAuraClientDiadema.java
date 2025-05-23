@@ -4,6 +4,7 @@ import com.csdy.tcondiadema.frames.diadema.ClientDiadema;
 import com.csdy.tcondiadema.particle.register.ParticlesRegister;
 import com.csdy.tcondiadema.particleUtils.PointSets;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.Level;
@@ -12,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class KillAuraClientDiadema extends ClientDiadema {
-    private static final SimpleParticleType type = ParticlesRegister.KILL_AURA_PARTICLE.get();
+    private static final SimpleParticleType type = ParticleTypes.SWEEP_ATTACK;
 
     static final double DEFAULT_RADIUS = 8;
     private double currentRadius = DEFAULT_RADIUS;

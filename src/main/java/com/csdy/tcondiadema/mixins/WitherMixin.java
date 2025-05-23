@@ -4,6 +4,7 @@ import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.movement.FollowDiademaMovement;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -14,11 +15,13 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.horse.SkeletonHorse;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -48,6 +51,9 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import javax.annotation.Nullable;
 
 // 假设 DiademaRegister 和 Diadema 以及 FollowDiademaMovement 类存在且定义正确
 // import your.package.DiademaRegister;
@@ -84,13 +90,21 @@ public abstract class WitherMixin extends Mob {
         this.tcondiadema$witherDiadema = DiademaRegister.WITHER.get().CreateInstance(new FollowDiademaMovement(wither));
     }
 
+    @Inject(method = "aiStep", at = @At("HEAD"))
+    private void tcondiadema$onAiStep(CallbackInfo ci) {
+        if (!this.tcondiadema$skeletonsSpawned) {
+            this.setHealth(this.getMaxHealth()); // 确保爆炸后仍然满血
+            this.tcondiadema$skeletonsSpawned = true;
+        }
+    }
+
     @Override
     public Component getDisplayName() {
         Difficulty difficulty = this.level().getDifficulty();
         return switch (difficulty) {
-            case EASY -> Component.literal("天真无邪的少女 · 凋灵");
-            case NORMAL -> Component.literal("冷酷无情的战士 · 凋灵");
-            case HARD -> Component.literal("『冥界主宰』 · 调灵");
+            case EASY -> Component.translatable("boss.easy_wither");
+            case NORMAL -> Component.translatable("boss.normal_wither");
+            case HARD -> Component.translatable("boss.hard_wither");
             default -> super.getDisplayName();
         };
     }

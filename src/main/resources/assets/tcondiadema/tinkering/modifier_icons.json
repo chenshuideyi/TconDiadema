@@ -19,5 +19,7 @@
   "tcondiadema:avarita":  "tcondiadema:gui/modifiers/diadema/avarita",
   "tcondiadema:gula":  "tcondiadema:gui/modifiers/diadema/gula",
   "tcondiadema:abyss":  "tcondiadema:gui/modifiers/diadema/abyss",
-  "tcondiadema:time_rain": "tcondiadema:gui/modifiers/diadema/time_rain"
+  "tcondiadema:time_rain": "tcondiadema:gui/modifiers/diadema/time_rain",
+  "tcondiadema:pheromone_mist": "tcondiadema:gui/modifiers/diadema/pheromone_mist",
+  "tcondiadema:love_train": "tcondiadema:gui/modifiers/diadema/love_train"
 }

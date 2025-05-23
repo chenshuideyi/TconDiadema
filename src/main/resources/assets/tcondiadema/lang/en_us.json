@@ -102,10 +102,25 @@
   "modifier.tcondiadema.time_rain.flavor": "Farewell, Sam",
   "modifier.tcondiadema.time_rain.description": "Time Rain erodes the lives and clothing of creatures in the Diadema.When fully exposed to the rain, it is the death period",
 
+  "modifier.tcondiadema.pheromone_mist": "No.91 Pheromone Mist",
+  "modifier.tcondiadema.pheromone_mist.flavor": "13+78=?",
+  "modifier.tcondiadema.pheromone_mist.description": "Let the animals in the Diadema keep reproducing.",
+
+  "modifier.tcondiadema.love_train": "No.D4C Love Train",
+  "modifier.tcondiadema.love_train.flavor": "I have already picked up the original napkin.",
+  "modifier.tcondiadema.love_train.description": "When a creature within the Diadema takes damage, it is transferred to any other creature outside the Diadema in the world",
+
+  "love_train_text1": "You transferred the misfortune you suffered to",
+
   "effect.tcondiadema.scared": "Scared",
   "effect.tcondiadema.physical_injury": "Physical Injury",
   "effect.tcondiadema.fracture": "Fracture",
   "effect.tcondiadema.comminuted_fracture": "Comminuted Fracture",
-  "effect.tcondiadema.wind": "The Thing That Walked on the Wind"
+  "effect.tcondiadema.wind": "The Thing That Walked on the Wind",
 
+  "boss.easy_wither": "Innocent and naive girl · Wither",
+  "boss.normal_wither": "Innocent and naive warrior · Wither",
+  "boss.hard_wither": "The cold-blooded warrior · Wither",
+
+  "diadema_message": "Search for 'No.' in JEI to view Diadema contents"
 }

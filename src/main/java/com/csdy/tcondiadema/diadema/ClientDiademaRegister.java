@@ -10,9 +10,11 @@ import com.csdy.tcondiadema.diadema.fakeshinratensei.FakeShinratenseiClientDiade
 import com.csdy.tcondiadema.diadema.gula.GulaClientDiadema;
 import com.csdy.tcondiadema.diadema.ira.IraClientDiadema;
 import com.csdy.tcondiadema.diadema.killaura.KillAuraClientDiadema;
+import com.csdy.tcondiadema.diadema.lovetrain.LoveTrainClientDiadema;
 import com.csdy.tcondiadema.diadema.luxuria.LuxuriaClinetDiadema;
 import com.csdy.tcondiadema.diadema.meltdown.MeltdownClientDiadema;
 import com.csdy.tcondiadema.diadema.meridiaVerse.MeridiaVerseClientDiadema;
+import com.csdy.tcondiadema.diadema.pheromonemist.PheromoneMistClientDiadema;
 import com.csdy.tcondiadema.diadema.projecte.ProjectEClientDiadema;
 import com.csdy.tcondiadema.diadema.shinratensei.ShinratenseiClientDiadema;
 import com.csdy.tcondiadema.diadema.superbia.SuperbiaClinetDiadema;
@@ -69,4 +71,8 @@ public class ClientDiademaRegister {
             CLIENT_DIADEMA_TYPES.register("time_rain", () -> ClientDiademaType.Create(TimeRainClinetDiadema::new));
     public static final RegistryObject<ClientDiademaType> WITHER =
             CLIENT_DIADEMA_TYPES.register("wither", () -> ClientDiademaType.Create(WitherClientDiadema::new));
+    public static final RegistryObject<ClientDiademaType> PHEROMONE_MIST =
+            CLIENT_DIADEMA_TYPES.register("pheromone_mist", () -> ClientDiademaType.Create(PheromoneMistClientDiadema::new));
+    public static final RegistryObject<ClientDiademaType> LOVE_TRAIN =
+            CLIENT_DIADEMA_TYPES.register("love_train", () -> ClientDiademaType.Create(LoveTrainClientDiadema::new));
 }

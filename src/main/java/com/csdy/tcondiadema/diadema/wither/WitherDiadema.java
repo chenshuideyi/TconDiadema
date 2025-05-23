@@ -13,7 +13,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.horse.SkeletonHorse;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.item.ItemStack;
@@ -55,11 +58,13 @@ public class WitherDiadema extends Diadema {
 
         Vec3 pos = getPosition();
         ServerLevel level = getLevel();
-        level.getDifficulty();
+
 
         // 只在服务端执行
         if (level.isClientSide()) return;
         if (!(entity instanceof LivingEntity living)) return;
+        var difficulty = level.getDifficulty();
+        if (difficulty == Difficulty.HARD) ((LivingEntity) entity).heal(10);
         // 检查范围内的凋零骷髅数量
         int nearbySkeletons = countNearbyWitherSkeletons(level, pos);
         if (nearbySkeletons >= MAX_WITHER_SKELETONS) return;
@@ -87,7 +92,7 @@ public class WitherDiadema extends Diadema {
         ).size();
     }
 
-    //召唤骑士
+    //召唤弓兵
     private static void addWitherSkeletonArcher(Level level, Vec3 witherCenterPos, int count) {
         if (!(level instanceof ServerLevel)) return;
 
@@ -204,6 +209,8 @@ public class WitherDiadema extends Diadema {
             witherSkeleton.setDropChance(EquipmentSlot.LEGS, 1);
             witherSkeleton.setDropChance(EquipmentSlot.FEET, 1);
 
+            witherSkeleton.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,6000,1));
+
             // 2. 创建骷髅马
             SkeletonHorse skeletonHorse = EntityType.SKELETON_HORSE.create(level);
             if (skeletonHorse == null) {
@@ -214,6 +221,7 @@ public class WitherDiadema extends Diadema {
             skeletonHorse.moveTo(spawnX, groundY, spawnZ, witherSkeleton.getYRot(), 0.0f); // Y朝向与凋零骷髅一致
             skeletonHorse.setAge(0);
             skeletonHorse.setTamed(true); // 必须设置为驯服状态，非玩家实体才能骑乘
+            skeletonHorse.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.4);
 
             level.addFreshEntity(skeletonHorse);
             level.addFreshEntity(witherSkeleton);
@@ -242,6 +250,7 @@ public class WitherDiadema extends Diadema {
     public void witherSkeletonsDeath(LivingDeathEvent e) {
         LivingEntity living = e.getEntity();
         if (DiademaRegister.WITHER.get().isAffected(living)) {
+            if (!(living instanceof WitherSkeleton)) return;
             var level = living.level;
             Difficulty difficulty = level.getDifficulty();
             AreaEffectCloud cloud;

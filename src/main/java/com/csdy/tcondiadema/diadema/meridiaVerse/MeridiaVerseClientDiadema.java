@@ -31,11 +31,10 @@ public class MeridiaVerseClientDiadema extends ClientDiadema {
     private static final float SPD = 1f / 10;
     private static final float RS_X = SPD / 5, RS_Y = SPD / 13, RS_Z = SPD / 23, RS_FIN = SPD / 37, RS_AXIS = SPD / 47;
     private static final int SEG = 72;
-    private static final SimpleParticleType PARTICLE_TYPE = ParticleTypes.ELECTRIC_SPARK;
+    private static final SimpleParticleType PARTICLE_TYPE = ParticlesRegister.MERIDIA_VERSE__PARTICLE.get();
 
     private void drawParticle(ClientLevel level) {
         Vec3 center = getPosition();
-        SimpleParticleType type =  ParticlesRegister.MERIDIA_VERSE__PARTICLE.get();
         var round = PointSets.Circle(RADIUS, SEG).toList(); // 返回的stream只能用一次，但这个圆要重复用，所以收集成表
 
         rx += RS_X;
@@ -50,6 +49,6 @@ public class MeridiaVerseClientDiadema extends ClientDiadema {
         set = set.map(v -> Transforms.Rotate(v, finalAxis, rFin)); // 最后整体沿最终轴转一下
 
         set.map(v -> v.add(center)) //移至中心
-                .forEach(v -> level.addParticle(type, v.x, v.y, v.z, 0, 0, 0)); //绘制
+                .forEach(v -> level.addParticle(PARTICLE_TYPE, v.x, v.y, v.z, 0, 0, 0)); //绘制
     }
 }

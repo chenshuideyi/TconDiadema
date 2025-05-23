@@ -18,7 +18,9 @@
     "superbia": "#FF0000",
     "fake_shinratensei": "#FFA500",
     "shinratensei": "#FFA500",
-    "time_rain": "#000000"
+    "time_rain": "#000000",
+    "pheromone_mist": "#B409E5",
+    "love_train": "#ddcc00"
   }
 }
 
