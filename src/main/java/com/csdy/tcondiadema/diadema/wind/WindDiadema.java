@@ -23,6 +23,7 @@ public class WindDiadema extends Diadema {
         return range;
     }
 
+    @Override
     protected void onEntityEnter(Entity entity) {
         var core = getCoreEntity();
         if (core == null || entity.equals(core)) return;
