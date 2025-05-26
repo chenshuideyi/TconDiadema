@@ -18,8 +18,8 @@
   "item.tcondiadema.aura_forma": "Aura Forma",
 
   "tcondiadema_tab": "Tinker's Domain",
-  "stat.tconstruct.slot.display.Domain": "Domain",
-  "stat.tconstruct.slot.prefix.Domain": "Domain Slot：",
+  "stat.tconstruct.slot.display.diadema": "Domain",
+  "stat.tconstruct.slot.prefix.diadema": "Domain Slot：",
 
   "modifier.tcondiadema.forma": "Polarization",
   "modifier.tcondiadema.forma.flavor": "add the Polarity of a slot",
