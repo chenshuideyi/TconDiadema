@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 @Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GulaDiadema extends Diadema {
     static final double RADIUS = 8;
-    private final Entity entity = getCoreEntity();
+    private final Entity core = getCoreEntity();
 
     public GulaDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
@@ -41,9 +41,8 @@ public class GulaDiadema extends Diadema {
 
     @SubscribeEvent
     public void gula(LivingDeathEvent e) {
+        if (!(core instanceof Player player)) return;
         LivingEntity living = e.getEntity();
-        if (!this.isPlayer()) return;
-        Player player = (Player) living;
         if (this.affectingEntities.contains(living)) {
 
             AttributeInstance maxHealthAttr = player.getAttribute(Attributes.MAX_HEALTH);
