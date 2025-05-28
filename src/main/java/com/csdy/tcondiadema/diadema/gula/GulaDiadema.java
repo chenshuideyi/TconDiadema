@@ -48,12 +48,12 @@ public class GulaDiadema extends Diadema {
 
             AttributeInstance maxHealthAttr = player.getAttribute(Attributes.MAX_HEALTH);
             double originalMaxHealth = maxHealthAttr.getBaseValue();
-            double reducedMaxHealth = originalMaxHealth + living.getMaxHealth()*0.8;
+            double reducedMaxHealth = originalMaxHealth + 1;
             maxHealthAttr.setBaseValue(reducedMaxHealth);
 
             AttributeInstance AttackAttr = player.getAttribute(Attributes.ATTACK_DAMAGE);
             double originalAttack = AttackAttr.getBaseValue();
-            double reducedAttack = originalAttack + living.getAttributes().getBaseValue(Attributes.ATTACK_DAMAGE)*0.8;
+            double reducedAttack = originalAttack + 1;
             AttackAttr.setBaseValue(reducedAttack);
 
             player.heal(10);
