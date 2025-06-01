@@ -19,7 +19,8 @@ import java.util.Random;
 public class WitherClientDiadema extends ClientDiadema {
 
     static final double RADIUS = WitherDiadema.RADIUS;
-
+    private static final float interval = 1f;
+    
     public void Wither(Level level, double sideLength) {
         Vec3 center = getPosition();
         double X = center.x;
@@ -32,22 +33,22 @@ public class WitherClientDiadema extends ClientDiadema {
         double halfHeight = halfSide;  // 高度也使用相同的半边长
 
         // 底面
-        ParticleUtils.Drawline(0.05, X-halfSide, Y-halfHeight, Z-halfSide, X+halfSide, Y-halfHeight, Z-halfSide, type, level);
-        ParticleUtils.Drawline(0.05, X-halfSide, Y-halfHeight, Z-halfSide, X-halfSide, Y-halfHeight, Z+halfSide, type, level);
-        ParticleUtils.Drawline(0.05, X+halfSide, Y-halfHeight, Z-halfSide, X+halfSide, Y-halfHeight, Z+halfSide, type, level);
-        ParticleUtils.Drawline(0.05, X-halfSide, Y-halfHeight, Z+halfSide, X+halfSide, Y-halfHeight, Z+halfSide, type, level);
+        ParticleUtils.Drawline(interval, X-halfSide, Y-halfHeight, Z-halfSide, X+halfSide, Y-halfHeight, Z-halfSide, type, level);
+        ParticleUtils.Drawline(interval, X-halfSide, Y-halfHeight, Z-halfSide, X-halfSide, Y-halfHeight, Z+halfSide, type, level);
+        ParticleUtils.Drawline(interval, X+halfSide, Y-halfHeight, Z-halfSide, X+halfSide, Y-halfHeight, Z+halfSide, type, level);
+        ParticleUtils.Drawline(interval, X-halfSide, Y-halfHeight, Z+halfSide, X+halfSide, Y-halfHeight, Z+halfSide, type, level);
 
         // 顶面
-        ParticleUtils.Drawline(0.05, X-halfSide, Y+halfHeight, Z-halfSide, X+halfSide, Y+halfHeight, Z-halfSide, type, level);
-        ParticleUtils.Drawline(0.05, X-halfSide, Y+halfHeight, Z-halfSide, X-halfSide, Y+halfHeight, Z+halfSide, type, level);
-        ParticleUtils.Drawline(0.05, X+halfSide, Y+halfHeight, Z-halfSide, X+halfSide, Y+halfHeight, Z+halfSide, type, level);
-        ParticleUtils.Drawline(0.05, X-halfSide, Y+halfHeight, Z+halfSide, X+halfSide, Y+halfHeight, Z+halfSide, type, level);
+        ParticleUtils.Drawline(interval, X-halfSide, Y+halfHeight, Z-halfSide, X+halfSide, Y+halfHeight, Z-halfSide, type, level);
+        ParticleUtils.Drawline(interval, X-halfSide, Y+halfHeight, Z-halfSide, X-halfSide, Y+halfHeight, Z+halfSide, type, level);
+        ParticleUtils.Drawline(interval, X+halfSide, Y+halfHeight, Z-halfSide, X+halfSide, Y+halfHeight, Z+halfSide, type, level);
+        ParticleUtils.Drawline(interval, X-halfSide, Y+halfHeight, Z+halfSide, X+halfSide, Y+halfHeight, Z+halfSide, type, level);
 
         // 连接底面和顶面的四条垂直线
-        ParticleUtils.Drawline(0.05, X-halfSide, Y-halfHeight, Z-halfSide, X-halfSide, Y+halfHeight, Z-halfSide, type, level);
-        ParticleUtils.Drawline(0.05, X+halfSide, Y-halfHeight, Z-halfSide, X+halfSide, Y+halfHeight, Z-halfSide, type, level);
-        ParticleUtils.Drawline(0.05, X-halfSide, Y-halfHeight, Z+halfSide, X-halfSide, Y+halfHeight, Z+halfSide, type, level);
-        ParticleUtils.Drawline(0.05, X+halfSide, Y-halfHeight, Z+halfSide, X+halfSide, Y+halfHeight, Z+halfSide, type, level);
+        ParticleUtils.Drawline(interval, X-halfSide, Y-halfHeight, Z-halfSide, X-halfSide, Y+halfHeight, Z-halfSide, type, level);
+        ParticleUtils.Drawline(interval, X+halfSide, Y-halfHeight, Z-halfSide, X+halfSide, Y+halfHeight, Z-halfSide, type, level);
+        ParticleUtils.Drawline(interval, X-halfSide, Y-halfHeight, Z+halfSide, X-halfSide, Y+halfHeight, Z+halfSide, type, level);
+        ParticleUtils.Drawline(interval, X+halfSide, Y-halfHeight, Z+halfSide, X+halfSide, Y+halfHeight, Z+halfSide, type, level);
     }
 
     @Override protected void perTick() {

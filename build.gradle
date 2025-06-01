@@ -104,8 +104,11 @@ buildscript {
         testCompileOnly 'org.projectlombok:lombok:1.18.36'
         testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
 
-        implementation fg.deobf("curse.maven:mantle-74924:6258424")
-        implementation fg.deobf("curse.maven:tinkers-construct-74072:6266282")
+//        implementation fg.deobf("curse.maven:mantle-74924:6258424")
+//        implementation fg.deobf("curse.maven:tinkers-construct-74072:6266282")
+
+        implementation fg.deobf("curse.maven:mantle-74924:6603205")
+        implementation fg.deobf("curse.maven:tinkers-construct-74072:6603344")
 
         implementation fg.deobf("curse.maven:jade-324717:6271651")
     }

@@ -33,7 +33,8 @@ public class AvaritaDiadema extends Diadema {
         return range;
     }
 
-    @Override protected void perTick() {
+    @Override
+    protected void perTick() {
         // 像这样就能获取到受影响的方块了，方块集合不自动更新所以得重复获取
         var blocks = range.getAffectingBlocks();
         //java比较弱智，Stream不能用来for,只能foreach
