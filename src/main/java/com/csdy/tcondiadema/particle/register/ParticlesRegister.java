@@ -33,8 +33,8 @@ public class ParticlesRegister {
     public static final RegistryObject<SimpleParticleType> SUPERNIAPARTICLE_PARTICLE = PARTICLE_TYPES.register("superbia_particle", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> SHINRATENSEI_PARTICLE = PARTICLE_TYPES.register("shinratensei_particle", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> TIME_RAIN_PARTICLE = PARTICLE_TYPES.register("time_rain_particle", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> LOVE_TRAIN = PARTICLE_TYPES.register("love_train_particle", () -> new SimpleParticleType(false));
-
+    public static final RegistryObject<SimpleParticleType> LOVE_TRAIN_PARTICLE = PARTICLE_TYPES.register("love_train_particle", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> APOLLYON_PARTICLE = PARTICLE_TYPES.register("apollyon_particle", () -> new SimpleParticleType(false));
 
 
 
@@ -57,8 +57,8 @@ public class ParticlesRegister {
         Minecraft.getInstance().particleEngine.register(ParticlesRegister.SUPERNIAPARTICLE_PARTICLE.get(), SuperbiaParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ParticlesRegister.SHINRATENSEI_PARTICLE.get(), ShinratenseiParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ParticlesRegister.TIME_RAIN_PARTICLE.get(), TimeRainParticle.Provider::new);
-        Minecraft.getInstance().particleEngine.register(ParticlesRegister.LOVE_TRAIN.get(), LoveTrainParticle.Provider::new);
-
+        Minecraft.getInstance().particleEngine.register(ParticlesRegister.LOVE_TRAIN_PARTICLE.get(), LoveTrainParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticlesRegister.APOLLYON_PARTICLE.get(), ApollyonParticle.Provider::new);
 
 
     }

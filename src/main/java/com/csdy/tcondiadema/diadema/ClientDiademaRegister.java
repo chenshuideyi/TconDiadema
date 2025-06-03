@@ -2,6 +2,7 @@ package com.csdy.tcondiadema.diadema;
 
 import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.diadema.abyss.AbyssClientDiadema;
+import com.csdy.tcondiadema.diadema.apollyon.ApollyonClientDiadema;
 import com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema;
 import com.csdy.tcondiadema.diadema.avaritia.AvaritaClientDiadema;
 import com.csdy.tcondiadema.diadema.fakekillaura.FakeKillAuraClientDiadema;
@@ -80,7 +81,7 @@ public class ClientDiademaRegister {
 
     public static final DeferredRegister<ClientDiademaType> MEGA_CLIENT_DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.CLIENT_DIADEMA_TYPE, TconDiadema.MODID);
     public static final RegistryObject<ClientDiademaType> APOLLYON =
-            MEGA_CLIENT_DIADEMA_TYPES.register("apollyon", () -> ClientDiademaType.Create(AbyssClientDiadema::new));
+            MEGA_CLIENT_DIADEMA_TYPES.register("apollyon", () -> ClientDiademaType.Create(ApollyonClientDiadema::new));
 
 
 }

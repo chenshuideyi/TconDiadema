@@ -22,7 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ApollyonDiadema extends Diadema {
 
-    final static double RADIUS = 8;
+    final static double RADIUS = 16;
     private final Entity holder = getCoreEntity();
     private final HalfSphereDiademaRange range = new HalfSphereDiademaRange(this, RADIUS);
 
@@ -44,14 +44,13 @@ public class ApollyonDiadema extends Diadema {
             return;
         }
 
-        // 66 秒 = 1320 ticks，每 1320 ticks 执行一次
-//        if (entity.tickCount % 1320 != 0) {
-//            return;
-//        }
-
         if (holder.tickCount % 120 != 0) {
             return;
         }
+
+//        if (holder.tickCount % 1200 != 0) {
+//            return;
+//        }
 
         // 生成 12 个仆从
         spawnMultipleServants(level, living);
@@ -68,8 +67,8 @@ public class ApollyonDiadema extends Diadema {
                 servant.setTrueOwner(livingHolder);
 
                 double angle = Math.PI * 2 * i / 12; // 圆形分布
-                double dx = Math.cos(angle) * 5;
-                double dz = Math.sin(angle) * 5;
+                double dx = Math.cos(angle) * 8;
+                double dz = Math.sin(angle) * 8;
                 servant.moveTo(
                         holder.getX() + dx,
                         holder.getY(),

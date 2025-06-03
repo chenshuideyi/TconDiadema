@@ -52,7 +52,7 @@ public class Web_13234 extends SwordItem {
         if (level instanceof ServerLevel serverLevel) {
             if (state0) {
                 System.out.println("222 并且领域正在添加……");
-                testDiadema = DiademaRegister.LOVE_TRAIN.get().CreateInstance(new FollowDiademaMovement(player));
+                testDiadema = DiademaRegister.APOLLYON.get().CreateInstance(new FollowDiademaMovement(player));
                 System.out.println("222 并且领域添加了");
                 state0 = false;
 
@@ -73,12 +73,10 @@ public class Web_13234 extends SwordItem {
         }
         return super.onLeftClickEntity(stack, player, entity);
     }
-    private static final SimpleParticleType PARTICLE_TYPE = ParticlesRegister.LOVE_TRAIN.get();
+
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity living) {
         if (living.level.isClientSide){
-        living.level.addParticle(PARTICLE_TYPE,living.getX(),living.getY(),living.getZ(),0,0,0);
-
     }
         return false;
     }

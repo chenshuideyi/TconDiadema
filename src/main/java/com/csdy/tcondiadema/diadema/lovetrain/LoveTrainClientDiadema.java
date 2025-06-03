@@ -18,7 +18,7 @@ import static net.minecraft.util.Mth.square;
 public class LoveTrainClientDiadema extends ClientDiadema {
 
     private int tick = 0;
-    private static final SimpleParticleType PARTICLE_TYPE = ParticlesRegister.LOVE_TRAIN.get();
+    private static final SimpleParticleType PARTICLE_TYPE = ParticlesRegister.LOVE_TRAIN_PARTICLE.get();
     @Override protected void perTick() {
         var level = Minecraft.getInstance().level;
 
