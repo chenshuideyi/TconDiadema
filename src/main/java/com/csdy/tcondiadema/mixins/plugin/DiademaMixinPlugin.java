@@ -8,23 +8,8 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
-import net.minecraftforge.fml.ModList;
-import org.objectweb.asm.tree.ClassNode;
-import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
-import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
-
-import java.util.List;
-import java.util.Set;
-
-import net.minecraftforge.fml.ModList;
-import org.objectweb.asm.tree.ClassNode;
-import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
-import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
-
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class DiademaMixinPlugin implements IMixinConfigPlugin {
 
@@ -42,10 +27,9 @@ public class DiademaMixinPlugin implements IMixinConfigPlugin {
         this.goetyRevelationLoaded = ModList.get().isLoaded(GOETY_REVELATION_MOD_ID);
 
         if (this.goetyRevelationLoaded) {
-            System.out.println("[DiademaMixinPlugin] Goety Revelation is loaded. Conditional Mixins for it will attempt to apply.");
+            System.out.println("[DiademaMixinPlugin] 启示录已被加载");
         } else {
-            System.out.println("[DiademaMixinPlugin] Goety Revelation is NOT loaded. Conditional Mixins for it will be SKIPPED.");
-            System.out.println("[DiademaMixinPlugin] Non-conditional Mixins will still attempt to apply.");
+            System.out.println("[DiademaMixinPlugin] 未发现启示录，亚伯伦相关已禁用");
         }
     }
 
@@ -58,7 +42,7 @@ public class DiademaMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (CONDITIONAL_MIXINS_FOR_GOETY.contains(mixinClassName)) {
             if (!this.goetyRevelationLoaded) {
-                System.out.println("[DiademaMixinPlugin] Skipping conditional Mixin " + mixinClassName + " for target " + targetClassName + " because Goety Revelation is not loaded.");
+                System.out.println("[DiademaMixinPlugin] 加载了" + mixinClassName + " for target " + targetClassName + " because Goety Revelation is not loaded.");
             }
             return this.goetyRevelationLoaded;
         }

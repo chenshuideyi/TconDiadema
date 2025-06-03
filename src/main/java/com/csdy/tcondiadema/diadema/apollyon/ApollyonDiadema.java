@@ -14,7 +14,9 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -35,6 +37,9 @@ public class ApollyonDiadema extends Diadema {
         return range;
     }
 
+    private static final int MAX_SERVANTS = 12;
+    private static final int SERVANTS_TO_SPAWN = 12;
+
     @Override
     protected void perTick() {
         ServerLevel level = getLevel();
@@ -52,16 +57,36 @@ public class ApollyonDiadema extends Diadema {
 //            return;
 //        }
 
-        // 生成 12 个仆从
-        spawnMultipleServants(level, living);
+        int nearbySkeletons = countNearbyServants(level, getPosition());
+        if (nearbySkeletons >= MAX_SERVANTS) return;
+
+        // 计算需要生成的数量
+        int toSpawn = Math.min(SERVANTS_TO_SPAWN, MAX_SERVANTS - nearbySkeletons);
+
+        spawnMultipleServants(level, living,toSpawn);
     }
 
-    private void spawnMultipleServants(Level level, Entity holder) {
+    private int countNearbyServants(Level level, Vec3 pos) {
+        AABB area = new AABB(
+                pos.x - RADIUS/2, pos.y - 5, pos.z - RADIUS/2,
+                pos.x + RADIUS/2, pos.y + 5, pos.z + RADIUS/2
+        );
+
+        return level.getEntitiesOfClass(
+                ApostleServant.class,
+                area,
+                e -> e.isAlive() && !e.isRemoved()
+        ).size();
+    }
+
+
+    private void spawnMultipleServants(Level level, Entity holder, int toSpawn) {
+        System.out.println("我被执行了一次");
         if (!(holder instanceof LivingEntity livingHolder)) {
             return;
         }
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < toSpawn; i++) {
             ApostleServant servant = ModEntities.APOSTLE_SERVANT.get().create(level);
             if (servant != null) {
                 servant.setTrueOwner(livingHolder);

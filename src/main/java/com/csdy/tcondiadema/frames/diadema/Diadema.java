@@ -122,6 +122,7 @@ public abstract class Diadema {
 
     public Entity getCoreEntity() {
         if (!(movement instanceof EntityDiademaMovement follow)) return null;
+        if (follow.getEntity() == null) kill();
         return follow.getEntity();
     }
 
