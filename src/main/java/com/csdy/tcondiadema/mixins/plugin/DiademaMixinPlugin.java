@@ -13,7 +13,6 @@ import java.util.HashSet;
 
 public class DiademaMixinPlugin implements IMixinConfigPlugin {
 
-    // 目标 Mod ID
     private static final String GOETY_REVELATION_MOD_ID = "goety_revelation";
 
     private static final Set<String> CONDITIONAL_MIXINS_FOR_GOETY = new HashSet<>(Arrays.asList(
