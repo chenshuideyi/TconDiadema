@@ -111,6 +111,25 @@ buildscript {
         implementation fg.deobf("curse.maven:tinkers-construct-74072:6603344")
 
         implementation fg.deobf("curse.maven:jade-324717:6271651")
+
+
+        implementation fileTree("lib")
+
+        implementation fg.deobf("curse.maven:Oculus-581495:5299671")
+        implementation fg.deobf("curse.maven:Xenon-564239:5752040")
+        implementation fg.deobf("curse.maven:goety-586095:6342136")
+        implementation fg.deobf("curse.maven:curios-309927:5367944")
+        implementation fg.deobf("curse.maven:MobBattle-268746:5300817")
+        implementation fg.deobf("curse.maven:IBE-256822:4994072")
+        implementation fg.deobf("curse.maven:Citadel-331936:5633260")
+        implementation fg.deobf("curse.maven:IAF-264231:5633453")
+        implementation fg.deobf("curse.maven:Patchouli-306770:6164575")
+        implementation fg.deobf("curse.maven:Farmer'sDelight-398521:6154802")
+        implementation fg.deobf("curse.maven:playerAnimator-658587:4587214")
+        implementation fg.deobf("curse.maven:ClothConfig-348521:5729105")
+        implementation fg.deobf("curse.maven:BetterCombat-639842:5625757")
+
+        implementation fg.deobf("curse.maven:goety-revelation-1236817:6554801")
     }
     tasks.named('processResources', ProcessResources).configure {
         var replaceProperties = [minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,

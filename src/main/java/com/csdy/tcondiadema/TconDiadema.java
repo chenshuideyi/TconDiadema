@@ -19,6 +19,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -34,8 +35,11 @@ import java.util.function.Supplier;
 public class TconDiadema {
 
     public static final String MODID = "tcondiadema";
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
-    public static final List<Supplier<? extends Item>> TAB_ITEMS_LIST = new ArrayList<>();
+
+
+    public static boolean isLoadRevelation(){
+        return ModList.get().isLoaded("goety_revelation");
+    }
 
     public TconDiadema() {
 
@@ -62,6 +66,15 @@ public class TconDiadema {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             ClientDiademaRegister.CLIENT_DIADEMA_TYPES.register(bus);
         });
+
+        if (isLoadRevelation()){
+            DiademaRegister.MEGA_DIADEMA_TYPES.register(bus);
+
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            ClientDiademaRegister.MEGA_CLIENT_DIADEMA_TYPES.register(bus);
+            });
+
+        }
     }
 
     @SubscribeEvent

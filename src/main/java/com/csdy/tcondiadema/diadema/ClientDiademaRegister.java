@@ -2,6 +2,7 @@ package com.csdy.tcondiadema.diadema;
 
 import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.diadema.abyss.AbyssClientDiadema;
+import com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema;
 import com.csdy.tcondiadema.diadema.avaritia.AvaritaClientDiadema;
 import com.csdy.tcondiadema.diadema.fakekillaura.FakeKillAuraClientDiadema;
 import com.csdy.tcondiadema.diadema.fakemeltdown.FakeMeltdownClientDiadema;
@@ -24,6 +25,7 @@ import com.csdy.tcondiadema.diadema.wind.WindClientDiadema;
 import com.csdy.tcondiadema.diadema.wither.WitherClientDiadema;
 import com.csdy.tcondiadema.frames.CsdyRegistries;
 import com.csdy.tcondiadema.frames.diadema.ClientDiademaType;
+import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.DeferredRegister;
@@ -75,4 +77,10 @@ public class ClientDiademaRegister {
             CLIENT_DIADEMA_TYPES.register("pheromone_mist", () -> ClientDiademaType.Create(PheromoneMistClientDiadema::new));
     public static final RegistryObject<ClientDiademaType> LOVE_TRAIN =
             CLIENT_DIADEMA_TYPES.register("love_train", () -> ClientDiademaType.Create(LoveTrainClientDiadema::new));
+
+    public static final DeferredRegister<ClientDiademaType> MEGA_CLIENT_DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.CLIENT_DIADEMA_TYPE, TconDiadema.MODID);
+    public static final RegistryObject<ClientDiademaType> APOLLYON =
+            MEGA_CLIENT_DIADEMA_TYPES.register("apollyon", () -> ClientDiademaType.Create(AbyssClientDiadema::new));
+
+
 }
