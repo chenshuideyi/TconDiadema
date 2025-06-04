@@ -4,8 +4,11 @@ import com.Polarice3.Goety.common.entities.boss.Apostle;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.movement.FollowDiademaMovement;
+import com.mega.revelationfix.common.entity.boss.ApostleServant;
+import com.mega.revelationfix.common.entity.cultists.HereticServant;
 import com.mega.revelationfix.common.init.ModEntities;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
@@ -19,9 +22,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import z1gned.goetyrevelation.util.ApollyonAbilityHelper;
 
-import javax.annotation.Nullable;
+import static com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema.spawnHereticServant;
 
-import static com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema.spawnMultipleServants;
 
 @Mixin(Apostle.class) // 确保 Apostle 类实现了 ApollyonAbilityHelper (可能通过另一个 Mixin)
 public abstract class ApollyonMixin extends LivingEntity { // 确保继承自 Apostle 的正确父类
@@ -64,7 +66,6 @@ public abstract class ApollyonMixin extends LivingEntity { // 确保继承自 Ap
                     this.tcondiadema$apollyonDiadema = DiademaRegister.APOLLYON.get().CreateInstance(
                             new FollowDiademaMovement(currentApostle)
                     );
-                    spawnMultipleServants(level,currentApostle,12);
                 }
             }
         }
@@ -72,32 +73,24 @@ public abstract class ApollyonMixin extends LivingEntity { // 确保继承自 Ap
         this.tcondiadema$diademaInitialized = true;
     }
 
-    @Inject(
-            method = "finalizeSpawn",
-            at = @At("TAIL"),
-            cancellable = false
-    )
-    private void tcondiadema$onFinalizeSpawnHandleApollyonState(
-            ServerLevelAccessor level, // 注意这里是 ServerLevelAccessor
-            DifficultyInstance difficulty,
-            MobSpawnType spawnType,
-            @Nullable SpawnGroupData spawnData,
-            @Nullable CompoundTag spawnTag,
-            CallbackInfoReturnable<SpawnGroupData> cir
-    ) {
-        if (this.level().isClientSide || !tcondiadema$isGoetyRevelationLoaded()) {
+    @Inject(method = "finalizeSpawn", at = @At("HEAD"))
+    private void tcondiadema$finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason,
+                                           SpawnGroupData spawnDataIn, CompoundTag dataTag, CallbackInfoReturnable<SpawnGroupData> cir) {
+
+        Apostle currentApostle = (Apostle)(Object)this;
+
+        // 只在服务器端执行
+        if (!(worldIn.getLevel() instanceof ServerLevel)) {
             return;
         }
 
-        Apostle currentApostle = (Apostle) (Object) this;
-
-        if (!currentApostle.getType().equals(ModEntities.APOSTLE_SERVANT.get())) {
-            // 例如，随机设置，或者基于 spawnType/spawnData
-            boolean shouldBeApollyon = true;
-            if (currentApostle instanceof ApollyonAbilityHelper) {
-                ((ApollyonAbilityHelper) currentApostle).allTitlesApostle_1_20_1$setApollyon(shouldBeApollyon);
-            }
+        // 确保是Apollyon才生成仆从
+        if (currentApostle instanceof ApollyonAbilityHelper &&
+                ((ApollyonAbilityHelper)currentApostle).allTitlesApostle_1_20_1$isApollyon()) {
+            spawnHereticServant(currentApostle.level, currentApostle, 12);
         }
     }
+
+
 
 }

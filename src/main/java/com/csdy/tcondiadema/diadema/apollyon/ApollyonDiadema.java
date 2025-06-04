@@ -3,26 +3,21 @@ package com.csdy.tcondiadema.diadema.apollyon;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.csdy.tcondiadema.diadema.api.ranges.HalfSphereDiademaRange;
 import com.csdy.tcondiadema.effect.register.EffectRegister;
-import com.csdy.tcondiadema.frames.diadema.ClientDiadema;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.frames.diadema.movement.DiademaMovement;
 import com.csdy.tcondiadema.frames.diadema.range.DiademaRange;
 import com.mega.revelationfix.common.entity.boss.ApostleServant;
-import com.mega.revelationfix.common.init.ModEffects;
+import com.mega.revelationfix.common.entity.cultists.HereticServant;
 import com.mega.revelationfix.common.init.ModEntities;
 import lombok.NonNull;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.item.FallingBlockEntity;
-import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.entity.projectile.SmallFireball;
@@ -31,8 +26,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import z1gned.goetyrevelation.entitiy.ModEntityType;
 import z1gned.goetyrevelation.entitiy.WitherServant;
@@ -83,21 +76,54 @@ public class ApollyonDiadema extends Diadema {
             }
         }
 
-
-
         if (holder.tickCount % 1320 != 0 && holder.tickCount!= 0) {
             return;
         }
 
-        int nearbySkeletons = countNearbyServants(level, getPosition());
-        if (nearbySkeletons >= MAX_SERVANTS) return;
+        if (living instanceof ApollyonAbilityHelper) {
+            if (((ApollyonAbilityHelper) living).allTitlesApostle_1_20_1$isApollyon()) {
+                int nearbyServants = countNearbyServants(level, getPosition());
+                if (nearbyServants >= MAX_SERVANTS) return;
+                int toSpawn = Math.min(SERVANTS_TO_SPAWN, MAX_SERVANTS - nearbyServants);
+                spawnHereticServant(level, living, toSpawn);
+            }
+        }else {
+            int nearbyServants = countNearbyServants(level, getPosition());
+            if (nearbyServants >= MAX_SERVANTS) return;
 
-        // 计算需要生成的数量
-        int toSpawn = Math.min(SERVANTS_TO_SPAWN, MAX_SERVANTS - nearbySkeletons);
-        spawnMultipleServants(level, living, toSpawn);
+            // 计算需要生成的数量
+            int toSpawn = Math.min(SERVANTS_TO_SPAWN, MAX_SERVANTS - nearbyServants);
+            spawnMultipleServants(level, living, toSpawn);
 
-
+        }
     }
+
+    public static void spawnHereticServant(Level level, Entity holder, int toSpawn) {
+        if (!(holder instanceof LivingEntity livingHolder)) {
+            return;
+        }
+
+        for (int i = 0; i < toSpawn; i++) {
+            HereticServant servant = ModEntities.HERETIC_SERVANT.get().create(level);
+            if (servant != null) {
+                servant.setTrueOwner(livingHolder);
+
+                double angle = Math.PI * 2 * i / 12; // 圆形分布
+                double dx = Math.cos(angle) * 8;
+                double dz = Math.sin(angle) * 8;
+                servant.moveTo(
+                        holder.getX() + dx,
+                        holder.getY(),
+                        holder.getZ() + dz,
+                        holder.getYRot(),
+                        holder.getXRot()
+                );
+
+                level.addFreshEntity(servant);
+            }
+        }
+    }
+
 
     private int countNearbyServants(Level level, Vec3 pos) {
         AABB area = new AABB(
@@ -113,7 +139,7 @@ public class ApollyonDiadema extends Diadema {
     }
 
 
-    public static void spawnMultipleServants(Level level, Entity holder, int toSpawn) {
+    private static void spawnMultipleServants(Level level, Entity holder, int toSpawn) {
         if (!(holder instanceof LivingEntity livingHolder)) {
             return;
         }
@@ -155,20 +181,20 @@ public class ApollyonDiadema extends Diadema {
         }
 
         String message = switch (i) {
-            case 7 -> "他们得了权柄可以管辖，又要用刀剑、饥荒、瘟疫和地上的野兽去杀地上四分之一的人。"; //天启饥荒
-            case 4 -> "第四位天使吹号，日头的三分之一、月亮的三分之一、星辰的三分之一都被击打。"; //黑天使之影
-            case 2 -> "在这磐石上，我要建立我的教会，阴间的权柄也不能战胜他"; //毒蝎之尾
+            case 7 -> "一钱银子买一升麦子、一钱银子买三升大麦．油和酒不可糟蹋。"; //天启饥荒
+            case 4 -> "于是日间的三分之一暗淡无光，夜间也是如此"; //黑天使之影
+            case 2 -> "有尾巴像蝎子，尾巴上的毒钩能伤人五个月。"; //毒蝎之尾
             case 9 -> "那兽开口向神说亵渎的话，亵渎神的名并他的帐幕，以及那些住在天上的。"; //骇人恶物
-            case 3 -> "我授予你们“半尼其”这个名字，意为“雷霆之子"; //漆黑暗影
+            case 3 -> "你向天伸杖，使世界漆黑一片，那黑暗浓得甚至可以摸到。"; //漆黑暗影
             case 6 -> "主阿，你要我们吩咐火从天上降下来，烧灭他们，像以利亚所作的吗？"; //爆燃领主
-            case 10 -> "那就让我们同去，与他钉死在一起"; //荣耀之名
+            case 10 -> "主的荣耀在山顶上，在受拣选者的眼前，形状如烈火。"; //荣耀之名
             case 5 -> "您即是他的儿子，您生来为王！"; //女巫之王
-            case 1 -> "凡住在地上、名字从创世以来没有记在被杀之羔羊生命册上的人，都要拜它。";  //憎恶本质
+            case 1 -> "主说，凡杀该隐的，必造报七倍。";  //憎恶本质
             case 8 -> "又有大雹子从天落在人身上，每一个约重一他连得。为这雹子的灾极大，人就亵渎神。"; //冷冽寒冬
             case 11 -> "那迷惑他们的魔鬼被扔在硫磺的火湖里，就是兽和假先知所在的地方。他们必昼夜受痛苦，直到永永远远。"; //十恶不赦
             case 0 -> "主阿，为什么要向我们显现，不向世人显现呢？"; //不灭重生
-            case 12 -> "你当刚强壮胆,不要惊惶，因为我必与你同在。"; //万众一心
-            case 13 -> "我不是拣选了你们十二个门徒吗？但你们中间有一个是魔鬼"; //末日终结
+            case 12 -> "主啊！我们感谢你， 因你已执掌大权做王了。"; //万众一心
+            case 13 -> "因为祂们发烈怒的大日子到了，谁又能站得住呢？"; //末日终结
             default -> null;
         };
 

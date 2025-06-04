@@ -15,6 +15,7 @@
   "item.tcondiadema.neural_sensors": "神经传感器",
   "item.tcondiadema.neuron_sensors.line1": "或许需要从无机而可运动的身躯中取得",
   "item.tcondiadema.aura_forma": "光环Forma",
+  "item.tcondiadema.poop": "屎",
 
   "tcondiadema_tab": "匠魂领域",
   "stat.tconstruct.slot.display.diadema": "领域",
@@ -115,6 +116,9 @@
   "modifier.tcondiadema.apollyon.flavor": "每过66秒召唤以你为主的12位使徒仆从",
   "modifier.tcondiadema.apollyon.description": "乐园的大门因我的敲击而缓缓打开。\n我自终末而来，我并无留恋，只是在此驻足。\n我就是那个点燃希望之灯，面对世界之人。\n我心爱的人儿，从现在开始，我会将那最美妙的，无比璀璨的道路展现在你们面前。\n你不必担心，我已经听到了你那略带惊恐的祈祷。\n如今，你还没有意识到，痛苦这种事物再微小不过了吗？\n你需要向我证明你的出人之处。\n你应该信任我，将生命奉献给我。然后，我自然会向你展示，什么叫做力量。",
 
+  "modifier.tcondiadema.fake_apollyon": "No.Euphoria 乐园",
+  "modifier.tcondiadema.fake_apollyon.flavor": "啊？真中合欢",
+  "modifier.tcondiadema.fake_apollyon.description": "每过一段时间使你获得一坨大便\n您可能走错片场了，下载诡厄巫法·启示录聆听主的福音",
 
   "effect.tcondiadema.scared": "惊恐",
   "effect.tcondiadema.physical_injury": "开放性物理创口",

@@ -35,7 +35,7 @@ import java.util.function.Supplier;
 public class TconDiadema {
 
     public static final String MODID = "tcondiadema";
-
+    public static boolean IS_GOETY_REVELATION_LOADED = false;
 
     public static boolean isLoadRevelation(){
         return ModList.get().isLoaded("goety_revelation");
@@ -46,6 +46,7 @@ public class TconDiadema {
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         CsdyTab.CREATIVE_MODE_TABS.register(bus);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
 
         //注册表
         ItemRegister.ITEMS.register(bus);
@@ -88,6 +89,11 @@ public class TconDiadema {
             DiademaSlots.init();
             event.enqueueWork(WardenBlindnessEffect::init);
         });
+    }
+
+    private void onCommonSetup(FMLCommonSetupEvent event) {
+        IS_GOETY_REVELATION_LOADED = ModList.get().isLoaded("goety_revelation");
+        System.out.println("[TConDiadema] 启示录加载状态确认: " + IS_GOETY_REVELATION_LOADED);
     }
 
 //    @SubscribeEvent

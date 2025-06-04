@@ -5,6 +5,7 @@ import com.csdy.tcondiadema.diadema.abyss.AbyssClientDiadema;
 import com.csdy.tcondiadema.diadema.apollyon.ApollyonClientDiadema;
 import com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema;
 import com.csdy.tcondiadema.diadema.avaritia.AvaritaClientDiadema;
+import com.csdy.tcondiadema.diadema.fakeapollyon.FakeApollyonClientDiadema;
 import com.csdy.tcondiadema.diadema.fakekillaura.FakeKillAuraClientDiadema;
 import com.csdy.tcondiadema.diadema.fakemeltdown.FakeMeltdownClientDiadema;
 import com.csdy.tcondiadema.diadema.fakeprojecte.FakeProjectEClientDiadema;
@@ -78,6 +79,11 @@ public class ClientDiademaRegister {
             CLIENT_DIADEMA_TYPES.register("pheromone_mist", () -> ClientDiademaType.Create(PheromoneMistClientDiadema::new));
     public static final RegistryObject<ClientDiademaType> LOVE_TRAIN =
             CLIENT_DIADEMA_TYPES.register("love_train", () -> ClientDiademaType.Create(LoveTrainClientDiadema::new));
+    public static final RegistryObject<ClientDiademaType> FAKE_APOLLYON =
+            CLIENT_DIADEMA_TYPES.register("fake_apollyon", () -> ClientDiademaType.Create(FakeApollyonClientDiadema::new));
+
+
+
 
     public static final DeferredRegister<ClientDiademaType> MEGA_CLIENT_DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.CLIENT_DIADEMA_TYPE, TconDiadema.MODID);
     public static final RegistryObject<ClientDiademaType> APOLLYON =

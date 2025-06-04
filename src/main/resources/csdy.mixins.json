@@ -4,6 +4,7 @@
   "package": "com.csdy.tcondiadema.mixins",
   "compatibilityLevel": "JAVA_17",
   "refmap": "csdy.refmap.json",
+  "plugin": "com.csdy.tcondiadema.mixins.plugin.DiademaMixinPlugin",
   "mixins": [
     "ApollyonMixin",
     "LivingEntityMixin",
@@ -12,8 +13,7 @@
     "WitherMixin",
     "WitherSkeletonMixin"
   ],
-  "client": [
-  ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
   }

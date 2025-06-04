@@ -35,4 +35,5 @@ public class ModifierRegister {
     public static final StaticModifier<DiademaModifier> PHEROMONE_MIST_STATIC_MODIFIER = MODIFIERS.register("pheromone_mist", CommonDiademaModifier.Create(DiademaRegister.PHEROMONE_MIST));
     public static final StaticModifier<DiademaModifier> LOVE_TRAIN_STATIC_MODIFIER = MODIFIERS.register("love_train", CommonDiademaModifier.Create(DiademaRegister.LOVE_TRAIN));
     public static final StaticModifier<DiademaModifier> APOLLYON_STATIC_MODIFIER = MODIFIERS.register("apollyon", CommonDiademaModifier.Create(DiademaRegister.APOLLYON));
+    public static final StaticModifier<DiademaModifier> FAKE_APOLLYON_STATIC_MODIFIER = MODIFIERS.register("fake_apollyon", CommonDiademaModifier.Create(DiademaRegister.FAKE_APOLLYON));
 }

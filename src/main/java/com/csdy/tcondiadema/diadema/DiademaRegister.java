@@ -4,6 +4,8 @@ import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.diadema.abyss.*;
 import com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema;
 import com.csdy.tcondiadema.diadema.avaritia.*;
+import com.csdy.tcondiadema.diadema.fakeapollyon.FakeApollyonClientDiadema;
+import com.csdy.tcondiadema.diadema.fakeapollyon.FakeApollyonDiadema;
 import com.csdy.tcondiadema.diadema.fakekillaura.*;
 import com.csdy.tcondiadema.diadema.fakemeltdown.*;
 import com.csdy.tcondiadema.diadema.fakeprojecte.FakeProjectEDiadema;
@@ -74,6 +76,9 @@ public class DiademaRegister {
             DIADEMA_TYPES.register("pheromone_mist", () -> DiademaType.create(PheromoneMistDiadema::new));
     public static final RegistryObject<DiademaType> LOVE_TRAIN =
             DIADEMA_TYPES.register("love_train", () -> DiademaType.create(LoveTrainDiadema::new));
+    public static final RegistryObject<DiademaType> FAKE_APOLLYON =
+            DIADEMA_TYPES.register("fake_apollyon", () -> DiademaType.create(FakeApollyonDiadema::new));
+
 
     public static final DeferredRegister<DiademaType> MEGA_DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.DIADEMA_TYPE, TconDiadema.MODID);
     public static final RegistryObject<DiademaType> APOLLYON =

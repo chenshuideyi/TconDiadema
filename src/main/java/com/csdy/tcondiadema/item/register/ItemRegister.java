@@ -3,6 +3,7 @@ package com.csdy.tcondiadema.item.register;
 
 import com.csdy.tcondiadema.TconDiadema;
 import com.csdy.tcondiadema.item.food.EnderDragonHeart;
+import com.csdy.tcondiadema.item.food.Poop;
 import com.csdy.tcondiadema.item.food.WardenHeart;
 import com.csdy.tcondiadema.item.sword.*;
 import com.csdy.tcondiadema.item.material.*;
@@ -24,7 +25,7 @@ public class ItemRegister {
     public static final RegistryObject<Item> OROKIN_CELL = ITEMS.register("orokin_cell", OrokinCell::new);
     public static final RegistryObject<Item> NEURAL_SENSORS = ITEMS.register("neural_sensors", NeuralSensors::new);
     public static final RegistryObject<Item> AURA_FORMA = ITEMS.register("aura_forma", AuraForma::new);
-
+    public static final RegistryObject<Item> POOP = ITEMS.register("poop", Poop::new);
 
 
 }
