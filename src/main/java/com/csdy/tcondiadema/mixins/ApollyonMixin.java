@@ -4,14 +4,10 @@ import com.Polarice3.Goety.common.entities.boss.Apostle;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.movement.FollowDiademaMovement;
-import com.mega.revelationfix.common.entity.boss.ApostleServant;
 import com.mega.revelationfix.common.init.ModEntities;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.boss.wither.WitherBoss;
-import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.fml.ModList;
@@ -25,7 +21,7 @@ import z1gned.goetyrevelation.util.ApollyonAbilityHelper;
 
 import javax.annotation.Nullable;
 
-import static com.csdy.tcondiadema.TconDiadema.isLoadRevelation;
+import static com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema.spawnMultipleServants;
 
 @Mixin(Apostle.class) // 确保 Apostle 类实现了 ApollyonAbilityHelper (可能通过另一个 Mixin)
 public abstract class ApollyonMixin extends LivingEntity { // 确保继承自 Apostle 的正确父类
@@ -68,6 +64,7 @@ public abstract class ApollyonMixin extends LivingEntity { // 确保继承自 Ap
                     this.tcondiadema$apollyonDiadema = DiademaRegister.APOLLYON.get().CreateInstance(
                             new FollowDiademaMovement(currentApostle)
                     );
+                    spawnMultipleServants(level,currentApostle,12);
                 }
             }
         }

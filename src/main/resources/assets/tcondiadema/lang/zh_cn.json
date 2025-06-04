@@ -111,6 +111,11 @@
 
   "love_train_text1": "你受到的不幸转移给了",
 
+  "modifier.tcondiadema.apollyon": "No.666 失乐园",
+  "modifier.tcondiadema.apollyon.flavor": "每过66秒召唤以你为主的12位使徒仆从",
+  "modifier.tcondiadema.apollyon.description": "乐园的大门因我的敲击而缓缓打开。\n我自终末而来，我并无留恋，只是在此驻足。\n我就是那个点燃希望之灯，面对世界之人。\n我心爱的人儿，从现在开始，我会将那最美妙的，无比璀璨的道路展现在你们面前。\n你不必担心，我已经听到了你那略带惊恐的祈祷。\n如今，你还没有意识到，痛苦这种事物再微小不过了吗？\n你需要向我证明你的出人之处。\n你应该信任我，将生命奉献给我。然后，我自然会向你展示，什么叫做力量。",
+
+
   "effect.tcondiadema.scared": "惊恐",
   "effect.tcondiadema.physical_injury": "开放性物理创口",
   "effect.tcondiadema.fracture": "骨折",

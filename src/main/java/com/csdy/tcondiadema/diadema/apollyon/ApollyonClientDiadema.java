@@ -3,20 +3,15 @@ package com.csdy.tcondiadema.diadema.apollyon;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.csdy.tcondiadema.ParticleUtils;
 import com.csdy.tcondiadema.frames.diadema.ClientDiadema;
-import com.csdy.tcondiadema.particle.register.ParticlesRegister;
-import com.csdy.tcondiadema.particleUtils.PointSets;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
 
 import static java.lang.Math.*;
 
@@ -37,7 +32,9 @@ public class ApollyonClientDiadema extends ClientDiadema {
     static SimpleParticleType type = ModParticleTypes.WARLOCK.get();
     static SimpleParticleType type1 = ModParticleTypes.TOTEM_EFFECT.get();
     static SimpleParticleType type2 = ModParticleTypes.SOUL_EXPLODE.get();
+
     static SimpleParticleType type3 = ParticleTypes.SQUID_INK;
+    static SimpleParticleType type4 = ModParticleTypes.SMALL_NECRO_FIRE.get();
 
     static double rs = 0;
     public static void Star(Vec3 pos, Level level) {
@@ -65,7 +62,7 @@ public class ApollyonClientDiadema extends ClientDiadema {
         for (int i = 0; i < EdgeCount; i++) {
             ParticleUtils.Drawline(0.05, x1[i], y, y1[i], x1[(i + 2) % EdgeCount], y, y1[(i + 2) % EdgeCount], type, level);
             if (ritualTickCounter % 40 == 0) { // 每隔一段时间爆发一次
-                for (int j = 0; j < 5; j++) { // 爆发少量粒子
+                for (int j = 0; j < 12; j++) { // 爆发少量粒子
                     level.addParticle(type2,
                             x1[i] + (level.random.nextDouble() - 0.5) * 0.5,
                             y,
@@ -88,8 +85,9 @@ public class ApollyonClientDiadema extends ClientDiadema {
 
         }
 
+        //内圈黑色粒子
         RandomSource random = RandomSource.create();
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 45; i++) {
             float radius = 1.5f + random.nextFloat() * 5f;
             float angle = random.nextFloat() * Mth.TWO_PI;
             float x = Mth.cos(angle) * radius;
@@ -101,6 +99,28 @@ public class ApollyonClientDiadema extends ClientDiadema {
 
             level.addParticle(
                     type1,
+                    pos.x + x,
+                    pos.y + 0.2,
+                    pos.z + z,
+                    speedX,
+                    speedY,
+                    speedZ
+            );
+        }
+
+        //外圈火粒子
+        for (int i = 0; i < 45; i++) {
+            float radius = 3f + random.nextFloat() * 5f;
+            float angle = random.nextFloat() * Mth.TWO_PI;
+            float x = Mth.cos(angle) * radius;
+            float z = Mth.sin(angle) * radius;
+
+            float speedX = (random.nextFloat() - 0.5f) * 0.02f;
+            float speedY = 0.1f + random.nextFloat() * 0.3f;    // 缓慢上升
+            float speedZ = (random.nextFloat() - 0.5f) * 0.02f;
+
+            level.addParticle(
+                    type4,
                     pos.x + x,
                     pos.y + 0.2,
                     pos.z + z,

@@ -1,0 +1,32 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "check_trait_level": true,
+  "inputs": [
+    {
+      "item": "goety_revelation:wither_quietus_focus"
+    },
+    {
+      "item": "goety_revelation:wither_quietus_focus"
+    },
+    {
+      "item": "goety_revelation:quietus_star"
+    },
+    {
+      "item": "goety_revelation:doom_medal"
+    },
+    {
+      "item": "goety_revelation:doom_medal"
+    }
+  ],
+  "level": {
+    "max": 1
+  },
+  "slots": {
+    "diadema": 1
+  },
+  "tools": {
+    "tag": "tconstruct:modifiable/armor/worn"
+  },
+  "result": "tcondiadema:apollyon"
+}

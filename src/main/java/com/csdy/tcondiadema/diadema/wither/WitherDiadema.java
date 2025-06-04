@@ -148,7 +148,7 @@ public class WitherDiadema extends Diadema {
     }
 
     //召唤骑士
-    private static void addWitherSkeletonKnight(Level level, Vec3 witherCenterPos, int count) {
+    public static void addWitherSkeletonKnight(Level level, Vec3 witherCenterPos, int count) {
         if (!(level instanceof ServerLevel)) return;
 
 
