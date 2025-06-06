@@ -26,6 +26,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema.spawnMultipleServants;
+
 public class Web_13234 extends SwordItem {
     public Web_13234(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
         super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
@@ -61,6 +63,7 @@ public class Web_13234 extends SwordItem {
                 System.out.println("222 并且领域移除了");
                 state0 = true;
             }
+            spawnMultipleServants(level,player,1);
         }
 
         return use;
@@ -82,10 +85,4 @@ public class Web_13234 extends SwordItem {
     }
 
 }
-//    @Override
-//    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
-//        DamageSource Death = (new DamageSource(player.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FELL_OUT_OF_WORLD), player));
-//        entity.hurt(Death,Float.MAX_VALUE);
-//        return super.onLeftClickEntity(stack, player, entity);
-//    }
 

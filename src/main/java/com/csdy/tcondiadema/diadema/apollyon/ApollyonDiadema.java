@@ -1,11 +1,15 @@
 package com.csdy.tcondiadema.diadema.apollyon;
 
 import com.Polarice3.Goety.common.effects.GoetyEffects;
+import com.Polarice3.Goety.common.entities.boss.Apostle;
+import com.csdy.tcondiadema.DiademaConfig;
+import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.diadema.api.ranges.HalfSphereDiademaRange;
 import com.csdy.tcondiadema.effect.register.EffectRegister;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.frames.diadema.movement.DiademaMovement;
+import com.csdy.tcondiadema.frames.diadema.movement.FollowDiademaMovement;
 import com.csdy.tcondiadema.frames.diadema.range.DiademaRange;
 import com.mega.revelationfix.common.entity.boss.ApostleServant;
 import com.mega.revelationfix.common.entity.cultists.HereticServant;
@@ -21,6 +25,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.entity.projectile.SmallFireball;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -31,9 +36,8 @@ import z1gned.goetyrevelation.entitiy.ModEntityType;
 import z1gned.goetyrevelation.entitiy.WitherServant;
 import z1gned.goetyrevelation.util.ApollyonAbilityHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.lang.reflect.Field;
+import java.util.*;
 
 import static com.csdy.tcondiadema.diadema.wither.WitherDiadema.addWitherSkeletonKnight;
 
@@ -44,9 +48,11 @@ public class ApollyonDiadema extends Diadema {
     final static double RADIUS = 16;
     private final Entity holder = getCoreEntity();
     private final HalfSphereDiademaRange range = new HalfSphereDiademaRange(this, RADIUS);
+    private Diadema apollyonLoveTrain;
 
     public ApollyonDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
+
     }
 
     @Override
@@ -76,6 +82,7 @@ public class ApollyonDiadema extends Diadema {
             }
         }
 
+
         if (holder.tickCount % 1320 != 0 && holder.tickCount!= 0) {
             return;
         }
@@ -85,7 +92,8 @@ public class ApollyonDiadema extends Diadema {
                 int nearbyServants = countNearbyServants(level, getPosition());
                 if (nearbyServants >= MAX_SERVANTS) return;
                 int toSpawn = Math.min(SERVANTS_TO_SPAWN, MAX_SERVANTS - nearbyServants);
-                spawnHereticServant(level, living, toSpawn);
+                if (DiademaConfig.EX_APOLLYON.get()) spawnMultipleServants(level, living, toSpawn);
+                else spawnHereticServant(level, living, toSpawn);
             }
         }else {
             int nearbyServants = countNearbyServants(level, getPosition());
@@ -139,28 +147,50 @@ public class ApollyonDiadema extends Diadema {
     }
 
 
-    private static void spawnMultipleServants(Level level, Entity holder, int toSpawn) {
+    public static void spawnMultipleServants(Level level, Entity holder, int toSpawn) {
         if (!(holder instanceof LivingEntity livingHolder)) {
             return;
         }
 
-        for (int i = 0; i < toSpawn; i++) {
-            ApostleServant servant = ModEntities.APOSTLE_SERVANT.get().create(level);
-            if (servant != null) {
-                servant.setTrueOwner(livingHolder);
+        if (!(level instanceof ServerLevel serverLevel)) { // 确保是服务端世界
+            return;
+        }
 
-                double angle = Math.PI * 2 * i / 12; // 圆形分布
-                double dx = Math.cos(angle) * 8;
-                double dz = Math.sin(angle) * 8;
-                servant.moveTo(
+        EntityType<ApostleServant> servantType = ModEntities.APOSTLE_SERVANT.get();
+        for (int i = 0; i < toSpawn; i++) {
+            // 计算生成位置（圆形分布）
+            double angle = Math.PI * 2 * i / 12;
+            double dx = Math.cos(angle) * 8;
+            double dz = Math.sin(angle) * 8;
+            BlockPos spawnPos = BlockPos.containing(
+                    holder.getX() + dx,
+                    holder.getY(),
+                    holder.getZ() + dz
+            );
+
+            // 使用 spawn 方法生成实体
+            ApostleServant servant = servantType.spawn(
+                    serverLevel,
+                    (ItemStack) null,                          // ItemStack（刷怪蛋等，这里不用）
+                    null,                          // Player（触发生成的玩家，这里不用）
+                    spawnPos,                      // 生成位置（BlockPos）
+                    MobSpawnType.SPAWN_EGG,            // 生成类型（EVENT 表示非自然生成）
+                    true,                          // 是否进行碰撞检测（true 避免卡墙）
+                    false                          // 是否强制生成（false 允许自然生成规则）
+            );
+
+            if (servant != null) {
+                servant.setTrueOwner(livingHolder); // 设置主人
+                Random random = new Random();
+                int randomNumber = random.nextInt(12);
+                servant.setTitleNumber(randomNumber);
+                servant.moveTo(                     // 调整精确位置（避免 BlockPos 取整）
                         holder.getX() + dx,
                         holder.getY(),
                         holder.getZ() + dz,
                         holder.getYRot(),
                         holder.getXRot()
                 );
-
-                level.addFreshEntity(servant);
             }
         }
     }
@@ -203,6 +233,9 @@ public class ApollyonDiadema extends Diadema {
         }
     }
 
+
+
+
     private void apollyonTitleSkill(LivingEntity living, int title) {
         if (living == null || living.level().isClientSide) {
             return; // 确保实体存在且在服务端
@@ -211,6 +244,7 @@ public class ApollyonDiadema extends Diadema {
         Level level = living.level();
         Vec3 pos = living.position();
 
+        //天启饥荒 给予饥饿和反胃
         if (title == 7 || title == 12) {
             for (Entity entity : affectingEntities) {
                 if (!(entity instanceof Player player)) continue;
@@ -220,9 +254,12 @@ public class ApollyonDiadema extends Diadema {
                 }
             }
         }
+        //黑天使之影 召唤骷髅骑士
         if (title == 4 || title == 12) {
             addWitherSkeletonKnight(level, pos, 6);
         }
+
+        //毒蝎之尾 发射剧毒药水箭
         if (title == 2 || title == 12) {
             for (int i = 0; i < 14; i++) {
                 Arrow arrow = new Arrow(level, (LivingEntity) holder);
@@ -243,6 +280,7 @@ public class ApollyonDiadema extends Diadema {
                 level.addFreshEntity(arrow);
             }
         }
+        //骇人恶物 给予惊恐buff
         if (title == 9 || title == 12) {
             for (Entity entity : affectingEntities) {
                 if (!(entity instanceof Player player)) continue;
@@ -251,12 +289,15 @@ public class ApollyonDiadema extends Diadema {
                 }
             }
         }
+        //漆黑魅影 召唤黑色的虚弱药水云
         if (title == 3 || title == 12) {
             createEffectClouds(level, living, 10);
         }
+        //爆燃领主 烈焰弹来咯
         if (title == 6 || title == 12) {
             fireBomb(level,pos,living);
         }
+        //荣耀之名 和你的无敌帧说再见吧
         if (title == 10 || title == 12) {
             for (Entity entity : affectingEntities) {
                 if (!(entity instanceof Player player)) continue;
@@ -265,6 +306,7 @@ public class ApollyonDiadema extends Diadema {
                 }
             }
         }
+        //女巫之王 末影溶解
         if (title == 5 || title == 12) {
             for (Entity entity : affectingEntities) {
                 if (!(entity instanceof Player player)) continue;
@@ -273,24 +315,39 @@ public class ApollyonDiadema extends Diadema {
                 }
             }
         }
+        //憎恶本质 让范围内所有生物仇视玩家
         if (title == 1 || title == 12) {
             for (Entity entity : affectingEntities) {
                 if (!(entity instanceof Mob mob)) continue;
                 mob.setTarget(living.getLastHurtMob());
             }
         }
+        //凛冽寒风 全部吹飞
         if (title == 8 || title == 12) {
             for (Entity entity : affectingEntities) {
                 repelEntity(entity);
             }
         }
+        //十恶不赦，召唤凋零
         if (title == 11 || title == 12) {
-            summonWither(level, living);
+            summonWither(level, living,8);
         }
+        //不灭重生
         if (title == 0 || title == 12) {
-            living.heal(5);
-            living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 400, 3));
+            this.apollyonLoveTrain = DiademaRegister.LOVE_TRAIN.get().CreateInstance(
+                    new FollowDiademaMovement(living));
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            ApollyonDiadema.this.apollyonLoveTrain.kill();
+                        }
+
+                    };
+                    Timer timer = new Timer();
+                    timer.schedule(task, 4995);
+
         }
+        //末日终结 读条即死
         if (title == 13) {
             for (Entity entity : affectingEntities) {
                 if (!(entity instanceof LivingEntity livingEntity)) continue;
@@ -318,7 +375,6 @@ public class ApollyonDiadema extends Diadema {
     private static @NotNull List<AreaEffectCloud> createEffectClouds(Level level, LivingEntity living, int number) {
         List<AreaEffectCloud> clouds = new ArrayList<>();
         for (int i = 0; i < number; i++) {
-            // Generate positions in a sphere around the entity
             double angle = random.nextDouble() * 2 * Math.PI;
             double distance = random.nextDouble() * RADIUS;
             double randomX = Math.cos(angle) * distance;
@@ -340,8 +396,8 @@ public class ApollyonDiadema extends Diadema {
             cloud.setWaitTime(20);
             cloud.setPotion(Potions.WEAKNESS);
 
-            level.addFreshEntity(cloud); // Add the cloud to the world
-            clouds.add(cloud); // Add to our list
+            level.addFreshEntity(cloud);
+            clouds.add(cloud);
         }
         return clouds;
     }
@@ -374,22 +430,29 @@ public class ApollyonDiadema extends Diadema {
 
     }
 
-    private void summonWither(Level level,LivingEntity holder) {
-        WitherServant wither = new WitherServant(ModEntityType.WITHER_SERVANT.get(), level);
-        wither.setTrueOwner(holder);
-        double angle = Math.PI * 2 * 4 / 12; // 圆形分布
-        double dx = Math.cos(angle) * 8;
-        double dz = Math.sin(angle) * 8;
-        for (int i = 0; i < 4; i++) {
-            wither.moveTo(
-                    holder.getX() + dx,
-                    holder.getY(),
-                    holder.getZ() + dz,
-                    holder.getYRot(),
-                    holder.getXRot()
-            );
+    public static void summonWither(Level level, Entity holder, int toSpawn) {
+        if (!(holder instanceof LivingEntity livingHolder)) {
+            return;
+        }
 
-            level.addFreshEntity(wither);
+        for (int i = 0; i < toSpawn; i++) {
+            WitherServant servant = new WitherServant(ModEntityType.WITHER_SERVANT.get(), level);
+            if (servant != null) {
+                servant.setTrueOwner(livingHolder);
+
+                double angle = Math.PI * 2 * i / 12; // 圆形分布
+                double dx = Math.cos(angle) * 8;
+                double dz = Math.sin(angle) * 8;
+                servant.moveTo(
+                        holder.getX() + dx,
+                        holder.getY(),
+                        holder.getZ() + dz,
+                        holder.getYRot(),
+                        holder.getXRot()
+                );
+
+                level.addFreshEntity(servant);
+            }
         }
     }
 

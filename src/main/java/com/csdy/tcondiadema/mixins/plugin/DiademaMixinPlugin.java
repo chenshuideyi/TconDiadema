@@ -16,7 +16,6 @@ public class DiademaMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public void onLoad(String mixinPackage) {
-        // 不再在这里检查 ModList，因为可能未初始化
     }
 
     @Override
@@ -35,7 +34,7 @@ public class DiademaMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (CONDITIONAL_MIXINS.contains(mixinClassName)) {
             boolean isLoaded = classExists(GOETY_CORE_CLASS);
-            System.out.println("[匠魂领域MixinPlugin] " + mixinClassName + " 加载决策: " + isLoaded +"亚伯伦这下牛逼了");
+            System.out.println("[匠魂领域MixinPlugin] " + mixinClassName + " 加载决策: " + isLoaded + "亚伯伦这下牛逼了");
             return isLoaded;
         }
         return true;

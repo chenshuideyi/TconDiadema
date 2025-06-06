@@ -20,7 +20,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -60,7 +62,7 @@ public class TconDiadema {
 
         DiademaRegister.DIADEMA_TYPES.register(bus);
 
-        //        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.EXMODE,"tcondiadema-Exmode.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DiademaConfig.DIADEMA_CONFIG,"tcondiadema_config.toml");
         //        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setupClient);
 
         // 以下代码仅在客户端运行

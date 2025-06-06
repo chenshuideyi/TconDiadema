@@ -1,6 +1,7 @@
 package com.csdy.tcondiadema.mixins;
 
 import com.Polarice3.Goety.common.entities.boss.Apostle;
+import com.csdy.tcondiadema.DiademaConfig;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.movement.FollowDiademaMovement;
@@ -8,7 +9,10 @@ import com.mega.revelationfix.common.entity.boss.ApostleServant;
 import com.mega.revelationfix.common.entity.cultists.HereticServant;
 import com.mega.revelationfix.common.init.ModEntities;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
@@ -23,6 +27,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import z1gned.goetyrevelation.util.ApollyonAbilityHelper;
 
 import static com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema.spawnHereticServant;
+import static com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema.spawnMultipleServants;
 
 
 @Mixin(Apostle.class) // 确保 Apostle 类实现了 ApollyonAbilityHelper (可能通过另一个 Mixin)
@@ -87,7 +92,24 @@ public abstract class ApollyonMixin extends LivingEntity { // 确保继承自 Ap
         // 确保是Apollyon才生成仆从
         if (currentApostle instanceof ApollyonAbilityHelper &&
                 ((ApollyonAbilityHelper)currentApostle).allTitlesApostle_1_20_1$isApollyon()) {
-            spawnHereticServant(currentApostle.level, currentApostle, 12);
+
+            if (DiademaConfig.EX_APOLLYON.get()) {
+                spawnMultipleServants(currentApostle.level, currentApostle, 12);
+            }
+            else spawnHereticServant(currentApostle.level, currentApostle, 12);
+
+
+            MinecraftServer server = (MinecraftServer) worldIn; // 或者通过其他方式获取 server
+            if (server != null) {
+                // 遍历所有在线玩家
+                for (ServerPlayer onlinePlayer : server.getPlayerList().getPlayers()) {
+                    // 发送消息（仅限服务端，避免客户端重复执行）
+                    onlinePlayer.displayClientMessage(
+                            Component.literal("我来并不是叫地上太平，乃是叫地上动刀兵"),
+                            true // 是否显示在 ActionBar（true 为 ActionBar，false 为聊天栏）
+                    );
+                }
+            }
         }
     }
 
