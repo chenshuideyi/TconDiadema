@@ -99,9 +99,9 @@ public abstract class ApollyonMixin extends LivingEntity { // 确保继承自 Ap
             else spawnHereticServant(currentApostle.level, currentApostle, 12);
 
 
-            MinecraftServer server = (MinecraftServer) worldIn; // 或者通过其他方式获取 server
+            MinecraftServer server = currentApostle.level().getServer();
+            // 遍历所有在线玩家
             if (server != null) {
-                // 遍历所有在线玩家
                 for (ServerPlayer onlinePlayer : server.getPlayerList().getPlayers()) {
                     // 发送消息（仅限服务端，避免客户端重复执行）
                     onlinePlayer.displayClientMessage(

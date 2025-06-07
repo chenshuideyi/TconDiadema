@@ -23,7 +23,7 @@ public class DiademaMixinPlugin implements IMixinConfigPlugin {
         return "csdy.refmap.json";
     }
 
-    private static final String GOETY_CORE_CLASS = "com.mega.revelationfix.Revelationfix";
+    private static final String REVELATION_CORE_CLASS = "com.mega.revelationfix.Revelationfix";
 
     private static final Set<String> CONDITIONAL_MIXINS = new HashSet<>(Arrays.asList(
             "com.csdy.tcondiadema.mixins.ApollyonMixin"
@@ -33,8 +33,9 @@ public class DiademaMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (CONDITIONAL_MIXINS.contains(mixinClassName)) {
-            boolean isLoaded = classExists(GOETY_CORE_CLASS);
-            System.out.println("[匠魂领域MixinPlugin] " + mixinClassName + " 加载决策: " + isLoaded + "亚伯伦这下牛逼了");
+            boolean isLoaded = classExists(REVELATION_CORE_CLASS);
+            if (isLoaded) System.out.println("[匠魂领域MixinPlugin] " + mixinClassName + " 加载决策: " + true + " 亚伯伦这下牛逼了");
+            else System.out.println("[匠魂领域MixinPlugin] " + mixinClassName + " 加载决策: " + false + " 亚伯伦这下不牛逼了");
             return isLoaded;
         }
         return true;

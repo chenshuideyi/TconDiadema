@@ -18,7 +18,9 @@ import lombok.NonNull;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -52,7 +54,6 @@ public class ApollyonDiadema extends Diadema {
 
     public ApollyonDiadema(DiademaType type, DiademaMovement movement) {
         super(type, movement);
-
     }
 
     @Override
@@ -70,6 +71,14 @@ public class ApollyonDiadema extends Diadema {
         // 只在服务端执行，且确保 entity 是 LivingEntity
         if (level.isClientSide() || !(holder instanceof LivingEntity living)) {
             return;
+        }
+
+        if (holder.tickCount % 100 == 0) {
+            if (living instanceof ApollyonAbilityHelper) {
+                if (((ApollyonAbilityHelper) living).allTitlesApostle_1_20_1$isApollyon()) {
+                    if (apollyonLoveTrain != null) this.apollyonLoveTrain.kill();
+                }
+            }
         }
 
         if (holder.tickCount % 400 == 0) {
@@ -295,7 +304,7 @@ public class ApollyonDiadema extends Diadema {
         }
         //爆燃领主 烈焰弹来咯
         if (title == 6 || title == 12) {
-            fireBomb(level,pos,living);
+            fireBomb(level, pos, living);
         }
         //荣耀之名 和你的无敌帧说再见吧
         if (title == 10 || title == 12) {
@@ -330,23 +339,15 @@ public class ApollyonDiadema extends Diadema {
         }
         //十恶不赦，召唤凋零
         if (title == 11 || title == 12) {
-            summonWither(level, living,8);
+            summonWither(level, living, 8);
         }
         //不灭重生
         if (title == 0 || title == 12) {
             this.apollyonLoveTrain = DiademaRegister.LOVE_TRAIN.get().CreateInstance(
                     new FollowDiademaMovement(living));
-                    TimerTask task = new TimerTask() {
-                        @Override
-                        public void run() {
-                            ApollyonDiadema.this.apollyonLoveTrain.kill();
-                        }
-
-                    };
-                    Timer timer = new Timer();
-                    timer.schedule(task, 4995);
-
         }
+
+
         //末日终结 读条即死
         if (title == 13) {
             for (Entity entity : affectingEntities) {

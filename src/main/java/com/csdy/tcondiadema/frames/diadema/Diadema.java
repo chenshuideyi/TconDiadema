@@ -239,6 +239,14 @@ public abstract class Diadema {
     }
 
     @SubscribeEvent
+    public final void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent e) {
+        // 发包
+        DiademaSyncing.CHANNEL.send(
+                PacketDistributor.PLAYER.with(() -> (ServerPlayer) e.getEntity()),
+                new DiademaCreatedPacket(type, instanceId));
+    }
+
+    @SubscribeEvent
     public final void onEntityLeaveLevel(EntityLeaveLevelEvent e) {
         if (getCoreEntity() == null) return;
         if (e.getEntity() == getCoreEntity()) remove();

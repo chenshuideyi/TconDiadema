@@ -2,18 +2,9 @@
   "type": "tconstruct:modifier",
   "allow_crystal": true,
   "check_trait_level": true,
-  "conditions": [
-    {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:mod_loaded",
-        "modid": "goety_revelation"
-      }
-    }
-  ],
   "inputs": [
     {
-      "item": "minecraft:bone_meal"
+      "item": "tcondiadema:crown_of_thorns"
     }
   ],
   "level": {
@@ -25,5 +16,5 @@
   "tools": {
     "tag": "tconstruct:modifiable/armor/worn"
   },
-  "result": "tcondiadema:fake_apollyon"
+  "result": "tcondiadema:martyr"
 }

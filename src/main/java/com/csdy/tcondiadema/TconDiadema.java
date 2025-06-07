@@ -1,5 +1,6 @@
 package com.csdy.tcondiadema;
 
+import com.csdy.tcondiadema.client.HaloRender;
 import com.csdy.tcondiadema.diadema.ClientDiademaRegister;
 import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.diadema.warden.WardenBlindnessEffect;
@@ -11,10 +12,14 @@ import com.csdy.tcondiadema.modifier.register.ModifierRegister;
 import com.csdy.tcondiadema.network.VisualChannel;
 import com.csdy.tcondiadema.particle.register.ParticlesRegister;
 import com.csdy.tcondiadema.sounds.SoundsRegister;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -97,6 +102,9 @@ public class TconDiadema {
         IS_GOETY_REVELATION_LOADED = ModList.get().isLoaded("goety_revelation");
         System.out.println("[TConDiadema] 启示录加载状态确认: " + IS_GOETY_REVELATION_LOADED);
     }
+
+
+
 
 //    @SubscribeEvent
 //    public void onGatherData(GatherDataEvent event) {

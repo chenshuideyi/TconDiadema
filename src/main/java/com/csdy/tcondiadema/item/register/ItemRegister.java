@@ -8,6 +8,7 @@ import com.csdy.tcondiadema.item.food.WardenHeart;
 import com.csdy.tcondiadema.item.sword.*;
 import com.csdy.tcondiadema.item.material.*;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -28,4 +29,6 @@ public class ItemRegister {
     public static final RegistryObject<Item> POOP = ITEMS.register("poop", Poop::new);
 
 
+    public static final RegistryObject<Item> CROWN_OF_THORNS = ITEMS.register("crown_of_thorns",
+            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 }

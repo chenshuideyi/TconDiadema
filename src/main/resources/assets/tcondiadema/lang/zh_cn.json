@@ -16,6 +16,7 @@
   "item.tcondiadema.neuron_sensors.line1": "或许需要从无机而可运动的身躯中取得",
   "item.tcondiadema.aura_forma": "光环Forma",
   "item.tcondiadema.poop": "屎",
+  "item.tcondiadema.crown_of_thorns": "荆棘王冠",
 
   "tcondiadema_tab": "匠魂领域",
   "stat.tconstruct.slot.display.diadema": "领域",
@@ -119,6 +120,10 @@
   "modifier.tcondiadema.fake_apollyon": "No.Euphoria 乐园",
   "modifier.tcondiadema.fake_apollyon.flavor": "啊？真中合欢",
   "modifier.tcondiadema.fake_apollyon.description": "每过一段时间使你获得一坨大便\n您可能走错片场了，下载诡厄巫法·启示录聆听主的福音",
+
+  "modifier.tcondiadema.martyr": "No.14 赦罪",
+  "modifier.tcondiadema.martyr.flavor": "这世界如果恨你们，你们应当知道，世界在恨你们之前已经恨我了。\n(约翰福音 15:18)",
+  "modifier.tcondiadema.martyr.description": "将世界上所有的伤害转移到你的身上",
 
   "effect.tcondiadema.scared": "惊恐",
   "effect.tcondiadema.physical_injury": "开放性物理创口",
