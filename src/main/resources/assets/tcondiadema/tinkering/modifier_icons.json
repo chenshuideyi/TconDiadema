@@ -23,5 +23,7 @@
   "tcondiadema:time_rain": "tcondiadema:gui/modifiers/diadema/time_rain",
   "tcondiadema:pheromone_mist": "tcondiadema:gui/modifiers/diadema/pheromone_mist",
   "tcondiadema:love_train": "tcondiadema:gui/modifiers/diadema/love_train",
-  "tcondiadema:apollyon": "tcondiadema:gui/modifiers/diadema/apollyon"
+  "tcondiadema:apollyon": "tcondiadema:gui/modifiers/diadema/apollyon",
+  "tcondiadema:martyr": "tcondiadema:gui/modifiers/diadema/martyr"
+
 }

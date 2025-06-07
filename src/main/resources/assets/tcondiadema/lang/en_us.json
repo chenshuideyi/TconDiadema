@@ -16,6 +16,8 @@
   "item.tcondiadema.neural_sensors": "Neuron Sensors",
   "item.tcondiadema.neuron_sensors.line1": "It may need to be obtained from golems body",
   "item.tcondiadema.aura_forma": "Aura Forma",
+  "item.tcondiadema.poop": "shit",
+  "item.tcondiadema.crown_of_thorns": "Crown of Thorns",
 
   "tcondiadema_tab": "Tinker's Domain",
   "stat.tconstruct.slot.display.diadema": "Domain",
@@ -112,6 +114,18 @@
 
   "love_train_text1": "You transferred the misfortune you suffered to",
 
+  "modifier.tcondiadema.apollyon": "No.666 Paradise Lost",
+  "modifier.tcondiadema.apollyon.flavor": "Summons 12 Apostle Servant with you as their leader every 66 seconds",
+  "modifier.tcondiadema.apollyon.description": "Behold: you stood at the door and knocked, and it was opened to you.\nI come from the end, and I am here to stay for but a moment.\nAt the same time, I am the one who kindled the light to face the world.\nMy loved ones, who now eagerly desire the greater gifts; I will show you the most excellent way.\nMy loved ones, do not worry; I have heard your prayers.\nHave you not yet realized that pain is but a speck to a determined mind?\nYou pray unto me to prove my miracles.\nThat you may believe in me, and that by believing you may have life in my name; I shall show you the power.",
+
+  "modifier.tcondiadema.fake_apollyon": "No.Eden Euphoria",
+  "modifier.tcondiadema.fake_apollyon.flavor": "Manaka nemu?",
+  "modifier.tcondiadema.fake_apollyon.description": "Periodically grants you a pile of feces\nYou might be in the wrong place - download 'Goety: Revelation' to hear the gospel of the Lord.",
+
+  "modifier.tcondiadema.martyr": "No.14 Martyr",
+  "modifier.tcondiadema.martyr.flavor": "If the world hate you, ye know that it hated me before it hated you.\n(John 15:18)",
+  "modifier.tcondiadema.martyr.description": "Redirect all damage in the world onto yourself.",
+
   "effect.tcondiadema.scared": "Scared",
   "effect.tcondiadema.physical_injury": "Physical Injury",
   "effect.tcondiadema.fracture": "Fracture",
@@ -122,5 +136,22 @@
   "boss.normal_wither": "Innocent and naive warrior · Wither",
   "boss.hard_wither": "The cold-blooded warrior · Wither",
 
-  "diadema_message": "Search for 'No.' in JEI to view Domain contents"
+  "diadema_message": "Search for 'No.' in JEI to view Domain contents",
+
+  "apollyon_join_world": "Think not that I came to send peace on the earth: I came not to send peace, but a sword.",
+  "apollyon_message_7": "A measure of wheat for a penny, and three measures of barley for a penny; and see thou hurt not the oil and the wine.",
+  "apollyon_message_4": "there fell a great star from heaven, burning as it were a lamp, and it fell upon the third part of the rivers",
+  "apollyon_message_2": "And they had tails like unto scorpions, and there were stings in their tails: and their power was to hurt men five months.",
+  "apollyon_message_9": "And he opened his mouth in blasphemy against God, to blaspheme his name, and his tabernacle, and them that dwell in heaven.",
+  "apollyon_message_3": "Stretch out thine hand toward heaven, that there may be darkness over the land of Egypt, even darkness which may be felt.",
+  "apollyon_message_6": "Lord, wilt thou that we command fire to come down from heaven, and consume them, even as Elias did?",
+  "apollyon_message_10": "And the sight of the glory of the LORD was like devouring fire on the top of the mount in the eyes of the children of Israel.\n",
+  "apollyon_message_5": "Thou art the Christ, the Son of the living God.",
+  "apollyon_message_1": "And the LORD said unto him, Therefore whosoever slayeth Cain, vengeance shall be taken on him sevenfold.",
+  "apollyon_message_8": "And there fell upon men a great hail out of heaven, every stone about the weight of a talent",
+  "apollyon_message_11": "And the devil that deceived them was cast into the lake of fire and brimstone, where the beast and the false prophet are",
+  "apollyon_message_0": "Lord, how is it that thou wilt manifest thyself unto us, and not unto the world?",
+  "apollyon_message_12": "O Lord God Almighty, which art, and wast, and art to come; because thou hast taken to thee thy great power, and hast reigned.",
+  "apollyon_message_13": "For the great day of his wrath is come; and who shall be able to stand?"
+
 }

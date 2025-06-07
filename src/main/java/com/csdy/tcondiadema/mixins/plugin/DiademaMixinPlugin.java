@@ -20,7 +20,7 @@ public class DiademaMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public String getRefMapperConfig() {
-        return "csdy.refmap.json";
+        return null;
     }
 
     private static final String REVELATION_CORE_CLASS = "com.mega.revelationfix.Revelationfix";

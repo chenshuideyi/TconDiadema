@@ -220,25 +220,25 @@ public class ApollyonDiadema extends Diadema {
         }
 
         String message = switch (i) {
-            case 7 -> "一钱银子买一升麦子、一钱银子买三升大麦．油和酒不可糟蹋。"; //天启饥荒
-            case 4 -> "于是日间的三分之一暗淡无光，夜间也是如此"; //黑天使之影
-            case 2 -> "有尾巴像蝎子，尾巴上的毒钩能伤人五个月。"; //毒蝎之尾
-            case 9 -> "那兽开口向神说亵渎的话，亵渎神的名并他的帐幕，以及那些住在天上的。"; //骇人恶物
-            case 3 -> "你向天伸杖，使世界漆黑一片，那黑暗浓得甚至可以摸到。"; //漆黑暗影
-            case 6 -> "主阿，你要我们吩咐火从天上降下来，烧灭他们，像以利亚所作的吗？"; //爆燃领主
-            case 10 -> "主的荣耀在山顶上，在受拣选者的眼前，形状如烈火。"; //荣耀之名
-            case 5 -> "您即是他的儿子，您生来为王！"; //女巫之王
-            case 1 -> "主说，凡杀该隐的，必造报七倍。";  //憎恶本质
-            case 8 -> "又有大雹子从天落在人身上，每一个约重一他连得。为这雹子的灾极大，人就亵渎神。"; //冷冽寒冬
-            case 11 -> "那迷惑他们的魔鬼被扔在硫磺的火湖里，就是兽和假先知所在的地方。他们必昼夜受痛苦，直到永永远远。"; //十恶不赦
-            case 0 -> "主阿，为什么要向我们显现，不向世人显现呢？"; //不灭重生
-            case 12 -> "主啊！我们感谢你， 因你已执掌大权做王了。"; //万众一心
-            case 13 -> "因为祂们发烈怒的大日子到了，谁又能站得住呢？"; //末日终结
+            case 7 -> "apollyon_message_7"; //天启饥荒
+            case 4 -> "apollyon_message_4"; //黑天使之影
+            case 2 -> "apollyon_message_2"; //毒蝎之尾
+            case 9 -> "apollyon_message_9"; //骇人恶物
+            case 3 -> "apollyon_message_3"; //漆黑暗影
+            case 6 -> "apollyon_message_6"; //爆燃领主
+            case 10 -> "apollyon_message_10"; //荣耀之名
+            case 5 -> "apollyon_message_5"; //女巫之王
+            case 1 -> "apollyon_message_1";  //憎恶本质
+            case 8 -> "apollyon_message_8"; //冷冽寒冬
+            case 11 -> "apollyon_message_11"; //十恶不赦
+            case 0 -> "apollyon_message_0"; //不灭重生
+            case 12 -> "apollyon_message_12"; //万众一心
+            case 13 -> "apollyon_message_13"; //末日终结
             default -> null;
         };
 
         if (message != null) {
-            player.displayClientMessage(Component.literal(message), true);
+            player.displayClientMessage(Component.translatable(message), true);
         }
     }
 
@@ -339,7 +339,7 @@ public class ApollyonDiadema extends Diadema {
         }
         //十恶不赦，召唤凋零
         if (title == 11 || title == 12) {
-            summonWither(level, living, 8);
+            summonWither(level, living, 4);
         }
         //不灭重生
         if (title == 0 || title == 12) {
@@ -428,7 +428,7 @@ public class ApollyonDiadema extends Diadema {
 
         // 为实体设置速度
         entity.setDeltaMovement(repelVelocity);
-
+        entity.hurtMarked = true;
     }
 
     public static void summonWither(Level level, Entity holder, int toSpawn) {
