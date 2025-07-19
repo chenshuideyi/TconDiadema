@@ -24,4 +24,6 @@ public class WardenMixin {
         Warden warden = (Warden)(Object)this;
         tcondiadema$wardenDiadema = DiademaRegister.WARDEN.get().CreateInstance(new FollowDiademaMovement(warden));
     }
+
+
 }

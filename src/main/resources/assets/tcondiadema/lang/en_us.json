@@ -126,6 +126,10 @@
   "modifier.tcondiadema.martyr.flavor": "If the world hate you, ye know that it hated me before it hated you.\n(John 15:18)",
   "modifier.tcondiadema.martyr.description": "Redirect all damage in the world onto yourself.",
 
+  "modifier.tcondiadema.wonder_of_u": "No.3125 Wonder Of You",
+  "modifier.tcondiadema.wonder_of_u.flavor": "All you need to do to live peacefully and happily is stop pursuing me. Can't you even manage that little thing?",
+  "modifier.tcondiadema.wonder_of_u.description": "All creatures that hate you and players aiming their cursor at you will suffer calamitous attacks",
+
   "effect.tcondiadema.scared": "Scared",
   "effect.tcondiadema.physical_injury": "Physical Injury",
   "effect.tcondiadema.fracture": "Fracture",

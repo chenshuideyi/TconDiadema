@@ -10,9 +10,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /// 客户端的领域实例类型，用于处理显示效果之类的东西
+@Getter
 @OnlyIn(Dist.CLIENT)
 public abstract class ClientDiadema {
     public ClientDiadema() {
@@ -30,9 +33,7 @@ public abstract class ClientDiadema {
 
 
     // properties
-    @Getter
     private Vec3 position = Vec3.ZERO;
-    @Getter
     private ResourceLocation dimension;
 
 
@@ -67,4 +68,16 @@ public abstract class ClientDiadema {
         if (mc.isPaused()) return;
         perTick();
     }
+
+//    @SubscribeEvent
+//    public final void onEntityLeaveLevel(EntityLeaveLevelEvent e) {
+//        if (getCoreEntity() == null) return;
+//        if (e.getEntity() == getCoreEntity()) remove();
+//    }
+//
+//    @SubscribeEvent
+//    public final void onLivingDeathEvent(LivingDeathEvent e) {
+//        if (getCoreEntity() == null) return;
+//        if (e.getEntity() == getCoreEntity()) remove();
+//    }
 }

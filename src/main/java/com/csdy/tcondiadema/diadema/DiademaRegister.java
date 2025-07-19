@@ -26,6 +26,7 @@ import com.csdy.tcondiadema.diadema.timerain.TimeRainDiadema;
 import com.csdy.tcondiadema.diadema.warden.WardenDiadema;
 import com.csdy.tcondiadema.diadema.wind.WindDiadema;
 import com.csdy.tcondiadema.diadema.wither.WitherDiadema;
+import com.csdy.tcondiadema.diadema.wonderofyou.WonderOfYouDiadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.frames.CsdyRegistries;
 import net.minecraftforge.registries.DeferredRegister;
@@ -81,6 +82,8 @@ public class DiademaRegister {
             DIADEMA_TYPES.register("martyr", () -> DiademaType.create(MartyrDiadema::new));
     public static final RegistryObject<DiademaType> FAKE_APOLLYON =
             DIADEMA_TYPES.register("fake_apollyon", () -> DiademaType.create(FakeApollyonDiadema::new));
+    public static final RegistryObject<DiademaType> WONDER_OF_U =
+            DIADEMA_TYPES.register("wonder_of_u", () -> DiademaType.create(WonderOfYouDiadema::new));
 
 
     public static final DeferredRegister<DiademaType> MEGA_DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.DIADEMA_TYPE, TconDiadema.MODID);

@@ -125,6 +125,10 @@
   "modifier.tcondiadema.martyr.flavor": "这世界如果恨你们，你们应当知道，世界在恨你们之前已经恨我了。\n(约翰福音 15:18)",
   "modifier.tcondiadema.martyr.description": "将世界上所有的伤害转移到你的身上",
 
+  "modifier.tcondiadema.wonder_of_u": "No.3125 奇迹于你",
+  "modifier.tcondiadema.wonder_of_u.flavor": "只需不要再追踪我，就能平安无事地幸福生活了。连这么点事都做不到吗？",
+  "modifier.tcondiadema.wonder_of_u.description": "所有仇恨你的生物，鼠标指向你的玩家，都会受到灾厄的攻击",
+
   "effect.tcondiadema.scared": "惊恐",
   "effect.tcondiadema.physical_injury": "开放性物理创口",
   "effect.tcondiadema.fracture": "骨折",

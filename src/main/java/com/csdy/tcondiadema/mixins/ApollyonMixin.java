@@ -100,13 +100,11 @@ public abstract class ApollyonMixin extends LivingEntity { // 确保继承自 Ap
 
 
             MinecraftServer server = currentApostle.level().getServer();
-            // 遍历所有在线玩家
             if (server != null) {
                 for (ServerPlayer onlinePlayer : server.getPlayerList().getPlayers()) {
-                    // 发送消息（仅限服务端，避免客户端重复执行）
                     onlinePlayer.displayClientMessage(
                             Component.translatable("apollyon_join_world"),
-                            true // 是否显示在 ActionBar（true 为 ActionBar，false 为聊天栏）
+                            true
                     );
                 }
             }

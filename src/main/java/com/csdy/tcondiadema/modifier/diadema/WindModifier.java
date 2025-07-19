@@ -17,31 +17,31 @@ import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.EquipmentChangeContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
-public class WindModifier extends DiademaModifier implements InventoryTickModifierHook {
-    @Override
-    protected DiademaType getDiademaType() {
-        return DiademaRegister.WIND.get();
-    }
-
-    @Override
-    public void onInventoryTick(IToolStackView iToolStackView, ModifierEntry modifierEntry, Level level, LivingEntity livingEntity, int itemSlot, boolean isSelected, boolean isCorrectSlot, ItemStack itemStack) {
-        if (!(livingEntity instanceof Player player) || !isCorrectSlot) return;
-        player.addEffect(new MobEffectInstance(EffectRegister.WIND.get(), 100, 0));
-        player.getAbilities().setFlyingSpeed(0.2f);
-        player.getAbilities().mayfly = true;
-    }
-
-    @Override
-    public void onUnequip(@NotNull IToolStackView tool, @NotNull ModifierEntry entry, EquipmentChangeContext context) {
-        if (!(context.getEntity() instanceof Player player)) return;
-        player.removeEffect(new MobEffectInstance(EffectRegister.WIND.get()).getEffect());
-        player.getAbilities().setFlyingSpeed(0.05f);
-        super.onUnequip(tool,entry,context);
-    }
-
-    protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
-        hookBuilder.addHook(this, ModifierHooks.INVENTORY_TICK);
-        super.registerHooks(hookBuilder);
-    }
-
-}
+//public class WindModifier extends DiademaModifier implements InventoryTickModifierHook {
+//    @Override
+//    protected DiademaType getDiademaType() {
+//        return DiademaRegister.WIND.get();
+//    }
+//
+//    @Override
+//    public void onInventoryTick(IToolStackView iToolStackView, ModifierEntry modifierEntry, Level level, LivingEntity livingEntity, int itemSlot, boolean isSelected, boolean isCorrectSlot, ItemStack itemStack) {
+//        if (!(livingEntity instanceof Player player) || !isCorrectSlot) return;
+//        player.addEffect(new MobEffectInstance(EffectRegister.WIND.get(), 100, 0));
+//        player.getAbilities().setFlyingSpeed(0.2f);
+//        player.getAbilities().mayfly = true;
+//    }
+//
+//    @Override
+//    public void onUnequip(@NotNull IToolStackView tool, @NotNull ModifierEntry entry, EquipmentChangeContext context) {
+//        if (!(context.getEntity() instanceof Player player)) return;
+//        player.removeEffect(new MobEffectInstance(EffectRegister.WIND.get()).getEffect());
+//        player.getAbilities().setFlyingSpeed(0.05f);
+//        super.onUnequip(tool,entry,context);
+//    }
+//
+//    protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
+//        hookBuilder.addHook(this, ModifierHooks.INVENTORY_TICK);
+//        super.registerHooks(hookBuilder);
+//    }
+//
+//}

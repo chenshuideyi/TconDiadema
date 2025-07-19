@@ -117,7 +117,7 @@ public abstract class Diadema {
     /**
      * 获取此领域的核心实体（例如，领域跟随的实体）。
      * <p>
-     * &#064;return核心实体，如果领域不是跟随实体类型，则为null。 
+     * &#064;return核心实体，如果领域不是跟随实体类型，则为null。
      */
 
     public Entity getCoreEntity() {
@@ -241,6 +241,7 @@ public abstract class Diadema {
     @SubscribeEvent
     public final void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent e) {
         // 发包
+        if (!(getCoreEntity() instanceof Player)) return;
         DiademaSyncing.CHANNEL.send(
                 PacketDistributor.PLAYER.with(() -> (ServerPlayer) e.getEntity()),
                 new DiademaCreatedPacket(type, instanceId));

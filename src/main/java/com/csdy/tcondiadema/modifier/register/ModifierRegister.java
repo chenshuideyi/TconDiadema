@@ -24,7 +24,7 @@ public class ModifierRegister {
     public static final StaticModifier<DiademaModifier> KILL_AURA_STATIC_MODIFIER = MODIFIERS.register("kill_aura", CommonDiademaModifier.Create(DiademaRegister.KILL_AURA));
     public static final StaticModifier<DiademaModifier> FAKE_PROJECT_E_STATIC_MODIFIER = MODIFIERS.register("fake_projecte", CommonDiademaModifier.Create(DiademaRegister.FAKE_PROJECTE));
     public static final StaticModifier<DiademaModifier> PROJECT_E_STATIC_MODIFIER = MODIFIERS.register("projecte", CommonDiademaModifier.Create(DiademaRegister.PROJECTE));
-    public static final StaticModifier<DiademaModifier> WIND_STATIC_MODIFIER = MODIFIERS.register("wind", WindModifier::new);
+    public static final StaticModifier<DiademaModifier> WIND_STATIC_MODIFIER = MODIFIERS.register("wind", CommonDiademaModifier.Create(DiademaRegister.WIND));
     public static final StaticModifier<DiademaModifier> MERIDIA_VERSE_STATIC_MODIFIER = MODIFIERS.register("meridia_verse", CommonDiademaModifier.Create(DiademaRegister.MERIDIA_VERSE));
     public static final StaticModifier<DiademaModifier> AVARITA_STATIC_MODIFIER = MODIFIERS.register("avarita", CommonDiademaModifier.Create(DiademaRegister.AVARITA));
     public static final StaticModifier<DiademaModifier> SUPERBIA_STATIC_MODIFIER = MODIFIERS.register("superbia", CommonDiademaModifier.Create(DiademaRegister.SUPERBIA));
@@ -37,7 +37,7 @@ public class ModifierRegister {
     public static final StaticModifier<DiademaModifier> APOLLYON_STATIC_MODIFIER = MODIFIERS.register("apollyon", CommonDiademaModifier.Create(DiademaRegister.APOLLYON));
     public static final StaticModifier<DiademaModifier> FAKE_APOLLYON_STATIC_MODIFIER = MODIFIERS.register("fake_apollyon", CommonDiademaModifier.Create(DiademaRegister.FAKE_APOLLYON));
     public static final StaticModifier<DiademaModifier> MARTYR_STATIC_MODIFIER = MODIFIERS.register("martyr", CommonDiademaModifier.Create(DiademaRegister.MARTYR));
-
+    public static final StaticModifier<DiademaModifier> WONDER_OF_U_STATIC_MODIFIER = MODIFIERS.register("wonder_of_u", CommonDiademaModifier.Create(DiademaRegister.WONDER_OF_U));
 
 
 

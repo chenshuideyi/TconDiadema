@@ -27,6 +27,7 @@ import com.csdy.tcondiadema.diadema.timerain.TimeRainClinetDiadema;
 import com.csdy.tcondiadema.diadema.warden.WardenClientDiadema;
 import com.csdy.tcondiadema.diadema.wind.WindClientDiadema;
 import com.csdy.tcondiadema.diadema.wither.WitherClientDiadema;
+import com.csdy.tcondiadema.diadema.wonderofyou.WonderOfYouClientDiadema;
 import com.csdy.tcondiadema.frames.CsdyRegistries;
 import com.csdy.tcondiadema.frames.diadema.ClientDiademaType;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
@@ -85,6 +86,8 @@ public class ClientDiademaRegister {
             CLIENT_DIADEMA_TYPES.register("fake_apollyon", () -> ClientDiademaType.Create(FakeApollyonClientDiadema::new));
     public static final RegistryObject<ClientDiademaType> MARTYR =
             CLIENT_DIADEMA_TYPES.register("martyr", () -> ClientDiademaType.Create(MartyrClientDiadema::new));
+    public static final RegistryObject<ClientDiademaType> WONDER_OF_U =
+            CLIENT_DIADEMA_TYPES.register("wonder_of_u", () -> ClientDiademaType.Create(WonderOfYouClientDiadema::new));
 
     public static final DeferredRegister<ClientDiademaType> MEGA_CLIENT_DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.CLIENT_DIADEMA_TYPE, TconDiadema.MODID);
     public static final RegistryObject<ClientDiademaType> APOLLYON =
