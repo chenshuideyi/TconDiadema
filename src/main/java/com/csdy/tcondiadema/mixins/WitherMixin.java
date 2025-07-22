@@ -25,6 +25,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -54,12 +55,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.annotation.Nullable;
-
-// 假设 DiademaRegister 和 Diadema 以及 FollowDiademaMovement 类存在且定义正确
-// import your.package.DiademaRegister;
-// import your.package.Diadema;
-// import your.package.FollowDiademaMovement;
-
 
 @Mixin(WitherBoss.class)
 public abstract class WitherMixin extends Mob {
@@ -99,7 +94,7 @@ public abstract class WitherMixin extends Mob {
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         Difficulty difficulty = this.level().getDifficulty();
         return switch (difficulty) {
             case EASY -> Component.translatable("boss.easy_wither");

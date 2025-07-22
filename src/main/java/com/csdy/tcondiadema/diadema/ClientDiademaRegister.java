@@ -5,6 +5,7 @@ import com.csdy.tcondiadema.diadema.abyss.AbyssClientDiadema;
 import com.csdy.tcondiadema.diadema.apollyon.ApollyonClientDiadema;
 import com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema;
 import com.csdy.tcondiadema.diadema.avaritia.AvaritaClientDiadema;
+import com.csdy.tcondiadema.diadema.ender_dragon.EnderDragonClientDiadema;
 import com.csdy.tcondiadema.diadema.fakeapollyon.FakeApollyonClientDiadema;
 import com.csdy.tcondiadema.diadema.fakekillaura.FakeKillAuraClientDiadema;
 import com.csdy.tcondiadema.diadema.fakemeltdown.FakeMeltdownClientDiadema;
@@ -88,6 +89,8 @@ public class ClientDiademaRegister {
             CLIENT_DIADEMA_TYPES.register("martyr", () -> ClientDiademaType.Create(MartyrClientDiadema::new));
     public static final RegistryObject<ClientDiademaType> WONDER_OF_U =
             CLIENT_DIADEMA_TYPES.register("wonder_of_u", () -> ClientDiademaType.Create(WonderOfYouClientDiadema::new));
+    public static final RegistryObject<ClientDiademaType> ENDER_DRAGON =
+            CLIENT_DIADEMA_TYPES.register("ender_dragon", () -> ClientDiademaType.Create(EnderDragonClientDiadema::new));
 
     public static final DeferredRegister<ClientDiademaType> MEGA_CLIENT_DIADEMA_TYPES = DeferredRegister.create(CsdyRegistries.CLIENT_DIADEMA_TYPE, TconDiadema.MODID);
     public static final RegistryObject<ClientDiademaType> APOLLYON =

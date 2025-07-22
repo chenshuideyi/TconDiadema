@@ -265,7 +265,7 @@ public class ApollyonDiadema extends Diadema {
         }
         //黑天使之影 召唤骷髅骑士
         if (title == 4 || title == 12) {
-            addWitherSkeletonKnight(level, pos, 6);
+            addWitherSkeletonKnight(level, pos, 6,living);
         }
 
         //毒蝎之尾 发射剧毒药水箭

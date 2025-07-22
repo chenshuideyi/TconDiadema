@@ -73,6 +73,7 @@ public abstract class Diadema {
 
         // 发包
         DiademaSyncing.CHANNEL.send(PacketDistributor.ALL.noArg(), new DiademaRemovedPacket(this.instanceId));
+//        System.out.println("已移除一个领域"+ this.getClass().getName());
 
         // 自定义逻辑
         removed();

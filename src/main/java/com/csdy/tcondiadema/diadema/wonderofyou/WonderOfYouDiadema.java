@@ -34,7 +34,6 @@ public class WonderOfYouDiadema extends Diadema {
         var core = getCoreEntity();
         if (!(core instanceof LivingEntity coreLiving)) return;
 
-        // 获取世界中的所有生物
         for (LivingEntity entity : core.level().getEntitiesOfClass(LivingEntity.class, core.getBoundingBox().inflate(100.0))) {
             // 1. 处理玩家瞄准核心的情况
             if (entity instanceof Player player && !player.equals(core)) {

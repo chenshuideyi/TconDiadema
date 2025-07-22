@@ -32,6 +32,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
+
 @Mod.EventBusSubscriber(modid = TconDiadema.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class WitherDiadema extends Diadema {
     static final double RADIUS = 12;
@@ -72,9 +74,9 @@ public class WitherDiadema extends Diadema {
         // 计算需要生成的数量
         int toSpawn = Math.min(WITHER_SKELETONS_TO_SPAWN, MAX_WITHER_SKELETONS - nearbySkeletons);
         if (living.getHealth() < living.getMaxHealth() * 0.5f){
-            addWitherSkeletonKnight(level, pos,toSpawn);
+            addWitherSkeletonKnight(level, pos,toSpawn,entity);
         }
-        else addWitherSkeletonArcher(level, pos, toSpawn);
+        else addWitherSkeletonArcher(level, pos, toSpawn,entity);
 
     }
 
@@ -93,8 +95,12 @@ public class WitherDiadema extends Diadema {
     }
 
     //召唤弓兵
-    private static void addWitherSkeletonArcher(Level level, Vec3 witherCenterPos, int count) {
+    private static void addWitherSkeletonArcher(Level level, Vec3 witherCenterPos, int count, @Nullable Entity coreEntity) {
         if (!(level instanceof ServerLevel)) return;
+
+        // 如果 coreEntity 不存在，则默认使用 witherCenterPos 的 Y 坐标
+        double targetY = (coreEntity != null) ? coreEntity.getY() : witherCenterPos.y();
+        final double MAX_Y_OFFSET = 5.0; // 允许的最大 Y 轴偏差
 
         for (int i = 0; i < count; i++) {
             double offsetX = (level.random.nextDouble() - 0.5) * RADIUS;
@@ -103,13 +109,21 @@ public class WitherDiadema extends Diadema {
             double spawnX = witherCenterPos.x() + offsetX;
             double spawnZ = witherCenterPos.z() + offsetZ;
 
+            // 获取地面高度
             int groundY = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     Mth.floor(spawnX),
                     Mth.floor(spawnZ));
 
-            WitherSkeleton witherSkeleton = EntityType.WITHER_SKELETON.create(level);
-            if (witherSkeleton == null)  continue;
+            // 如果 groundY 离 targetY 太远，则修正到 targetY 附近
+            if (Math.abs(groundY - targetY) > MAX_Y_OFFSET) {
+                // 在 targetY ± MAX_Y_OFFSET 范围内随机选择一个 Y 坐标
+                groundY = (int) (targetY + (level.random.nextDouble() * 2 * MAX_Y_OFFSET - MAX_Y_OFFSET));
+                // 确保 groundY 不会低于 0 或高于世界上限
+                groundY = Mth.clamp(groundY, level.getMinBuildHeight(), level.getMaxBuildHeight() - 1);
+            }
 
+            WitherSkeleton witherSkeleton = EntityType.WITHER_SKELETON.create(level);
+            if (witherSkeleton == null) continue;
 
             level.addFreshEntity(witherSkeleton);
 
@@ -129,16 +143,13 @@ public class WitherDiadema extends Diadema {
             bow.enchant(Enchantments.POWER_ARROWS, 5); // 力量V
 
             witherSkeleton.setItemSlot(EquipmentSlot.MAINHAND, bow);
-
             witherSkeleton.setDropChance(EquipmentSlot.MAINHAND, 0);
-
-
         }
 
         if (count > 0) {
             level.playSound(
                     null, // 在所有客户端播放
-                    witherCenterPos.x(), witherCenterPos.y(), witherCenterPos.z(), // 声音从凋零位置发出
+                    witherCenterPos.x(), witherCenterPos.y(), witherCenterPos.z(),
                     SoundEvents.WITHER_SPAWN,
                     SoundSource.HOSTILE,
                     1.0f,
@@ -147,10 +158,12 @@ public class WitherDiadema extends Diadema {
         }
     }
 
-    //召唤骑士
-    public static void addWitherSkeletonKnight(Level level, Vec3 witherCenterPos, int count) {
+    public static void addWitherSkeletonKnight(Level level, Vec3 witherCenterPos, int count, @Nullable Entity coreEntity) {
         if (!(level instanceof ServerLevel)) return;
 
+        // 如果 coreEntity 不存在，则默认使用 witherCenterPos 的 Y 坐标
+        double targetY = (coreEntity != null) ? coreEntity.getY() : witherCenterPos.y();
+        final double MAX_Y_OFFSET = 5.0; // 允许的最大 Y 轴偏差
 
         for (int i = 0; i < count; i++) {
             double offsetX = (level.random.nextDouble() - 0.5) * RADIUS;
@@ -159,10 +172,20 @@ public class WitherDiadema extends Diadema {
             double spawnX = witherCenterPos.x() + offsetX;
             double spawnZ = witherCenterPos.z() + offsetZ;
 
+            // 获取地面高度
             int groundY = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     Mth.floor(spawnX),
                     Mth.floor(spawnZ));
 
+            // 如果 groundY 离 targetY 太远，则修正到 targetY 附近
+            if (Math.abs(groundY - targetY) > MAX_Y_OFFSET) {
+                // 在 targetY ± MAX_Y_OFFSET 范围内随机选择一个 Y 坐标
+                groundY = (int) (targetY + (level.random.nextDouble() * 2 * MAX_Y_OFFSET - MAX_Y_OFFSET));
+                // 确保 groundY 不会低于 0 或高于世界上限
+                groundY = Mth.clamp(groundY, level.getMinBuildHeight(), level.getMaxBuildHeight() - 1);
+            }
+
+            // 1. 创建凋零骷髅骑士
             WitherSkeleton witherSkeleton = EntityType.WITHER_SKELETON.create(level);
             if (witherSkeleton == null) continue;
 
@@ -181,7 +204,7 @@ public class WitherDiadema extends Diadema {
             netheriteSword.enchant(Enchantments.SHARPNESS, 5); // 锋利V
 
             ItemStack shield = new ItemStack(Items.SHIELD);
-            shield.enchant(Enchantments.MENDING,1);
+            shield.enchant(Enchantments.MENDING, 1);
 
             ItemStack netheriteHelmet = new ItemStack(Items.NETHERITE_HELMET);
             netheriteHelmet.enchant(Enchantments.MENDING, 1);
@@ -209,7 +232,7 @@ public class WitherDiadema extends Diadema {
             witherSkeleton.setDropChance(EquipmentSlot.LEGS, 1);
             witherSkeleton.setDropChance(EquipmentSlot.FEET, 1);
 
-            witherSkeleton.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,6000,1));
+            witherSkeleton.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6000, 1));
 
             // 2. 创建骷髅马
             SkeletonHorse skeletonHorse = EntityType.SKELETON_HORSE.create(level);
@@ -218,7 +241,7 @@ public class WitherDiadema extends Diadema {
                 continue;
             }
 
-            skeletonHorse.moveTo(spawnX, groundY, spawnZ, witherSkeleton.getYRot(), 0.0f); // Y朝向与凋零骷髅一致
+            skeletonHorse.moveTo(spawnX, groundY, spawnZ, witherSkeleton.getYRot(), 0.0f);
             skeletonHorse.setAge(0);
             skeletonHorse.setTamed(true); // 必须设置为驯服状态，非玩家实体才能骑乘
             skeletonHorse.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.4);
@@ -231,13 +254,12 @@ public class WitherDiadema extends Diadema {
             if (!didRide) {
                 System.err.println("凋零骷髅骑士发生错误于 " + spawnX + "," + groundY + "," + spawnZ);
             }
-
         }
 
         if (count > 0) {
             level.playSound(
                     null, // 在所有客户端播放
-                    witherCenterPos.x(), witherCenterPos.y(), witherCenterPos.z(), // 声音从凋零位置发出
+                    witherCenterPos.x(), witherCenterPos.y(), witherCenterPos.z(),
                     SoundEvents.WITHER_SPAWN,
                     SoundSource.HOSTILE,
                     1.0f,
@@ -262,6 +284,13 @@ public class WitherDiadema extends Diadema {
             level.addFreshEntity(cloud);
         }
 
+    }
+
+    @Override
+    protected void removed() {
+        if (getCoreEntity() != null){
+
+        }
     }
 
     private static @NotNull AreaEffectCloud getNormalAreaEffectCloud(Level level, LivingEntity living) {
