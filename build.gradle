@@ -130,6 +130,8 @@ buildscript {
         implementation fg.deobf("curse.maven:BetterCombat-639842:5625757")
 
         implementation fg.deobf("curse.maven:goety-revelation-1236817:6554801")
+
+        implementation fg.deobf("curse.maven:geckolib-388172:6333474")
     }
     tasks.named('processResources', ProcessResources).configure {
         var replaceProperties = [minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,

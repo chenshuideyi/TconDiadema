@@ -41,6 +41,9 @@ public abstract class Diadema {
     @Getter
     private boolean alive = true;
 
+    @Getter
+    protected boolean shouldBeCsdyKilled = true;
+
     public Diadema(DiademaType type, DiademaMovement movement) {
         this.type = type;
         this.movement = movement;
@@ -216,6 +219,9 @@ public abstract class Diadema {
         );
     }
 
+    protected void setShouldBeCsdyKilled(Boolean canCsdyKilled){
+        shouldBeCsdyKilled = canCsdyKilled;
+    }
 
     // event handlers
     @SubscribeEvent

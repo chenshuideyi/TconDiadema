@@ -65,6 +65,10 @@ public abstract class DiademaType {
     }
 
 
+    public Set<Diadema> getInstances() {
+        return Collections.unmodifiableSet(instances);
+    }
+
     // impl
     private static class CommonDiademaType extends DiademaType {
         CommonDiademaType(BiFunction<DiademaType, DiademaMovement, Diadema> diademaGetter) {

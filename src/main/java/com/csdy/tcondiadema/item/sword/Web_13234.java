@@ -26,7 +26,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static com.csdy.tcondiadema.diadema.apollyon.ApollyonDiadema.spawnMultipleServants;
+import static com.csdy.tcondiadema.frames.diadema.DiademaUtils.killAllDiadema;
+
 
 public class Web_13234 extends SwordItem {
     public Web_13234(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
@@ -52,17 +53,25 @@ public class Web_13234 extends SwordItem {
         InteractionResultHolder<ItemStack> use = super.use(level, player, hand);//能使用物品的一定是玩家 所以改成player
         System.out.println("111 玩家使用Web_13234");
         if (level instanceof ServerLevel serverLevel) {
-            if (state0) {
-                System.out.println("222 并且领域正在添加……");
-                testDiadema = DiademaRegister.WONDER_OF_U.get().CreateInstance(new FollowDiademaMovement(player));
-                System.out.println("222 并且领域添加了");
-                state0 = false;
+//            if (state0) {
+//                System.out.println("222 并且领域正在添加……");
+//                testDiadema = DiademaRegister.WONDER_OF_U.get().CreateInstance(new FollowDiademaMovement(player));
+//                System.out.println("222 并且领域添加了");
+//                state0 = false;
+//
+//            } else {
+//                testDiadema.kill();
+//                System.out.println("222 并且领域移除了");
+//                state0 = true;
+//            }
 
-            } else {
-                testDiadema.kill();
-                System.out.println("222 并且领域移除了");
-                state0 = true;
-            }
+            killAllDiadema();
+
+
+            player.displayClientMessage(
+                    Component.literal("Csdy摧毁了世界上所有的领域！").withStyle(ChatFormatting.RED),
+                    true
+            );
 //            spawnMultipleServants(level,player,1);
         }
 

@@ -6,6 +6,7 @@ import com.csdy.tcondiadema.diadema.DiademaRegister;
 import com.csdy.tcondiadema.diadema.warden.WardenBlindnessEffect;
 import com.csdy.tcondiadema.effect.register.EffectRegister;
 import com.csdy.tcondiadema.frames.diadema.DiademaSyncing;
+import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.item.register.HideRegister;
 import com.csdy.tcondiadema.item.register.ItemRegister;
 import com.csdy.tcondiadema.modifier.register.ModifierRegister;
@@ -38,6 +39,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+
 
 
 @Mod(TconDiadema.MODID)
@@ -86,6 +88,8 @@ public class TconDiadema {
             });
 
         }
+
+
     }
 
     @SubscribeEvent

@@ -3,6 +3,8 @@ package com.csdy.tcondiadema.modifier;
 import com.csdy.tcondiadema.frames.diadema.Diadema;
 import com.csdy.tcondiadema.frames.diadema.DiademaType;
 import com.csdy.tcondiadema.frames.diadema.movement.FollowDiademaMovement;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -41,6 +43,11 @@ import static com.csdy.tcondiadema.TconDiadema.MODID;
 public abstract class DiademaModifier extends Modifier implements EquipmentChangeModifierHook, ConditionalStatModifierHook {
     private static final ResourceLocation DIADEMA_UUID = new ResourceLocation(MODID, "diadema_uuid");
 
+    //全局控制
+    @Setter
+    @Getter
+    private static boolean diademaCreationEnabled = true;
+
     //除了这个可以都不管
     protected abstract DiademaType getDiademaType();
 
@@ -50,6 +57,7 @@ public abstract class DiademaModifier extends Modifier implements EquipmentChang
     //创建领域 最最后一块拼图
     //解决了解决了解决了解决了解决了解决了解决了解决了解决了解决了解决了解决了解决了!!!
     private static void createDiadema(ModDataNBT nbt, DiademaType diademaType, Entity entity) {
+        if (isDiademaCreationEnabled()) return;
         UUID uuid = getUuid(nbt);
         var current = Diademas.get(uuid);
         if (current != null && current.isAlive()) return;
