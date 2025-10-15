@@ -22,6 +22,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -119,7 +120,9 @@ public class EnderDragonDiadema extends Diadema {
     @SubscribeEvent(priority = HIGHEST)
     public void onDragonHurt(LivingHurtEvent e) {
         var source = e.getSource();
-        if (hasActiveCrystals() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+        var entity = e.getEntity();
+        if ((entity instanceof Player)) return;
+        if (hasActiveCrystals() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && affectingEntities.contains(entity)) {
             holder.level().playSound(null,
                     holder.getX(),
                     holder.getY(),
@@ -139,8 +142,6 @@ public class EnderDragonDiadema extends Diadema {
                 }
             }
 
-
-
             e.setCanceled(true);
         }
 
@@ -152,7 +153,7 @@ public class EnderDragonDiadema extends Diadema {
         var entity = e.getEntity();
         if (entity instanceof EnderDragon) {
             if ("badRespawnPoint".equals(source.getMsgId())) {
-                entity.setHealth(0);
+                entity.discard();
 
             }
 

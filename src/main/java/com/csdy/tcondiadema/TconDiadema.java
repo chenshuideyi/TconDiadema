@@ -12,6 +12,9 @@ import com.csdy.tcondiadema.modifier.register.ModifierRegister;
 import com.csdy.tcondiadema.network.VisualChannel;
 import com.csdy.tcondiadema.particle.register.ParticlesRegister;
 import com.csdy.tcondiadema.sounds.SoundsRegister;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
@@ -103,7 +106,21 @@ public class TconDiadema {
         System.out.println("[TConDiadema] 启示录加载状态确认: " + IS_GOETY_REVELATION_LOADED);
     }
 
+    @SubscribeEvent
+    public static void onAddLayers(EntityRenderersEvent.AddLayers event) {
+        // 这个事件会为所有实体触发，我们只关心玩家皮肤
+        // event.getSkin("default") 获取默认（Steve）模型的渲染器
+        LivingEntityRenderer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> defaultRenderer = event.getSkin("default");
+        if (defaultRenderer != null) {
+            defaultRenderer.addLayer(new HaloRender(defaultRenderer)); // 传入 renderer
+        }
 
+        // event.getSkin("slim") 获取 slim（Alex）模型的渲染器
+        LivingEntityRenderer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> slimRenderer = event.getSkin("slim");
+        if (slimRenderer != null) {
+            slimRenderer.addLayer(new HaloRender(slimRenderer)); // 传入 renderer
+        }
+    }
 
 
 //    @SubscribeEvent

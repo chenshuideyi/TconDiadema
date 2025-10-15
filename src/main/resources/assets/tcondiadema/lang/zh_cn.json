@@ -85,7 +85,7 @@
 
   "modifier.tcondiadema.gula": "No.6-暴食",
   "modifier.tcondiadema.gula.flavor": "贝露赛布",
-  "modifier.tcondiadema.gula.description": "领域内其他生物的死亡会为你增长该生物0.8倍的最大生命值与攻击力（死亡会失去这些属性！）\n如果你的食欲无法克制……",
+  "modifier.tcondiadema.gula.description": "领域内其他生物的死亡会为你增长5点最大生命值与攻击力（死亡会失去这些属性！）\n如果你的食欲无法克制……",
 
   "modifier.tcondiadema.luxuria": "No.16-色欲",
   "modifier.tcondiadema.luxuria.flavor": "阿斯蒙蒂斯",
@@ -140,7 +140,7 @@
   "boss.normal_wither": "天真无邪的战士 · 凋灵",
   "boss.hard_wither": "冷酷无情的战士 · 凋灵",
 
-  "ender_dragon_block": "水晶保护着末影龙...",
+  "ender_dragon_block": "水晶保护着末地生灵...",
 
   "diadema_message": "在jei中搜索No.以查看领域内容",
 

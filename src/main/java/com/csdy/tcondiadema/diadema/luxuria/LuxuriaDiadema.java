@@ -45,8 +45,7 @@ public class LuxuriaDiadema extends Diadema {
                     timer = 0;
                 }
                 else if (timer % 40 == 0){
-                    if (!isPlayer()) return;
-                    Player player = (Player) entity;
+                    if (!(entity instanceof Player player)) return;
                     spawnExperienceOrb(living);
                     living.setHealth(living.getHealth()-10);
                     AttributeInstance maxHealthAttr = player.getAttribute(Attributes.MAX_HEALTH);

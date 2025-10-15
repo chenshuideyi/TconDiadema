@@ -32,8 +32,8 @@ public class SuperbiaDiadema extends Diadema {
         if (!(entity instanceof Player player)) return;
         for (Entity entity : affectingEntities) {
             if (!(entity instanceof LivingEntity living)) continue;
-            if (!entity.equals(player) && living.getHealth()<player.getMaxHealth()) {
-                living.die(new DamageSource(living.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.PLAYER_ATTACK), player));
+            if (!entity.equals(player) && living.getHealth()<player.getMaxHealth() && living.isAlive()) {
+                living.dropAllDeathLoot(new DamageSource(living.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.PLAYER_ATTACK), player));
                 living.setHealth(0);
                 AttributeInstance maxHealthAttr = player.getAttribute(Attributes.MAX_HEALTH);
                 double originalMaxHealth = maxHealthAttr.getBaseValue();

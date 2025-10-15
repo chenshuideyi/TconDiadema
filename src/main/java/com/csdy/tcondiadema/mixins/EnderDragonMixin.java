@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(EnderDragon.class)
+@Mixin(value = EnderDragon.class, targets = "net.minecraft.world.entity.boss.enderdragon.EnderDragon")
 public abstract class EnderDragonMixin extends Mob {
 
     @Unique
@@ -38,6 +38,11 @@ public abstract class EnderDragonMixin extends Mob {
     @Inject(method = "<init>", at = @At("RETURN"))
     private void tcondiadema$onEnderDragonInit_diademaSetup(EntityType<? extends EnderDragon> entityType, Level level, CallbackInfo ci) {
         if (level.isClientSide) return;
+
+        if (!this.getClass().equals(EnderDragon.class)) {
+            return; // 如果不是精确的EnderDragon类，直接返回
+        }
+
         EnderDragon enderDragon = (EnderDragon)(Object)this;
 
         enderDragon.getAttribute(Attributes.MAX_HEALTH).setBaseValue(1000);

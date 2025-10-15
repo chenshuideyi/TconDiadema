@@ -29,7 +29,7 @@ public class Wind extends MobEffect {
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
         LivingEntity entity = event.getEntity();
-        if (entity.hasEffect(EffectRegister.PHYSICALINJURY.get())) {
+        if (entity.hasEffect(EffectRegister.WIND.get())) {
             double chance = random.nextDouble();
             // 如果随机数小于 0.8（80% 概率），取消伤害
             if (chance < 0.8) event.setCanceled(true);
